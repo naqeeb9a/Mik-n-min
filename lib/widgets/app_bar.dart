@@ -9,13 +9,13 @@ appBar(context) {
     children: [
       Icon(
         Icons.notes_outlined,
-        size: dynamicWidth(context, 0.1),
+        size: CustomSizes().dynamicWidth(context, 0.1),
       ),
       text(
         context,
         "BuildYourCake",
         0.06,
-        myBlack,
+        CustomColors.customBlack,
         font: true,
       ),
     ],

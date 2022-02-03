@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:mik_and_min/utils/config.dart';
 
 import 'app screens/home.dart';
@@ -10,14 +11,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Mik n Min',
       theme: ThemeData(
-        primarySwatch: primaryColor,
+        primarySwatch: CustomColors.primaryColor,
+        textTheme: GoogleFonts.poppinsTextTheme(
+          Theme.of(context).textTheme,
+        ),
       ),
       home: const Home(),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/utils/constants.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 
 import '../utils/config.dart';
@@ -6,9 +7,9 @@ import '../utils/config.dart';
 Widget inputTextField(context, label, myController,
     {function, function2, password = false}) {
   return ClipRRect(
-    borderRadius: BorderRadius.circular(dynamicWidth(context, 0.04)),
+    borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04)),
     child: Container(
-      color: myGrey.withOpacity(0.7),
+      color: CustomColors.customGrey.withOpacity(0.7),
       child: TextFormField(
         autovalidateMode: AutovalidateMode.onUserInteraction,
         validator: (function == "")
@@ -22,27 +23,27 @@ Widget inputTextField(context, label, myController,
             ? TextInputType.visiblePassword
             : TextInputType.emailAddress,
         obscureText: password == true ? obscureText : false,
-        cursorColor: myBlack,
+        cursorColor: CustomColors.customBlack,
         cursorWidth: 2.0,
-        cursorHeight: dynamicHeight(context, .03),
+        cursorHeight: CustomSizes().dynamicHeight(context, .03),
         style: TextStyle(
-          color: myBlack,
-          fontSize: dynamicWidth(context, .04),
+          color: CustomColors.customBlack,
+          fontSize: CustomSizes().dynamicWidth(context, .04),
         ),
         decoration: InputDecoration(
           hintText: "Type Something",
-          hintStyle: const TextStyle(color: myWhite),
+          hintStyle: const TextStyle(color: CustomColors.customWhite),
           enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: noColor),
+            borderSide: BorderSide(color: CustomColors.noColor),
           ),
           focusedBorder: const UnderlineInputBorder(
-            borderSide: BorderSide(color: noColor),
+            borderSide: BorderSide(color: CustomColors.noColor),
           ),
           border: const UnderlineInputBorder(
-            borderSide: BorderSide(color: myBlack),
+            borderSide: BorderSide(color: CustomColors.customBlack),
           ),
           contentPadding: EdgeInsets.symmetric(
-            horizontal: dynamicWidth(context, .05),
+            horizontal: CustomSizes().dynamicWidth(context, .05),
           ),
         ),
       ),

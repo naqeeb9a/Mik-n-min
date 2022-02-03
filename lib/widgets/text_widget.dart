@@ -10,7 +10,7 @@ Widget text(context, text, size, color,
     overflow: TextOverflow.ellipsis,
     style: TextStyle(
       color: color,
-      fontSize: dynamicWidth(context, size),
+      fontSize: CustomSizes().dynamicWidth(context, size),
       fontWeight: bold == true ? FontWeight.bold : FontWeight.normal,
     ),
   );

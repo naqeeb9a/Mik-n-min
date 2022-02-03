@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: text(context, "Home", .04, myBlack),
+        child: text(context, "Home", .04, CustomColors.customBlack),
       ),
     );
   }

@@ -9,17 +9,17 @@ Widget coloredButton(context, text, color,
   return GestureDetector(
     onTap: function == "" ? () {} : function,
     child: Container(
-      width: width == "" ? dynamicWidth(context, 1) : width,
-      height: dynamicWidth(context, .12),
-      decoration: color == noColor
+      width: width == "" ? CustomSizes().dynamicWidth(context, 1) : width,
+      height: CustomSizes().dynamicWidth(context, .12),
+      decoration: color == CustomColors.noColor
           ? BoxDecoration(
               color: color,
-              border: Border.all(width: 1, color: myWhite),
+              border: Border.all(width: 1, color: CustomColors.customWhite),
             )
           : BoxDecoration(
               color: color,
               borderRadius: BorderRadius.circular(
-                dynamicWidth(
+                CustomSizes().dynamicWidth(
                   context,
                   0.03,
                 ),
@@ -29,9 +29,9 @@ Widget coloredButton(context, text, color,
         child: Text(
           text,
           style: TextStyle(
-            color: myWhite,
+            color: CustomColors.customWhite,
             fontWeight: FontWeight.bold,
-            fontSize: dynamicWidth(context, fontSize),
+            fontSize: CustomSizes().dynamicWidth(context, fontSize),
           ),
         ),
       ),
@@ -49,14 +49,14 @@ Widget retry(context) {
         //   width: dynamicWidth(context, 0.4),
         //   repeat: false,
         // ),
-        heightBox(context, 0.02),
-        text(context, "Check your internet or try again later", 0.03, myWhite),
-        heightBox(context, 0.1),
+        CustomSizes().heightBox(context, 0.02),
+        text(context, "Check your internet or try again later", 0.03, CustomColors.customWhite),
+        CustomSizes().heightBox(context, 0.1),
         coloredButton(
           context,
           "Retry",
-          myPink,
-          width: dynamicWidth(context, .4),
+          CustomColors.customPink,
+          width: CustomSizes().dynamicWidth(context, .4),
           function: () {},
         ),
       ],
