@@ -19,9 +19,9 @@ appBar(
       ),
       InkWell(
         onTap: () => _key.currentState!.openEndDrawer(),
-        child: Icon(
-          Icons.menu,
-          size: CustomSizes().dynamicWidth(context, 0.1),
+        child: Image.asset(
+          "assets/hamburger_menu.png",
+          width: CustomSizes().dynamicWidth(context, 0.05),
         ),
       ),
     ],

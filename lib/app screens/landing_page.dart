@@ -24,11 +24,11 @@ class LandingPage extends StatelessWidget {
             children: [
               CustomSizes().heightBox(context, 0.02),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
+                padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: appBar(context, _key),
               ),
               const HomeSlider(),
-              text(context, "Wardrobe", 0.05, CustomColors.customBlack,
+              text(context, "Her Wardrobe", 0.045, CustomColors.customBlack,
                   bold: true),
               Wrap(
                 children: [

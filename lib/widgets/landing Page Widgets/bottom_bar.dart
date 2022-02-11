@@ -1,40 +1,35 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
 
 customBottomBar(context) {
+  double iconSize = 0.05;
   return BottomAppBar(
       child: SizedBox(
-    height: CustomSizes().dynamicWidth(context, 0.12),
+    height: CustomSizes().dynamicWidth(context, 0.1),
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Icon(
-          Icons.home_outlined,
-          color: CustomColors.customPink,
-          size: CustomSizes().dynamicWidth(context, 0.07),
+        Image.asset(
+          "assets/home.png",
+          width: CustomSizes().dynamicWidth(context, iconSize),
         ),
-        Icon(
-          Icons.search,
-          color: CustomColors.customPink,
-          size: CustomSizes().dynamicWidth(context, 0.07),
+        Image.asset(
+          "assets/search.png",
+          width: CustomSizes().dynamicWidth(context, iconSize),
         ),
-        Icon(
-          Icons.category_outlined,
-          color: CustomColors.customPink,
-          size: CustomSizes().dynamicWidth(context, 0.07),
+        Image.asset(
+          "assets/bottom_category.png",
+          width: CustomSizes().dynamicWidth(context, iconSize),
         ),
-        Icon(
-          Icons.shopping_cart_outlined,
-          color: CustomColors.customPink,
-          size: CustomSizes().dynamicWidth(context, 0.07),
+        Image.asset(
+          "assets/cart.png",
+          width: CustomSizes().dynamicWidth(context, iconSize),
         ),
-        Icon(
-          Icons.person_outline,
-          color: CustomColors.customPink,
-          size: CustomSizes().dynamicWidth(context, 0.07),
-        )
+        Image.asset(
+          "assets/profile.png",
+          width: CustomSizes().dynamicWidth(context, iconSize),
+        ),
       ],
     ),
   ));

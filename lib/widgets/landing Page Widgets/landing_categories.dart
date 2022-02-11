@@ -6,19 +6,19 @@ import '../../utils/config.dart';
 
 landingCategories(context) {
   return Container(
-    margin: const EdgeInsets.all(5),
-    width: CustomSizes().dynamicWidth(context, 0.3),
-    height: CustomSizes().dynamicWidth(context, 0.3),
+    margin: const EdgeInsets.all(8),
+    width: CustomSizes().dynamicWidth(context, 0.25),
+    height: CustomSizes().dynamicWidth(context, 0.25),
     decoration: BoxDecoration(
         border: Border.all(width: 5, color: CustomColors.customPink),
         borderRadius:
-            BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.05))),
+            BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04))),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Image.asset(
           "assets/shopping_skirt.png",
-          height: CustomSizes().dynamicWidth(context, 0.2),
+          height: CustomSizes().dynamicWidth(context, 0.15),
         ),
         text(context, "Skirt", 0.03, CustomColors.customBlack)
       ],
