@@ -1,7 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:mik_and_min/utils/dynamic_sizes.dart';
+import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
+import 'package:mik_and_min/widgets/carosual_widget.dart';
+import 'package:mik_and_min/widgets/text_widget.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -13,26 +14,8 @@ class LandingPage extends StatelessWidget {
         child: Column(
           children: [
             appBar(context),
-            CarouselSlider(
-              options: CarouselOptions(
-                  height: CustomSizes().dynamicHeight(context, 0.4),
-                  enlargeCenterPage: true),
-              items: [1, 2, 3, 4, 5].map((i) {
-                return Builder(
-                  builder: (BuildContext context) {
-                    return Container(
-                      
-                        width: MediaQuery.of(context).size.width,
-                        margin: const EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: const BoxDecoration(color: Colors.amber),
-                        child: Text(
-                          'text $i',
-                          style: const TextStyle(fontSize: 16.0),
-                        ));
-                  },
-                );
-              }).toList(),
-            )
+            homeSlider(context),
+            text(context, text, 0.04, CustomColors.customBlack)
           ],
         ),
       ),
