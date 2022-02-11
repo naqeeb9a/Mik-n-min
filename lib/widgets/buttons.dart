@@ -5,7 +5,10 @@ import 'package:mik_and_min/widgets/text_widget.dart';
 import '../utils/config.dart';
 
 Widget coloredButton(context, text, color,
-    {function = "", width = "", fontSize = 0.04}) {
+    {function = "",
+      width = "",
+      fontSize = 0.04,
+      fontColor = true}) {
   return GestureDetector(
     onTap: function == "" ? () {} : function,
     child: Container(
@@ -13,23 +16,24 @@ Widget coloredButton(context, text, color,
       height: CustomSizes().dynamicWidth(context, .12),
       decoration: color == CustomColors.noColor
           ? BoxDecoration(
-              color: color,
-              border: Border.all(width: 1, color: CustomColors.customWhite),
-            )
+        color: color,
+        border: Border.all(width: 1, color: CustomColors.customWhite),
+      )
           : BoxDecoration(
-              color: color,
-              borderRadius: BorderRadius.circular(
-                CustomSizes().dynamicWidth(
-                  context,
-                  0.03,
-                ),
-              ),
-            ),
+        color: color,
+        borderRadius: BorderRadius.circular(
+          CustomSizes().dynamicWidth(
+            context,
+            1,
+          ),
+        ),
+      ),
       child: Center(
         child: Text(
           text,
           style: TextStyle(
-            color: CustomColors.customWhite,
+            color: fontColor == true ? CustomColors.customWhite : CustomColors
+                .customBlack,
             fontWeight: FontWeight.bold,
             fontSize: CustomSizes().dynamicWidth(context, fontSize),
           ),
@@ -50,7 +54,8 @@ Widget retry(context) {
         //   repeat: false,
         // ),
         CustomSizes().heightBox(context, 0.02),
-        text(context, "Check your internet or try again later", 0.03, CustomColors.customWhite),
+        text(context, "Check your internet or try again later", 0.03,
+            CustomColors.customWhite),
         CustomSizes().heightBox(context, 0.1),
         coloredButton(
           context,

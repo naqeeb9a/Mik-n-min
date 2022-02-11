@@ -4,8 +4,8 @@ class CustomColors {
   static const customWhite = Color(0xffffffff);
   static const customGrey = Color(0xff707070);
   static const customBlack = Color(0xff000000);
-  static const customPink = Color(0xff05B4E2);
-  static const customBlue = Color(0xffFA2C67);
+  static const customBlue = Color(0xff05B4E2);
+  static const customPink = Color(0xffFA2C67);
   static const noColor = Colors.transparent;
 
   static const MaterialColor primaryColor = MaterialColor(
