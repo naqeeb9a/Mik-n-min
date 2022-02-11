@@ -66,7 +66,7 @@ class _ChoiceDetailState extends State<ChoiceDetail> {
                   children: [
                     InkWell(
                       onTap: () {
-                        CustomRoutes().push(context, const LandingPage());
+                        CustomRoutes().push(context,  LandingPage());
                       },
                       child: ChoiceChip(
                         label: text(
