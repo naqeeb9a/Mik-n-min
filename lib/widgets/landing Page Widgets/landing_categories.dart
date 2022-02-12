@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mik_and_min/app%20screens/khubaib/detail_page.dart';
+import 'package:mik_and_min/app%20screens/category_detail.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
@@ -9,7 +9,7 @@ import '../../utils/config.dart';
 landingCategories(context) {
   return InkWell(
     onTap: (){
-      CustomRoutes().push(context, DetailPage());
+      CustomRoutes().push(context, CategoryDetail());
     },
     child: Container(
       margin: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),

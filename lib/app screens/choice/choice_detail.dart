@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/tabbar.dart';
-// import 'package:mik_and_min/app%20screens/khubaib/detail_page.dart';
+// import 'package:mik_and_min/app%20screens/khubaib/category_detail.dart';
 import 'package:mik_and_min/app%20screens/landing_page.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
