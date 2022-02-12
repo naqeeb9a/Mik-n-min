@@ -86,12 +86,9 @@ class _ChoiceDetailState extends State<ChoiceDetail> {
                       label: Text("3-6 YEARS"),
                       selected: true,
                     ),
-                    InkWell(
-                      onTap: ()=>CustomRoutes().push(context,const DetailPage(),),
-                      child: const ChoiceChip(
-                        label: Text("6+ YEARS"),
-                        selected: true,
-                      ),
+                    const ChoiceChip(
+                      label: Text("6+ YEARS"),
+                      selected: true,
                     ),
                   ],
                 ),
