@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/khubaib/detail_page.dart';
 import 'package:mik_and_min/app%20screens/landing_page.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
@@ -84,9 +85,12 @@ class _ChoiceDetailState extends State<ChoiceDetail> {
                       label: Text("3-6 YEARS"),
                       selected: true,
                     ),
-                    const ChoiceChip(
-                      label: Text("6+ YEARS"),
-                      selected: true,
+                    InkWell(
+                      onTap: ()=>CustomRoutes().push(context,const DetailPage(),),
+                      child: const ChoiceChip(
+                        label: Text("6+ YEARS"),
+                        selected: true,
+                      ),
                     ),
                   ],
                 ),

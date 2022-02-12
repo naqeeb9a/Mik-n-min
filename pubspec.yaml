@@ -37,6 +37,7 @@ dependencies:
   google_fonts: ^2.2.0
   email_validator: ^2.0.1
   carousel_slider: ^4.0.0
+  card_swiper: ^2.0.1
 
 
 dev_dependencies:
