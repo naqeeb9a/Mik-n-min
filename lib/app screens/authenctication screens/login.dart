@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/forgot_password.dart';
-import 'package:mik_and_min/app%20screens/authenctication%20screens/sign_ip.dart';
+import 'package:mik_and_min/app%20screens/authenctication%20screens/sign_in.dart';
 import 'package:mik_and_min/app%20screens/choice/choice.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';

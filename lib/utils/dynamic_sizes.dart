@@ -17,7 +17,7 @@ class CustomSizes {
 
   heightBox(BuildContext context, dynamic dynamicSize) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * dynamicSize,
+      height: MediaQuery.of(context).size.width * dynamicSize,
     );
   }
 }

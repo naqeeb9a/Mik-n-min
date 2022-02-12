@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
-appBar(context) {
+appBar(
+  context,
+  GlobalKey<ScaffoldState> _key,
+) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -14,9 +17,12 @@ appBar(context) {
         Colors.transparent,
         font: true,
       ),
-      Icon(
-        Icons.menu,
-        size: CustomSizes().dynamicWidth(context, 0.1),
+      InkWell(
+        onTap: () => _key.currentState!.openEndDrawer(),
+        child: Image.asset(
+          "assets/hamburger_menu.png",
+          width: CustomSizes().dynamicWidth(context, 0.05),
+        ),
       ),
     ],
   );
