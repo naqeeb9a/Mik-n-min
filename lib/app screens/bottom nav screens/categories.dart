@@ -12,36 +12,38 @@ class Category extends StatefulWidget {
 class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
-      content: StatefulBuilder(builder: (context, StateSetter setState) {
-        return Align(
-          alignment: Alignment.bottomCenter,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Material(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(
-                    CustomSizes().dynamicWidth(context, .08),
+    return Dialog(
+      child: AlertDialog(
+        content: StatefulBuilder(builder: (context, StateSetter setState) {
+          return Align(
+            alignment: Alignment.bottomCenter,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Material(
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(
+                      CustomSizes().dynamicWidth(context, .08),
+                    ),
                   ),
-                ),
-                child: Container(
-                  height: CustomSizes().dynamicHeight(context, .5),
-                  width: CustomSizes().dynamicWidth(context, .9),
-                  decoration: BoxDecoration(
-                    color: CustomColors.customWhite,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(
-                        CustomSizes().dynamicWidth(context, .08),
+                  child: Container(
+                    height: CustomSizes().dynamicHeight(context, .5),
+                    width: CustomSizes().dynamicWidth(context, .9),
+                    decoration: BoxDecoration(
+                      color: CustomColors.customWhite,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(
+                          CustomSizes().dynamicWidth(context, .08),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              )
-            ],
-          ),
-        );
-      }),
+                )
+              ],
+            ),
+          );
+        }),
+      ),
     );
     // return AlertDialog(
     //   title: Row(

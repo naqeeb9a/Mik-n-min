@@ -7,6 +7,7 @@ import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/profile.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/search.dart';
 import 'package:mik_and_min/app%20screens/landing_page.dart';
 import 'package:mik_and_min/utils/config.dart';
+import 'package:mik_and_min/widgets/text_widget.dart';
 
 import '../../utils/dynamic_sizes.dart';
 
@@ -17,8 +18,15 @@ class CustomTabBar extends StatefulWidget {
   _CustomTabBarState createState() => _CustomTabBarState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar> {
+class _CustomTabBarState extends State<CustomTabBar>
+    with SingleTickerProviderStateMixin {
+  TabController? _tabController;
   double iconSize = 0.05;
+  @override
+  void initState() {
+    _tabController = TabController(length: 5, vsync: this);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +35,13 @@ class _CustomTabBarState extends State<CustomTabBar> {
       child: Stack(
         children: [
           TabBarView(
+            controller: _tabController,
             children: [
               LandingPage(),
-              Search(),
-              Category(),
-              Cart(),
-              Profile(),
+              const Search(),
+              const Category(),
+              const Cart(),
+              const Profile(),
             ],
           ),
           Positioned(
@@ -46,6 +55,27 @@ class _CustomTabBarState extends State<CustomTabBar> {
                   width: CustomSizes().dynamicWidth(context, 1),
                   color: CustomColors.customWhite.withOpacity(.2),
                   child: TabBar(
+                    controller: _tabController,
+                    onTap: (index) {
+                      if (index == 2) {
+                        _tabController!.index = _tabController!.previousIndex;
+                        showDialog(
+                            context: context,
+                            builder: (context) {
+                              return Center(
+                                child: Container(
+                                  color: CustomColors.customWhite,
+                                  width:
+                                      CustomSizes().dynamicWidth(context, 0.8),
+                                  height:
+                                      CustomSizes().dynamicWidth(context, 0.8),
+                                  child: text(context, "text", 0.04,
+                                      CustomColors.customBlack),
+                                ),
+                              );
+                            });
+                      }
+                    },
                     tabs: [
                       Tab(
                         icon: Image.asset(

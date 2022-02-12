@@ -22,7 +22,7 @@ class _HomeSliderState extends State<HomeSlider> {
         CarouselSlider(
           carouselController: _controller,
           options: CarouselOptions(
-              height: CustomSizes().dynamicHeight(context, 0.4),
+              height: CustomSizes().dynamicHeight(context, 0.35),
               onPageChanged: (index, reason) {
                 setState(() {
                   _current = index;
@@ -37,10 +37,6 @@ class _HomeSliderState extends State<HomeSlider> {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: CustomSizes().dynamicWidth(context, 0.01),
-                    vertical: CustomSizes().dynamicWidth(context, 0.01),
-                  ),
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage(i)),
                     border:
