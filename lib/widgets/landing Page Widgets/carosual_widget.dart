@@ -14,6 +14,7 @@ class HomeSlider extends StatefulWidget {
 class _HomeSliderState extends State<HomeSlider> {
   int _current = 0;
   final CarouselController _controller = CarouselController();
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +22,7 @@ class _HomeSliderState extends State<HomeSlider> {
         CarouselSlider(
           carouselController: _controller,
           options: CarouselOptions(
-              height: CustomSizes().dynamicWidth(context, 0.8),
+              height: CustomSizes().dynamicHeight(context, 0.4),
               onPageChanged: (index, reason) {
                 setState(() {
                   _current = index;
@@ -39,13 +40,14 @@ class _HomeSliderState extends State<HomeSlider> {
                   margin:
                        EdgeInsets.symmetric(horizontal: CustomSizes().dynamicWidth(context, 0.01), vertical: CustomSizes().dynamicWidth(context, 0.01)),
                   decoration: BoxDecoration(
-                      image: DecorationImage(image: AssetImage(i)),
-                      border:
-                          Border.all(width: 5, color: CustomColors.customPink),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        CustomSizes().dynamicWidth(context, 0.05),
-                      )),
+                    image: DecorationImage(image: AssetImage(i)),
+                    border:
+                        Border.all(width: 6, color: CustomColors.customPink),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(
+                      CustomSizes().dynamicWidth(context, 0.05),
+                    ),
+                  ),
                 );
               },
             );
