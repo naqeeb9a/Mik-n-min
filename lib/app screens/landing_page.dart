@@ -15,35 +15,57 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        key: _key,
-        endDrawer: const Drawer(),
-        backgroundColor: CustomColors.customWhite,
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomSizes().heightBox(context, 0.02),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: appBar(context, _key),
-              ),
-              const HomeSlider(),
-              text(context, "Her Wardrobe", 0.045, CustomColors.customBlack,
-                  bold: true),
-              Wrap(
+      extendBody: true,
+      key: _key,
+      endDrawer: Drawer(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                text(context, "New In", 0.04, CustomColors.customBlack),
+                Image.asset(
+                  "assets/drawer_img1.png",
+                  width: CustomSizes().dynamicWidth(context, 0.2),
+                )
+              ],
+            )
+          ],
+        ),
+      ),
+      backgroundColor: CustomColors.customWhite,
+      body: Stack(
+        children: [
+          SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  landingCategories(context),
-                  landingCategories(context),
-                  landingCategories(context),
-                  landingCategories(context),
-                  landingCategories(context),
-                  landingCategories(context),
+                  CustomSizes().heightBox(context, 0.02),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    child: appBar(context, _key),
+                  ),
+                  const HomeSlider(),
+                  text(context, "Her Wardrobe", 0.045, CustomColors.customBlack,
+                      bold: true),
+                  Wrap(
+                    children: [
+                      landingCategories(context),
+                      landingCategories(context),
+                      landingCategories(context),
+                      landingCategories(context),
+                      landingCategories(context),
+                      landingCategories(context),
+                    ],
+                  ),
+                  bestSellerBanner(context)
                 ],
               ),
-              bestSellerBanner(context)
-            ],
+            ),
           ),
-        ),
-        bottomNavigationBar: customBottomBar(context));
+          Positioned(bottom: 0, child: customBottomBar(context))
+        ],
+      ),
+    );
   }
 }

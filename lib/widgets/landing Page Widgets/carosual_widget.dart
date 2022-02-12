@@ -37,7 +37,7 @@ class _HomeSliderState extends State<HomeSlider> {
               builder: (BuildContext context) {
                 return Container(
                   margin:
-                      const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+                       EdgeInsets.symmetric(horizontal: CustomSizes().dynamicWidth(context, 0.01), vertical: CustomSizes().dynamicWidth(context, 0.01)),
                   decoration: BoxDecoration(
                       image: DecorationImage(image: AssetImage(i)),
                       border:

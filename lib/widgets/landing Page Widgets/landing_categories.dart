@@ -6,7 +6,7 @@ import '../../utils/config.dart';
 
 landingCategories(context) {
   return Container(
-    margin: const EdgeInsets.all(8),
+    margin: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),
     width: CustomSizes().dynamicWidth(context, 0.25),
     height: CustomSizes().dynamicWidth(context, 0.25),
     decoration: BoxDecoration(
