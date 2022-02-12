@@ -5,6 +5,7 @@ import 'package:mik_and_min/widgets/app_bar.dart';
 import 'package:mik_and_min/widgets/landing%20Page%20Widgets/best_seller_banner.dart';
 import 'package:mik_and_min/widgets/landing%20Page%20Widgets/bottom_bar.dart';
 import 'package:mik_and_min/widgets/landing%20Page%20Widgets/carosual_widget.dart';
+import 'package:mik_and_min/widgets/landing%20Page%20Widgets/drawer.dart';
 import 'package:mik_and_min/widgets/landing%20Page%20Widgets/landing_categories.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
@@ -15,22 +16,11 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawerScrimColor: CustomColors.customWhite.withOpacity(0.5),
       extendBody: true,
       key: _key,
-      endDrawer: Drawer(
-        child: Column(
-          children: [
-            Row(
-              children: [
-                text(context, "New In", 0.04, CustomColors.customBlack),
-                Image.asset(
-                  "assets/drawer_img1.png",
-                  width: CustomSizes().dynamicWidth(context, 0.2),
-                )
-              ],
-            )
-          ],
-        ),
+      endDrawer: customDrawer(
+        context,
       ),
       backgroundColor: CustomColors.customWhite,
       body: Stack(
@@ -42,11 +32,12 @@ class LandingPage extends StatelessWidget {
                 children: [
                   CustomSizes().heightBox(context, 0.02),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 30),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: CustomSizes().dynamicWidth(context, 0.08)),
                     child: appBar(context, _key),
                   ),
                   const HomeSlider(),
-                  text(context, "Her Wardrobe", 0.045, CustomColors.customBlack,
+                  text(context, "Her Wardrobe", 0.04, CustomColors.customBlack,
                       bold: true),
                   Wrap(
                     children: [
