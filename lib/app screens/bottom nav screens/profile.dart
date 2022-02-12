@@ -20,8 +20,8 @@ class _ProfileState extends State<Profile> {
         ],
       ),
       content: SizedBox(
-        width: CustomSizes().dynamicWidth(context, .9),
-        height: CustomSizes().dynamicHeight(context, .9),
+        width: CustomSizes().dynamicWidth(context, 1),
+        height: CustomSizes().dynamicHeight(context, .1),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: const [],

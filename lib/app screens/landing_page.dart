@@ -54,7 +54,7 @@ class LandingPage extends StatelessWidget {
               ),
             ),
           ),
-          Positioned(bottom: 0, child: customBottomBar(context))
+          // Positioned(bottom: 0, child: customBottomBar(context))
         ],
       ),
     );
