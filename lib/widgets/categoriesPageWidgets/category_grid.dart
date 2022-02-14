@@ -4,7 +4,7 @@ import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'category_item.dart';
 
 categoryGrid(context) {
-  Expanded(
+  return Expanded(
     child: GridView.builder(
         itemCount: 5,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
