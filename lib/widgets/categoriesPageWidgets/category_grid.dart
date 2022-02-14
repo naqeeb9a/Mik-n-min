@@ -9,11 +9,12 @@ categoryGrid(context) {
     child: GridView.builder(
         itemCount: 5,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: CustomSizes().dynamicWidth(context, 0.4) /
-                CustomSizes().dynamicWidth(context, 0.2),
-            crossAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
-            mainAxisSpacing: CustomSizes().dynamicHeight(context, 0.02)),
+          crossAxisCount: 2,
+          childAspectRatio: CustomSizes().dynamicWidth(context, 0.4) /
+              CustomSizes().dynamicWidth(context, 0.2),
+          crossAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
+          mainAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
+        ),
         itemBuilder: (context, index) {
           return Container(
             decoration: BoxDecoration(
