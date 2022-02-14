@@ -1,13 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/atif/categories_page.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/cart.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/categories.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/profile.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/search.dart';
 import 'package:mik_and_min/app%20screens/landing_page.dart';
 import 'package:mik_and_min/utils/config.dart';
-import 'package:mik_and_min/widgets/text_widget.dart';
 
 import '../../utils/dynamic_sizes.dart';
 
@@ -62,17 +62,7 @@ class _CustomTabBarState extends State<CustomTabBar>
                         showDialog(
                             context: context,
                             builder: (context) {
-                              return Center(
-                                child: Container(
-                                  color: CustomColors.customWhite,
-                                  width:
-                                      CustomSizes().dynamicWidth(context, 0.8),
-                                  height:
-                                      CustomSizes().dynamicWidth(context, 0.8),
-                                  child: text(context, "text", 0.04,
-                                      CustomColors.customBlack),
-                                ),
-                              );
+                              return const CategoriesPage();
                             });
                       }
                     },
