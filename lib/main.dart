@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mik_and_min/app%20screens/atif/categories_page.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/login.dart';
 import 'package:mik_and_min/utils/config.dart';
 
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           Theme.of(context).textTheme,
         ),
       ),
-      home: const Login(),
+      home: const CategoriesPage(),
     );
   }
 }
