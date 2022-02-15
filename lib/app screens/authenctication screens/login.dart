@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/forgot_password.dart';
@@ -78,6 +77,7 @@ class _LoginState extends State<Login> {
                       context,
                       "Email",
                       email,
+                      white: true,
                       function: (value) {
                         if (EmailValidator.validate(value)) {
                         } else {
@@ -100,6 +100,7 @@ class _LoginState extends State<Login> {
                       context,
                       "Password",
                       password,
+                      white: true,
                       function: (value) {
                         if (value.toString().isNotEmpty) {
                         } else {
