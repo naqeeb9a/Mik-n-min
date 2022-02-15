@@ -1,5 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/khubaib/image_preview.dart';
+import 'package:mik_and_min/utils/app_routes.dart';
 
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
@@ -63,15 +65,21 @@ class _ViewPageState extends State<ViewPage> {
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
                           padding:  EdgeInsets.symmetric(vertical:CustomSizes().dynamicHeight(context, 0.04),),
-                          child: Container(
-                              
-                              decoration: BoxDecoration(
-                                color: CustomColors.customWhite,
-                                borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04),) ,
-                                border: Border.all(color: CustomColors.customGrey.withOpacity(0.5),width: CustomSizes().dynamicWidth(context, 0.012),),
-                                image:  DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.cover)
-                              ),
-                             ),
+                          child: InkWell(
+                            onTap: ()=> CustomRoutes().push(context, ImagePreview(image: widget.image,name :widget.name,index : index)),
+                            child: Hero(
+                              tag: 'tagImage$index',
+                              child: Container(
+                                  
+                                  decoration: BoxDecoration(
+                                    color: CustomColors.customWhite,
+                                    borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04),) ,
+                                    border: Border.all(color: CustomColors.customGrey.withOpacity(0.5),width: CustomSizes().dynamicWidth(context, 0.012),),
+                                    image:  DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.cover)
+                                  ),
+                                 ),
+                            ),
+                          ),
                         );
                       },
                       itemCount: 3,
