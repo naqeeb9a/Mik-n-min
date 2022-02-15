@@ -17,7 +17,7 @@ class ContactUs extends StatelessWidget {
         endDrawer: customDrawer(
           context,
         ),
-        appBar: bar2(context, titleCheck: true),
+        appBar: customAppBar(context, onlyText: true,titleText:"Contact Us"),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

@@ -12,8 +12,15 @@ import 'package:mik_and_min/widgets/text_widget.dart';
 
 class ViewPage extends StatefulWidget {
   final dynamic image;
-  final String brand,name,oldPrice,newPrice;
-  const ViewPage({this.image,required this.brand,required this.name,required this.oldPrice, required this.newPrice, Key? key}) : super(key: key);
+  final String brand, name, oldPrice, newPrice;
+  const ViewPage(
+      {this.image,
+      required this.brand,
+      required this.name,
+      required this.oldPrice,
+      required this.newPrice,
+      Key? key})
+      : super(key: key);
 
   @override
   _ViewPageState createState() => _ViewPageState();
@@ -42,7 +49,6 @@ class _ViewPageState extends State<ViewPage> {
 
   @override
   Widget build(BuildContext context) {
-   
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Row(
@@ -53,7 +59,7 @@ class _ViewPageState extends State<ViewPage> {
           ],
         ),
         endDrawer: customDrawer(context),
-        appBar: bar2(context),
+        appBar: customAppBar(context),
         body: SingleChildScrollView(
           child: Column(
             children: [
@@ -64,21 +70,25 @@ class _ViewPageState extends State<ViewPage> {
                     Swiper(
                       itemBuilder: (BuildContext context, int index) {
                         return Padding(
-                          padding:  EdgeInsets.symmetric(vertical:CustomSizes().dynamicHeight(context, 0.04),),
-                          child: InkWell(
-                            onTap: ()=> CustomRoutes().push(context, ImagePreview(image: widget.image,name :widget.name,index : index)),
-                            child: Hero(
-                              tag: 'tagImage$index',
-                              child: Container(
-                                  
-                                  decoration: BoxDecoration(
-                                    color: CustomColors.customWhite,
-                                    borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04),) ,
-                                    border: Border.all(color: CustomColors.customGrey.withOpacity(0.5),width: CustomSizes().dynamicWidth(context, 0.012),),
-                                    image:  DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.cover)
-                                  ),
-                                 ),
-                            ),
+                          padding: EdgeInsets.symmetric(
+                            vertical:
+                                CustomSizes().dynamicHeight(context, 0.04),
+                          ),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: CustomColors.customWhite,
+                                borderRadius: BorderRadius.circular(
+                                  CustomSizes().dynamicWidth(context, 0.04),
+                                ),
+                                border: Border.all(
+                                  color:
+                                      CustomColors.customGrey.withOpacity(0.5),
+                                  width: CustomSizes()
+                                      .dynamicWidth(context, 0.012),
+                                ),
+                                image: DecorationImage(
+                                    image: NetworkImage(widget.image),
+                                    fit: BoxFit.cover)),
                           ),
                         );
                       },
@@ -90,7 +100,6 @@ class _ViewPageState extends State<ViewPage> {
                       layout: SwiperLayout.STACK,
                       scrollDirection: Axis.vertical,
                       pagination: const SwiperPagination(
-                     
                         builder: DotSwiperPaginationBuilder(
                             activeColor: CustomColors.customBlack,
                             color: CustomColors.customGrey),
@@ -149,8 +158,8 @@ class _ViewPageState extends State<ViewPage> {
                                 CustomColors.customPink),
                           ],
                         ),
-                        text(
-                            context, widget.brand, 0.025, CustomColors.customBlack,
+                        text(context, widget.brand, 0.025,
+                            CustomColors.customBlack,
                             bold: true),
                         text(context, widget.name, 0.055,
                             CustomColors.customBlack,
@@ -161,8 +170,9 @@ class _ViewPageState extends State<ViewPage> {
                       children: [
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  CustomSizes().dynamicWidth(context, 0.013),),
+                            horizontal:
+                                CustomSizes().dynamicWidth(context, 0.013),
+                          ),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(
                                   CustomSizes().dynamicWidth(context, 0.03)),
@@ -211,8 +221,7 @@ class _ViewPageState extends State<ViewPage> {
                   children: [
                     text(context, "Size Chart", 0.035, CustomColors.customBlack,
                         bold: true),
-                     Image.asset('assets/size.png'),
-                    
+                    Image.asset('assets/size.png'),
                   ],
                 ),
               ),
@@ -309,17 +318,20 @@ class _ViewPageState extends State<ViewPage> {
                       CustomColors.customBlack,
                       bold: true),
                 ),
-                trailing :  Icon(
-                        Icons.arrow_drop_down,
-                        size: CustomSizes().dynamicWidth(context, 0.05),
-                      ),
-                initiallyExpanded : false,
+                trailing: Icon(
+                  Icons.arrow_drop_down,
+                  size: CustomSizes().dynamicWidth(context, 0.05),
+                ),
+                initiallyExpanded: false,
                 //tilePadding: EdgeInsets.all(0),
-                childrenPadding :EdgeInsets.zero,
-              children: [
-                text(context, "A Flutter widget that can be expanded or collapsed by clicking on a header or an icon.", 0.03, CustomColors.customBlack),
-              ],
-                
+                childrenPadding: EdgeInsets.zero,
+                children: [
+                  text(
+                      context,
+                      "A Flutter widget that can be expanded or collapsed by clicking on a header or an icon.",
+                      0.03,
+                      CustomColors.customBlack),
+                ],
               ),
               Divider(
                 thickness: CustomSizes().dynamicWidth(context, 0.002),

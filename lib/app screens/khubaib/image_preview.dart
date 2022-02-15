@@ -21,7 +21,7 @@ class _ImagePreviewState extends State<ImagePreview> {
     return SafeArea(
       child: Scaffold(
         endDrawer: customDrawer(context),
-        appBar: bar2(context, titleCheck: true),
+        appBar: customAppBar(context),
         body: Stack(
           children: [
             Hero(

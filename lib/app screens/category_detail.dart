@@ -20,26 +20,24 @@ class _CategoryDetailState extends State<CategoryDetail> {
       child: Scaffold(
         backgroundColor: CustomColors.customWhite,
         endDrawer: customDrawer(context),
-        appBar: bar2(context, bottomText: true, title: "Jacket & Sweaters"),
+        appBar: customAppBar(context, bottomText: true, title: "Jacket & Sweaters"),
         body: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: CustomSizes().dynamicHeight(context, .02),
+          padding: EdgeInsets.only(
+            top: CustomSizes().dynamicHeight(context, .02),
           ),
-          child: SizedBox(
-            width: CustomSizes().dynamicWidth(context, 1),
-            child: GridView.builder(
-              primary: true,
-              shrinkWrap: true,
-              itemCount: 8,
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: (45.0 / 60.0),
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return card(context,
-                    "https://st.depositphotos.com/2056297/2228/i/600/depositphotos_22286043-stock-photo-handsome-man.jpg","CocoBee","Teal Turquoise Hoodie","Rs.3190","Rs.1569");
-              },
+          child: GridView.builder(
+            primary: true,
+            shrinkWrap: true,
+            itemCount: 8,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
+                  CustomSizes().dynamicWidth(context, 0.6)),
             ),
+            itemBuilder: (BuildContext context, int index) {
+              return customGridCards(context, "assets/shirt.png", "CocoBee",
+                  "Teal Turquoise Hoodie", "Rs.3190", "Rs.1569");
+            },
           ),
         ),
       ),
