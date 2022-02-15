@@ -31,11 +31,11 @@ appBar(
   );
 }
 
-PreferredSizeWidget bar2(context,
-    {bottomText = false, title, titleCheck = false}) {
+PreferredSizeWidget customAppBar(context,
+    {bottomText = false, title, onlyText = false, titleText}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
-      CustomSizes().dynamicHeight(context, .072),
+      CustomSizes().dynamicWidth(context, .14),
     ),
     child: AppBar(
       backgroundColor: CustomColors.customWhite,
@@ -44,25 +44,24 @@ PreferredSizeWidget bar2(context,
       iconTheme: const IconThemeData(
         color: CustomColors.customBlack,
       ),
-      title: SizedBox(
-        height: CustomSizes().dynamicHeight(context, .072),
-        width: CustomSizes().dynamicWidth(context, 1),
-        child: titleCheck == true
-            ? Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      CustomRoutes().pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios_new_sharp,
-                      size: CustomSizes().dynamicWidth(context, 0.05),
-                    ),
-                  ),
-                ],
-              )
-            : Row(
+      centerTitle: onlyText,
+      leading: onlyText == true
+          ? InkWell(
+              onTap: () {
+                CustomRoutes().pop(context);
+              },
+              child: Icon(
+                Icons.arrow_back_ios_new_sharp,
+                size: CustomSizes().dynamicWidth(context, 0.05),
+              ),
+            )
+          : Container(),
+      title: onlyText == true
+          ? text(context, titleText, 0.03, CustomColors.customBlack)
+          : SizedBox(
+              height: CustomSizes().dynamicWidth(context, .15),
+              width: CustomSizes().dynamicWidth(context, 1),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
@@ -78,11 +77,11 @@ PreferredSizeWidget bar2(context,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       CircleAvatar(
-                        radius: CustomSizes().dynamicHeight(context, .026),
+                        radius: CustomSizes().dynamicWidth(context, .045),
                         backgroundColor: CustomColors.customBlue,
                         child: CircleAvatar(
                           backgroundColor: CustomColors.customWhite,
-                          radius: CustomSizes().dynamicHeight(context, .024),
+                          radius: CustomSizes().dynamicWidth(context, .042),
                         ),
                       ),
                       bottomText == true
@@ -101,7 +100,7 @@ PreferredSizeWidget bar2(context,
                   chip(context, "6+ YEARS"),
                 ],
               ),
-      ),
+            ),
     ),
   );
 }

@@ -13,26 +13,11 @@ class AboutUs extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         backgroundColor: CustomColors.customWhite,
-        appBar: bar2(context, titleCheck: true),
+        appBar: customAppBar(context, onlyText: true, titleText: "About Us"),
         endDrawer: customDrawer(context),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: EdgeInsets.fromLTRB(
-                CustomSizes().dynamicWidth(context, 0.05),
-                CustomSizes().dynamicHeight(context, 0.01),
-                CustomSizes().dynamicWidth(context, 0.05),
-                0.0,
-              ),
-              child: text(
-                context,
-                "About Us",
-                .07,
-                CustomColors.customBlack,
-                bold: true,
-              ),
-            ),
             Padding(
               padding: EdgeInsets.symmetric(
                 vertical: CustomSizes().dynamicHeight(context, 0.03),
