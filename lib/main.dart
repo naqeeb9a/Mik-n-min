@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:mik_and_min/app%20screens/atif/about_us.dart';
-import 'package:mik_and_min/app%20screens/atif/contact_us.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/login.dart';
 import 'package:mik_and_min/utils/config.dart';
 

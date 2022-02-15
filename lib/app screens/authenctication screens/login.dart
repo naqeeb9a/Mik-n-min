@@ -135,17 +135,13 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                   CustomSizes().heightBox(context, .03),
-                  coloredButton(
-                    context,
-                    "LOG IN",
-                    CustomColors.customPink,
-                    width: CustomSizes().dynamicWidth(context, .5),
-                    function: () {
-                      if (!_formKey.currentState!.validate()) {
-                        return;
-                      }
+                  coloredButton(context, "LOG IN", CustomColors.customPink,
+                      width: CustomSizes().dynamicWidth(context, .5),
+                      function: () {
+                    if (!_formKey.currentState!.validate()) {
+                      return;
                     }
-                  ),
+                  }),
                   CustomSizes().heightBox(context, .04),
                   richTextWidget(
                     context,
