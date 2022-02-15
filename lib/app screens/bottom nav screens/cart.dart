@@ -23,14 +23,11 @@ class _CartState extends State<Cart> {
       bottomNavigationBar: cartBottomBar(context),
       endDrawer: customDrawer(context),
       appBar: customAppBar(context),
-      body: Column(
-        children: [
-           cartItem(context),
-          
-        
-        
-        ],
-      ),
+      body: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (BuildContext context,int index){
+          return cartItem(context);
+      })
     );
   }
 }
@@ -158,7 +155,7 @@ Widget cartItem (context){
 Widget cartBottomBar ( context) {
   return  Container(
         width: CustomSizes().dynamicWidth(context, 1),
-        height: CustomSizes().dynamicHeight(context, 0.18),
+        height: CustomSizes().dynamicHeight(context, 0.2),
         decoration : BoxDecoration(
           color: CustomColors.customWhite,
           border: Border(
@@ -166,6 +163,8 @@ Widget cartBottomBar ( context) {
             ),
         ),
         child: Column(
+         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(horizontal: CustomSizes().dynamicWidth(context, 0.05),vertical: CustomSizes().dynamicHeight(context, 0.01),),
