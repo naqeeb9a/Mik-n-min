@@ -45,17 +45,17 @@ PreferredSizeWidget customAppBar(context,
         color: CustomColors.customBlack,
       ),
       centerTitle: onlyText,
-      leading: onlyText == true
-          ? InkWell(
-              onTap: () {
-                CustomRoutes().pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back_ios_new_sharp,
-                size: CustomSizes().dynamicWidth(context, 0.05),
-              ),
-            )
-          : Container(),
+      // leading: onlyText == true
+      //     ? InkWell(
+      //         onTap: () {
+      //           CustomRoutes().pop(context);
+      //         },
+      //         child: Icon(
+      //           Icons.arrow_back_ios_new_sharp,
+      //           size: CustomSizes().dynamicWidth(context, 0.05),
+      //         ),
+      //       )
+      //     : Container(),
       title: onlyText == true
           ? text(context, titleText, 0.03, CustomColors.customBlack)
           : SizedBox(
