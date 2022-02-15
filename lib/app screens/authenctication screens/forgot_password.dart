@@ -74,17 +74,27 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     ),
                   ),
                   CustomSizes().heightBox(context, .03),
-                  coloredButton(
-                    context,
-                    "Send Verification code",
-                    CustomColors.customPink,
-                    width: CustomSizes().dynamicWidth(context, .5),
-                    fontSize: .034,
-                    function: () {
-                      CustomRoutes().pop(context);
-                    }
-                  ),
+                  coloredButton(context, "Send Verification code",
+                      CustomColors.customPink,
+                      width: CustomSizes().dynamicWidth(context, .5),
+                      fontSize: .034, function: () {
+                    CustomRoutes().pop(context);
+                  }),
                 ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                CustomRoutes().pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(
+                  CustomSizes().dynamicHeight(context, .02),
+                ),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: CustomColors.customWhite,
+                ),
               ),
             ),
           ],

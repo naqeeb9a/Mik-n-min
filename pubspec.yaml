@@ -38,11 +38,8 @@ dependencies:
   email_validator: ^2.0.1
   carousel_slider: ^4.0.0
   card_swiper: ^2.0.1
-<<<<<<< HEAD
   expandable: ^5.0.1
-=======
   line_icons: ^2.0.1
->>>>>>> 0c6039ade9891a0a90d627da088b9e7e4163f768
 
 
 dev_dependencies:

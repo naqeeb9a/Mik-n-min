@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
@@ -125,6 +126,20 @@ class _SignUpState extends State<SignUp> {
                     false,
                   ),
                 ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                CustomRoutes().pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.all(
+                  CustomSizes().dynamicHeight(context, .02),
+                ),
+                child: const Icon(
+                  Icons.arrow_back_ios,
+                  color: CustomColors.customWhite,
+                ),
               ),
             ),
           ],
