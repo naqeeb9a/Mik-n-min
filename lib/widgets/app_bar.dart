@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
@@ -32,7 +31,8 @@ appBar(
   );
 }
 
-PreferredSizeWidget bar2(context, {bottomText = false, title}) {
+PreferredSizeWidget bar2(context,
+    {bottomText = false, title, titleCheck = false}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
       CustomSizes().dynamicHeight(context, .072),
@@ -47,45 +47,60 @@ PreferredSizeWidget bar2(context, {bottomText = false, title}) {
       title: SizedBox(
         height: CustomSizes().dynamicHeight(context, .072),
         width: CustomSizes().dynamicWidth(context, 1),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            InkWell(
-              onTap: () {
-                CustomRoutes().pop(context);
-              },
-              child: Icon(
-                Icons.arrow_back_ios_new_sharp,
-                size: CustomSizes().dynamicWidth(context, 0.05),
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: CustomSizes().dynamicHeight(context, .026),
-                  backgroundColor: CustomColors.customBlue,
-                  child: CircleAvatar(
-                    backgroundColor: CustomColors.customWhite,
-                    radius: CustomSizes().dynamicHeight(context, .024),
+        child: titleCheck == true
+            ? Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      CustomRoutes().pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new_sharp,
+                      size: CustomSizes().dynamicWidth(context, 0.05),
+                    ),
                   ),
-                ),
-                bottomText == true
-                    ? text(
-                  context,
-                  title,
-                  0.02,
-                  CustomColors.customBlack,
-                  bold: true,
-                )
-                    : Container(),
-              ],
-            ),
-            chip(context, "1-3 YEARS"),
-            chip(context, "3-6 YEARS"),
-            chip(context, "6+ YEARS"),
-          ],
-        ),
+                ],
+              )
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      CustomRoutes().pop(context);
+                    },
+                    child: Icon(
+                      Icons.arrow_back_ios_new_sharp,
+                      size: CustomSizes().dynamicWidth(context, 0.05),
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: CustomSizes().dynamicHeight(context, .026),
+                        backgroundColor: CustomColors.customBlue,
+                        child: CircleAvatar(
+                          backgroundColor: CustomColors.customWhite,
+                          radius: CustomSizes().dynamicHeight(context, .024),
+                        ),
+                      ),
+                      bottomText == true
+                          ? text(
+                              context,
+                              title,
+                              0.02,
+                              CustomColors.customBlack,
+                              bold: true,
+                            )
+                          : Container(),
+                    ],
+                  ),
+                  chip(context, "1-3 YEARS"),
+                  chip(context, "3-6 YEARS"),
+                  chip(context, "6+ YEARS"),
+                ],
+              ),
       ),
     ),
   );

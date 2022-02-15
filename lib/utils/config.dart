@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class CustomColors {
   static const customWhite = Color(0xffffffff);
+  static const customSkimColor = Colors.white60;
   static const customGrey = Color(0xff707070);
   static const customBlack = Color(0xff000000);
   static const customBlue = Color(0xff05B4E2);

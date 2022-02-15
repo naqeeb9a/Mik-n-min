@@ -1,5 +1,4 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 
 import 'package:mik_and_min/utils/config.dart';
