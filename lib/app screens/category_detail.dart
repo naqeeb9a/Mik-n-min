@@ -36,7 +36,8 @@ class _CategoryDetailState extends State<CategoryDetail> {
                 childAspectRatio: (45.0 / 60.0),
               ),
               itemBuilder: (BuildContext context, int index) {
-                return card(context);
+                return card(context,
+                    "https://st.depositphotos.com/2056297/2228/i/600/depositphotos_22286043-stock-photo-handsome-man.jpg","CocoBee","Teal Turquoise Hoodie","Rs.3190","Rs.1569");
               },
             ),
           ),

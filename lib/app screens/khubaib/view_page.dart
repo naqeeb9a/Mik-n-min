@@ -9,7 +9,9 @@ import 'package:mik_and_min/widgets/landing%20Page%20Widgets/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
 class ViewPage extends StatefulWidget {
-  const ViewPage({Key? key}) : super(key: key);
+  final dynamic image;
+  final String brand,name,oldPrice,newPrice;
+  const ViewPage({this.image,required this.brand,required this.name,required this.oldPrice, required this.newPrice, Key? key}) : super(key: key);
 
   @override
   _ViewPageState createState() => _ViewPageState();
@@ -38,6 +40,7 @@ class _ViewPageState extends State<ViewPage> {
 
   @override
   Widget build(BuildContext context) {
+   
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: Row(
@@ -53,43 +56,36 @@ class _ViewPageState extends State<ViewPage> {
           child: Column(
             children: [
               SizedBox(
-                height: CustomSizes().dynamicHeight(context, 0.47),
+                height: CustomSizes().dynamicHeight(context, 0.45),
                 child: Stack(
                   children: [
                     Swiper(
                       itemBuilder: (BuildContext context, int index) {
-                        return ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                            CustomSizes().dynamicWidth(context, 0.02),
-                          ),
+                        return Padding(
+                          padding:  EdgeInsets.symmetric(vertical:CustomSizes().dynamicHeight(context, 0.04),),
                           child: Container(
-                            color: CustomColors.customGrey.withOpacity(0.2),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(
-                                  CustomSizes().dynamicWidth(context, 0.02),
-                                ),
-                                child: Container(
-                                    color: CustomColors.customWhite,
-                                    child: Center(
-                                        child: text(context, "image", 0.03,
-                                            CustomColors.customBlack))),
+                              
+                              decoration: BoxDecoration(
+                                color: CustomColors.customWhite,
+                                borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04),) ,
+                                border: Border.all(color: CustomColors.customGrey.withOpacity(0.5),width: CustomSizes().dynamicWidth(context, 0.012),),
+                                image:  DecorationImage(image: NetworkImage(widget.image),fit: BoxFit.cover)
                               ),
-                            ),
-                          ),
+                             ),
                         );
                       },
                       itemCount: 3,
                       autoplay: true,
-                      itemWidth: CustomSizes().dynamicWidth(context, 0.8),
+                      autoplayDelay: 4000,
+                      itemWidth: CustomSizes().dynamicWidth(context, 0.75),
                       itemHeight: CustomSizes().dynamicHeight(context, 0.38),
-                      layout: SwiperLayout.TINDER,
+                      layout: SwiperLayout.STACK,
+                      scrollDirection: Axis.vertical,
                       pagination: const SwiperPagination(
-                        alignment: Alignment.bottomCenter,
+                     
                         builder: DotSwiperPaginationBuilder(
-                            activeColor: CustomColors.customGrey,
-                            color: CustomColors.customBlack),
+                            activeColor: CustomColors.customBlack,
+                            color: CustomColors.customGrey),
                       ),
                     ),
                     Positioned(
@@ -133,7 +129,7 @@ class _ViewPageState extends State<ViewPage> {
                         Row(
                           children: [
                             Text(
-                              "Rs.3190",
+                              widget.oldPrice,
                               style: TextStyle(
                                   color: CustomColors.customGrey,
                                   fontSize: CustomSizes()
@@ -141,14 +137,14 @@ class _ViewPageState extends State<ViewPage> {
                                   decoration: TextDecoration.lineThrough),
                             ),
                             CustomSizes().widthBox(context, 0.01),
-                            text(context, "Rs.1569", 0.035,
+                            text(context, widget.newPrice, 0.035,
                                 CustomColors.customPink),
                           ],
                         ),
                         text(
-                            context, 'Cocobee', 0.025, CustomColors.customBlack,
+                            context, widget.brand, 0.025, CustomColors.customBlack,
                             bold: true),
-                        text(context, "Navy Melange Hoodie", 0.055,
+                        text(context, widget.name, 0.055,
                             CustomColors.customBlack,
                             bold: true),
                       ],
@@ -310,7 +306,7 @@ class _ViewPageState extends State<ViewPage> {
                         size: CustomSizes().dynamicWidth(context, 0.05),
                       ),
                 initiallyExpanded : false,
-                tilePadding: EdgeInsets.all(0),
+                //tilePadding: EdgeInsets.all(0),
                 childrenPadding :EdgeInsets.zero,
               children: [
                 text(context, "A Flutter widget that can be expanded or collapsed by clicking on a header or an icon.", 0.03, CustomColors.customBlack),

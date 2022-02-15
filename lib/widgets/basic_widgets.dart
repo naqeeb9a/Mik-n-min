@@ -32,18 +32,24 @@ Widget chip(context, title) {
   );
 }
 
-Widget card(context) {
+Widget card(context ,image,brand,name,oldPrice,newPrice) {
   return InkWell(
-    onTap: ()=> CustomRoutes().push(context,const ViewPage()),
+    onTap: ()=> CustomRoutes().push(context,ViewPage(image:image,brand: brand, name: name, oldPrice: oldPrice, newPrice: newPrice)),
     child: Column(
       children: [
         Container(
           width: CustomSizes().dynamicWidth(context, 0.42),
           height: CustomSizes().dynamicHeight(context, 0.2),
-          color: CustomColors.customWhite,
-          child: Center(
-            child: text(context, "image", 0.02, CustomColors.customBlack),
-          ),
+          //color: CustomColors.customWhite,
+           decoration:  BoxDecoration(
+              color: CustomColors.customWhite,
+              image:  DecorationImage(
+                  image: NetworkImage(
+                      image),
+                  fit: BoxFit.cover)),
+          // child: Center(
+          //   child: text(context, "image", 0.02, CustomColors.customBlack),
+          // ),
         ),
         Container(
           width: CustomSizes().dynamicWidth(context, 0.42),
@@ -52,8 +58,8 @@ Widget card(context) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              text(context, "CocoBee", 0.025, CustomColors.customBlack),
-              text(context, "Teal Turquoise Hoodie", 0.025,
+              text(context, brand, 0.025, CustomColors.customBlack),
+              text(context, name, 0.025,
                   CustomColors.customBlack,
                   bold: true),
               Row(
@@ -61,13 +67,13 @@ Widget card(context) {
                 children: [
                   CustomSizes().widthBox(context, 0.05),
                   Text(
-                    "Rs.3190",
+                    oldPrice,
                     style: TextStyle(
                         color: CustomColors.customGrey,
                         fontSize: CustomSizes().dynamicHeight(context, 0.012),
                         decoration: TextDecoration.lineThrough),
                   ),
-                  text(context, "Rs.1569", 0.025, CustomColors.customPink),
+                  text(context,newPrice, 0.025, CustomColors.customPink),
                   Padding(
                     padding: EdgeInsets.only(
                       right: CustomSizes().dynamicWidth(context, 0.02),
