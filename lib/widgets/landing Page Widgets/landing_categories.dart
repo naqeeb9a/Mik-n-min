@@ -9,7 +9,7 @@ import '../../utils/config.dart';
 landingCategories(context) {
   return InkWell(
     onTap: (){
-      CustomRoutes().push(context, CategoryDetail());
+      CustomRoutes().push(context, const CategoryDetail());
     },
     child: Container(
       margin: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),

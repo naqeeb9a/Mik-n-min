@@ -22,13 +22,14 @@ class _HomeSliderState extends State<HomeSlider> {
         CarouselSlider(
           carouselController: _controller,
           options: CarouselOptions(
-              height: CustomSizes().dynamicHeight(context, 0.4),
-              onPageChanged: (index, reason) {
-                setState(() {
-                  _current = index;
-                });
-              },
-              enlargeCenterPage: true),
+            height: CustomSizes().dynamicHeight(context, 0.35),
+            onPageChanged: (index, reason) {
+              setState(() {
+                _current = index;
+              });
+            },
+            enlargeCenterPage: true,
+          ),
           items: [
             "assets/landing_banner.png",
             "assets/landing_banner.png",
@@ -37,14 +38,10 @@ class _HomeSliderState extends State<HomeSlider> {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                  margin: EdgeInsets.symmetric(
-                    horizontal: CustomSizes().dynamicWidth(context, 0.01),
-                    vertical: CustomSizes().dynamicWidth(context, 0.01),
-                  ),
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage(i)),
                     border:
-                        Border.all(width: 6, color: CustomColors.customPink),
+                        Border.all(width: 8, color: CustomColors.customPink),
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(
                       CustomSizes().dynamicWidth(context, 0.05),
