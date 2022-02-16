@@ -57,7 +57,7 @@ PreferredSizeWidget customAppBar(context,
       //       )
       //     : Container(),
       title: onlyText == true
-          ? text(context, titleText, 0.03, CustomColors.customBlack)
+          ? text(context, titleText, 0.04, CustomColors.customBlack)
           : SizedBox(
               height: CustomSizes().dynamicWidth(context, .15),
               width: CustomSizes().dynamicWidth(context, 1),

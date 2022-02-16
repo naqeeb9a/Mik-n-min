@@ -22,7 +22,7 @@ class _CartState extends State<Cart> {
     return Scaffold(
       bottomNavigationBar: cartBottomBar(context),
       endDrawer: customDrawer(context),
-      appBar: customAppBar(context),
+      appBar: customAppBar(context, onlyText: true, titleText: "Cart"),
       body: ListView.builder(
         itemCount: 3,
         itemBuilder: (BuildContext context,int index){

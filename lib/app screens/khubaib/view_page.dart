@@ -74,21 +74,24 @@ class _ViewPageState extends State<ViewPage> {
                             vertical:
                                 CustomSizes().dynamicHeight(context, 0.04),
                           ),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: CustomColors.customWhite,
-                                borderRadius: BorderRadius.circular(
-                                  CustomSizes().dynamicWidth(context, 0.04),
-                                ),
-                                border: Border.all(
-                                  color:
-                                      CustomColors.customGrey.withOpacity(0.5),
-                                  width: CustomSizes()
-                                      .dynamicWidth(context, 0.012),
-                                ),
-                                image: DecorationImage(
-                                    image: NetworkImage(widget.image),
-                                    fit: BoxFit.cover)),
+                          child: InkWell(
+                            onTap: ()=>CustomRoutes().push(context, ImagePreview(image :widget.image,name: widget.name, index: index)),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: CustomColors.customWhite,
+                                  borderRadius: BorderRadius.circular(
+                                    CustomSizes().dynamicWidth(context, 0.04),
+                                  ),
+                                  border: Border.all(
+                                    color:
+                                        CustomColors.customGrey.withOpacity(0.5),
+                                    width: CustomSizes()
+                                        .dynamicWidth(context, 0.012),
+                                  ),
+                                  image: DecorationImage(
+                                      image: NetworkImage(widget.image),
+                                      fit: BoxFit.cover)),
+                            ),
                           ),
                         );
                       },
