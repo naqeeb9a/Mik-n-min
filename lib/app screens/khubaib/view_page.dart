@@ -71,8 +71,8 @@ class _ViewPageState extends State<ViewPage> {
                             onTap: () => CustomRoutes().push(
                                 context,
                                 ImagePreview(
-                                    image: widget.image,
-                                    name: widget.name,
+                                    image: widget.productData,
+                                    name: widget.productData,
                                     index: index)),
                             child: Container(
                               decoration: BoxDecoration(
@@ -87,7 +87,7 @@ class _ViewPageState extends State<ViewPage> {
                                         .dynamicWidth(context, 0.012),
                                   ),
                                   image: DecorationImage(
-                                      image: NetworkImage(widget.image),
+                                      image: NetworkImage(widget.productData),
                                       fit: BoxFit.cover)),
                             ),
                           ),
@@ -147,7 +147,7 @@ class _ViewPageState extends State<ViewPage> {
                         Row(
                           children: [
                             Text(
-                              widget.oldPrice,
+                              widget.productData,
                               style: TextStyle(
                                   color: CustomColors.customGrey,
                                   fontSize: CustomSizes()
@@ -155,14 +155,14 @@ class _ViewPageState extends State<ViewPage> {
                                   decoration: TextDecoration.lineThrough),
                             ),
                             CustomSizes().widthBox(context, 0.01),
-                            text(context, widget.newPrice, 0.035,
+                            text(context, widget.productData, 0.035,
                                 CustomColors.customPink),
                           ],
                         ),
-                        text(context, widget.brand, 0.025,
+                        text(context, widget.productData, 0.025,
                             CustomColors.customBlack,
                             bold: true),
-                        text(context, widget.name, 0.055,
+                        text(context, widget.productData, 0.055,
                             CustomColors.customBlack,
                             bold: true),
                       ],
