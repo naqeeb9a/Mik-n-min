@@ -5,9 +5,10 @@ import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import '../utils/config.dart';
 
 Widget inputTextField(context, label, myController,
-    {function, function2, password = false}) {
+    {function, function2, password = false, white = false}) {
   return ClipRRect(
-    borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04)),
+    borderRadius:
+        BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.04)),
     child: TextFormField(
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (function == "")
@@ -21,24 +22,37 @@ Widget inputTextField(context, label, myController,
           ? TextInputType.visiblePassword
           : TextInputType.emailAddress,
       obscureText: password == true ? obscureText : false,
-      cursorColor: CustomColors.customWhite,
+      cursorColor:
+          white == true ? CustomColors.customWhite : CustomColors.customBlack,
       cursorWidth: 2.0,
       cursorHeight: CustomSizes().dynamicHeight(context, .03),
       style: TextStyle(
-        color: CustomColors.customWhite,
+        color:
+            white == true ? CustomColors.customWhite : CustomColors.customBlack,
         fontSize: CustomSizes().dynamicWidth(context, .04),
       ),
       decoration: InputDecoration(
-
-        hintStyle: const TextStyle(color: CustomColors.customWhite),
-        enabledBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.customWhite),
+        hintStyle: TextStyle(
+            color: white == true
+                ? CustomColors.customWhite
+                : CustomColors.customBlack),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              color: white == true
+                  ? CustomColors.customWhite
+                  : CustomColors.customBlack),
         ),
-        focusedBorder: const UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.customWhite),
+        focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+              color: white == true
+                  ? CustomColors.customWhite
+                  : CustomColors.customBlack),
         ),
-        border: const UnderlineInputBorder(
-          borderSide: BorderSide(color: CustomColors.customWhite),
+        border: UnderlineInputBorder(
+          borderSide: BorderSide(
+              color: white == true
+                  ? CustomColors.customWhite
+                  : CustomColors.customBlack),
         ),
         contentPadding: EdgeInsets.symmetric(
           horizontal: CustomSizes().dynamicWidth(context, .05),
