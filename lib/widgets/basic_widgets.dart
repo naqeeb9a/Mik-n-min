@@ -49,8 +49,8 @@ Widget customGridCards(context, image, brand, name, oldPrice, newPrice) {
           height: CustomSizes().dynamicWidth(context, 0.4),
           decoration: BoxDecoration(
               color: CustomColors.customWhite,
-              image:
-                  DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
+              image: DecorationImage(
+                  image: NetworkImage(image), fit: BoxFit.cover)),
         ),
         Container(
           width: CustomSizes().dynamicWidth(context, 0.42),

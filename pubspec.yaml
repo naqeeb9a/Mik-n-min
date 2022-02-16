@@ -40,6 +40,8 @@ dependencies:
   card_swiper: ^2.0.1
   expandable: ^5.0.1
   line_icons: ^2.0.1
+  http: ^0.13.4
+  graphql: ^5.0.1
 
 
 dev_dependencies:
