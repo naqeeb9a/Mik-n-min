@@ -1,11 +1,9 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
-import 'package:mik_and_min/widgets/form_fields.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
 class Cart extends StatefulWidget {
@@ -137,7 +135,7 @@ Widget cartItem (context){
                             ],
                           ),
                          
-                           Icon(Icons.delete)
+                           const Icon(Icons.delete)
                         ],
                       )
                     ],

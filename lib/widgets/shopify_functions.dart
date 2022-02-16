@@ -14,6 +14,7 @@ getShopifyProductsBestSelling() async {
         productType
         availableForSale
         totalInventory
+        vendor
         variants(first :10){
             edges{
                 node

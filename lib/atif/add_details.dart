@@ -8,7 +8,7 @@ import '../widgets/form_fields.dart';
 import '../widgets/text_widget.dart';
 
 class AddDetails extends StatefulWidget {
-  AddDetails({Key? key}) : super(key: key);
+  const AddDetails({Key? key}) : super(key: key);
 
   @override
   _AddDetailsState createState() => _AddDetailsState();
@@ -28,7 +28,7 @@ class _AddDetailsState extends State<AddDetails> {
       child: Scaffold(
         appBar: customAppBar(context, onlyText: true, titleText: "CHECKOUT"),
         endDrawer: customAppBar(context),
-        body: Container(
+        body: SizedBox(
           height: CustomSizes().dynamicHeight(context, 1),
           width: CustomSizes().dynamicWidth(context, 1),
           child: Column(

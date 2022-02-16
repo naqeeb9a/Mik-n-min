@@ -32,31 +32,9 @@ class _CategoryDetailState extends State<CategoryDetail> {
               future: getShopifyProductsBestSelling(),
               builder: (context, AsyncSnapshot snapshot) {
                 return errorHandlingWidget(
-                    context,
-                    snapshot,
-                    GridView.builder(
-                      primary: true,
-                      shrinkWrap: true,
-                      itemCount: (snapshot.data).length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio:
-                            (CustomSizes().dynamicWidth(context, 0.5) /
-                                CustomSizes().dynamicWidth(context, 0.6)),
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return customGridCards(
-                            context,
-                            snapshot.data[index]["node"]["images"]["edges"][0]
-                                ["node"]["src"],
-                            snapshot.data[index]["node"]["vendor"],
-                            snapshot.data[index]["node"]["title"],
-                            snapshot.data[index]["node"]["variants"]["edges"][0]
-                                ["node"]["compareAtPrice"],
-                            snapshot.data[index]["node"]["variants"]["edges"][0]
-                                ["node"]["price"]);
-                      },
-                    ));
+                  context,
+                  snapshot,
+                );
               }),
         ),
       ),
@@ -64,12 +42,36 @@ class _CategoryDetailState extends State<CategoryDetail> {
   }
 }
 
-errorHandlingWidget(context, AsyncSnapshot snaphot1, widget) {
+errorHandlingWidget(
+  context,
+  AsyncSnapshot snaphot1,
+) {
   if (snaphot1.connectionState == ConnectionState.done) {
-    if (snaphot1.data == false) {
+    if (snaphot1.data == false || snaphot1.data == "Server Error") {
       return text(context, "Retry", 0.04, CustomColors.customBlack);
     } else {
-      return widget;
+      return GridView.builder(
+        primary: true,
+        shrinkWrap: true,
+        itemCount: (snaphot1.data).length ?? 0,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
+              CustomSizes().dynamicWidth(context, 0.6)),
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          return customGridCards(
+            context,
+            snaphot1.data[index]["node"],
+            // snaphot1.data[index]["node"]["vendor"],
+            // snaphot1.data[index]["node"]["title"],
+            // snaphot1.data[index]["node"]["variants"]["edges"][0]["node"]
+            //     ["compareAtPrice"],
+            // snaphot1.data[index]["node"]["variants"]["edges"][0]["node"]
+            //     ["price"],
+          );
+        },
+      );
     }
   } else {
     return const Center(child: CircularProgressIndicator());

@@ -32,16 +32,13 @@ Widget chip(context, title) {
   );
 }
 
-Widget customGridCards(context, image, brand, name, oldPrice, newPrice) {
+Widget customGridCards(context, productData) {
   return InkWell(
     onTap: () => CustomRoutes().push(
         context,
         ViewPage(
-            image: image,
-            brand: brand,
-            name: name,
-            oldPrice: oldPrice,
-            newPrice: newPrice)),
+          productData: productData,
+        )),
     child: Column(
       children: [
         Container(
@@ -50,7 +47,9 @@ Widget customGridCards(context, image, brand, name, oldPrice, newPrice) {
           decoration: BoxDecoration(
               color: CustomColors.customWhite,
               image: DecorationImage(
-                  image: NetworkImage(image), fit: BoxFit.cover)),
+                  image: NetworkImage(
+                      productData["images"]["edges"][0]["node"]["src"]),
+                  fit: BoxFit.cover)),
         ),
         Container(
           width: CustomSizes().dynamicWidth(context, 0.42),
@@ -59,8 +58,11 @@ Widget customGridCards(context, image, brand, name, oldPrice, newPrice) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              text(context, brand, 0.025, CustomColors.customBlack),
-              text(context, name, 0.025, CustomColors.customBlack, bold: true),
+              text(context, productData["vendor"], 0.025,
+                  CustomColors.customBlack),
+              text(context, productData["title"], 0.025,
+                  CustomColors.customBlack,
+                  bold: true),
               Padding(
                 padding: EdgeInsets.symmetric(
                     horizontal: CustomSizes().dynamicWidth(context, 0.02)),
@@ -68,13 +70,18 @@ Widget customGridCards(context, image, brand, name, oldPrice, newPrice) {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      oldPrice,
+                      productData["variants"]["edges"][0]["node"]
+                          ["compareAtPrice"],
                       style: TextStyle(
                           color: CustomColors.customGrey,
                           fontSize: CustomSizes().dynamicHeight(context, 0.012),
                           decoration: TextDecoration.lineThrough),
                     ),
-                    text(context, newPrice, 0.025, CustomColors.customPink),
+                    text(
+                        context,
+                        productData["variants"]["edges"][0]["node"]["price"],
+                        0.025,
+                        CustomColors.customPink),
                     Icon(
                       Icons.star_border_outlined,
                       size: CustomSizes().dynamicHeight(context, 0.025),

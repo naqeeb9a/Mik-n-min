@@ -11,16 +11,9 @@ import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
 class ViewPage extends StatefulWidget {
-  final dynamic image;
-  final String brand, name, oldPrice, newPrice;
-  const ViewPage(
-      {this.image,
-      required this.brand,
-      required this.name,
-      required this.oldPrice,
-      required this.newPrice,
-      Key? key})
-      : super(key: key);
+  final dynamic productData;
+
+  const ViewPage({this.productData, Key? key}) : super(key: key);
 
   @override
   _ViewPageState createState() => _ViewPageState();
@@ -75,7 +68,12 @@ class _ViewPageState extends State<ViewPage> {
                                 CustomSizes().dynamicHeight(context, 0.04),
                           ),
                           child: InkWell(
-                            onTap: ()=>CustomRoutes().push(context, ImagePreview(image :widget.image,name: widget.name, index: index)),
+                            onTap: () => CustomRoutes().push(
+                                context,
+                                ImagePreview(
+                                    image: widget.image,
+                                    name: widget.name,
+                                    index: index)),
                             child: Container(
                               decoration: BoxDecoration(
                                   color: CustomColors.customWhite,
@@ -83,8 +81,8 @@ class _ViewPageState extends State<ViewPage> {
                                     CustomSizes().dynamicWidth(context, 0.04),
                                   ),
                                   border: Border.all(
-                                    color:
-                                        CustomColors.customGrey.withOpacity(0.5),
+                                    color: CustomColors.customGrey
+                                        .withOpacity(0.5),
                                     width: CustomSizes()
                                         .dynamicWidth(context, 0.012),
                                   ),
