@@ -19,7 +19,7 @@ class _SearchState extends State<Search> {
     return SafeArea(
       child: Scaffold(
         endDrawer: customDrawer(context),
-        appBar: customAppBar(context),
+        appBar: customAppBar(context,elevate: false),
         body: SingleChildScrollView(
           child: Container(
              width: CustomSizes().dynamicWidth(context, 1),

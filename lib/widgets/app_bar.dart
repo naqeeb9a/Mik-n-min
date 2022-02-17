@@ -32,14 +32,14 @@ appBar(
 }
 
 PreferredSizeWidget customAppBar(context,
-    {bottomText = false, title, onlyText = false, titleText}) {
+    {bottomText = false, elevate= true, title, onlyText = false, titleText}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
       CustomSizes().dynamicWidth(context, .14),
     ),
     child: AppBar(
       backgroundColor: CustomColors.customWhite,
-      elevation: 1.0,
+      elevation :elevate == true ? 1.0:0.0,
       foregroundColor: CustomColors.customBlack,
       iconTheme: const IconThemeData(
         color: CustomColors.customBlack,
@@ -57,7 +57,7 @@ PreferredSizeWidget customAppBar(context,
       //       )
       //     : Container(),
       title: onlyText == true
-          ? text(context, titleText, 0.04, CustomColors.customBlack)
+          ? text(context, titleText, 0.04, CustomColors.customBlack,bold:true) 
           : SizedBox(
               height: CustomSizes().dynamicWidth(context, .15),
               width: CustomSizes().dynamicWidth(context, 1),

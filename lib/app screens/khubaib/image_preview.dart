@@ -20,6 +20,7 @@ class _ImagePreviewState extends State<ImagePreview> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        //backgroundColor:CustomColors.customGrey.withOpacity(0.2),
         endDrawer: customDrawer(context),
         appBar: customAppBar(context),
         body: Stack(
@@ -29,7 +30,7 @@ class _ImagePreviewState extends State<ImagePreview> {
               child: InteractiveViewer(
                 child: Container(
                       decoration: BoxDecoration(
-                      color: CustomColors.customWhite,
+                      color: CustomColors.customGrey.withOpacity(0.5),
                       image: DecorationImage(
                           image: NetworkImage(widget.image), fit: BoxFit.fitWidth)),
                   
@@ -42,7 +43,7 @@ class _ImagePreviewState extends State<ImagePreview> {
                  width: CustomSizes().dynamicWidth(context, 1),
                  height : CustomSizes().dynamicHeight(context,0.07),
                  decoration:  BoxDecoration(
-                    color: Colors.white,
+                    color: CustomColors.customWhite,
                     borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(CustomSizes().dynamicWidth(context, 0.065),),
                       topRight: Radius.circular(

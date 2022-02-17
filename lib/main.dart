@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/login.dart';
+import 'package:mik_and_min/atif/add_details.dart';
+import 'package:mik_and_min/atif/confirm_order.dart';
 import 'package:mik_and_min/utils/config.dart';
 
 void main() {
