@@ -32,32 +32,21 @@ appBar(
 }
 
 PreferredSizeWidget customAppBar(context,
-    {bottomText = false, elevate= true, title, onlyText = false, titleText}) {
+    {bottomText = false, elevate = true, title, onlyText = false, titleText}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
       CustomSizes().dynamicWidth(context, .14),
     ),
     child: AppBar(
       backgroundColor: CustomColors.customWhite,
-      elevation :elevate == true ? 1.0:0.0,
+      elevation: elevate == true ? 1.0 : 0.0,
       foregroundColor: CustomColors.customBlack,
       iconTheme: const IconThemeData(
         color: CustomColors.customBlack,
       ),
       centerTitle: onlyText,
-      // leading: onlyText == true
-      //     ? InkWell(
-      //         onTap: () {
-      //           CustomRoutes().pop(context);
-      //         },
-      //         child: Icon(
-      //           Icons.arrow_back_ios_new_sharp,
-      //           size: CustomSizes().dynamicWidth(context, 0.05),
-      //         ),
-      //       )
-      //     : Container(),
       title: onlyText == true
-          ? text(context, titleText, 0.04, CustomColors.customBlack,bold:true) 
+          ? text(context, titleText, 0.04, CustomColors.customBlack, bold: true)
           : SizedBox(
               height: CustomSizes().dynamicWidth(context, .15),
               width: CustomSizes().dynamicWidth(context, 1),

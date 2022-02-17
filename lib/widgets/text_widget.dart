@@ -32,31 +32,31 @@ Widget richTextWidget(
         ),
         page == ""
             ? TextSpan(
-          text: text2,
-          style: TextStyle(
-            fontSize: size2,
-            color: color2,
-            fontWeight: FontWeight.bold,
-          ),
-        )
+                text: text2,
+                style: TextStyle(
+                  fontSize: size2,
+                  color: color2,
+                  fontWeight: FontWeight.bold,
+                ),
+              )
             : TextSpan(
-          recognizer: TapGestureRecognizer()
-            ..onTap = () => push == true
-                ? Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => page,
+                recognizer: TapGestureRecognizer()
+                  ..onTap = () => push == true
+                      ? Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => page,
+                          ),
+                        )
+                      : Navigator.pop(context),
+                text: text2,
+                style: TextStyle(
+                  fontSize: size2,
+                  decoration: TextDecoration.underline,
+                  color: color2,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            )
-                : Navigator.pop(context),
-          text: text2,
-          style: TextStyle(
-            fontSize: size2,
-            decoration: TextDecoration.underline,
-            color: color2,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
       ],
     ),
   );

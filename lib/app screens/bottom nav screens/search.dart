@@ -3,6 +3,9 @@ import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
+import 'dart:math' as math;
+
+import 'package:mik_and_min/widgets/text_widget.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -16,63 +19,71 @@ class _SearchState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        endDrawer: customDrawer(context),
-        appBar: customAppBar(context,elevate: false),
-        body: SingleChildScrollView(
-          child: Container(
-             width: CustomSizes().dynamicWidth(context, 1),
-            height:CustomSizes().dynamicHeight(context, 1),
-            decoration: const BoxDecoration(
-              image: DecorationImage(fit:BoxFit.contain,image: NetworkImage('https://png.pngitem.com/pimgs/s/293-2934735_computer-icons-search-box-circle-hd-png-download.png',))
-            ),
-            child: Column(
+    return Scaffold(
+      endDrawer: customDrawer(context),
+      appBar: customAppBar(context, onlyText: true, titleText: "Search"),
+      body: SafeArea(
+        child: Column(
+          children: [
+            searchField(context, search),
+            Expanded(
+                child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                searchField(context, search)  
+                Transform(
+                  alignment: Alignment.center,
+                  transform: Matrix4.rotationY(math.pi),
+                  child: Image.network(
+                    "https://icon-library.com/images/search-icon-transparent/search-icon-transparent-29.jpg",
+                    color: CustomColors.customGrey.withOpacity(0.4),
+                  ),
+                ),
+                text(context, "Search for Something you are looking for", 0.03,
+                    CustomColors.customGrey.withOpacity(0.5),
+                    alignText: TextAlign.center),
+                CustomSizes().heightBox(context, 0.3)
               ],
-            ),
-          ),
+            ))
+          ],
         ),
       ),
     );
   }
 }
 
-
-Widget searchField (context,fieldcontroller) {
-  return  SizedBox(
-                  width: CustomSizes().dynamicWidth(context, 0.95),
-                  height: CustomSizes().dynamicHeight(context, 0.06),
-                  child: TextFormField(
-                    controller:  fieldcontroller,
-                    decoration: InputDecoration(
-                      hintText: "Search",
-                      hintStyle: TextStyle(
-                        fontSize: CustomSizes().dynamicWidth(context, 0.03),
-                        fontWeight: FontWeight.w500,
-                        color: CustomColors.customGrey.withOpacity(0.65),
-                      ),
-                      prefixIcon: Icon(
-                        Icons.search_rounded,
-                        color: CustomColors.customGrey.withOpacity(0.65),
-                        size: CustomSizes().dynamicWidth(context, 0.05),
-                      ),
-        
-                     
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: CustomColors.customGrey.withOpacity(0.65),),
-                      ),
-                      focusedBorder: const UnderlineInputBorder(
-                        borderSide: BorderSide(color: CustomColors.customGrey),
-                      ),
-                      border: UnderlineInputBorder(
-                        borderSide: BorderSide(color: CustomColors.customGrey.withOpacity(0.65)),
-                      ),
-                    ),
-                    cursorHeight: CustomSizes().dynamicHeight(context, 0.03),
-                    cursorColor: CustomColors.customGrey.withOpacity(0.65),
-                    cursorWidth: CustomSizes().dynamicWidth(context, 0.0025),
-                  ),
-                );
+Widget searchField(context, fieldcontroller) {
+  return Container(
+    padding: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),
+    child: TextFormField(
+      controller: fieldcontroller,
+      decoration: InputDecoration(
+        hintText: "Search",
+        hintStyle: TextStyle(
+          fontSize: CustomSizes().dynamicWidth(context, 0.03),
+          fontWeight: FontWeight.w500,
+          color: CustomColors.customGrey.withOpacity(0.65),
+        ),
+        prefixIcon: Icon(
+          Icons.search_rounded,
+          color: CustomColors.customGrey.withOpacity(0.65),
+          size: CustomSizes().dynamicWidth(context, 0.05),
+        ),
+        enabledBorder: UnderlineInputBorder(
+          borderSide: BorderSide(
+            color: CustomColors.customGrey.withOpacity(0.4),
+          ),
+        ),
+        focusedBorder: const UnderlineInputBorder(
+          borderSide: BorderSide(color: CustomColors.customGrey),
+        ),
+        border: UnderlineInputBorder(
+          borderSide:
+              BorderSide(color: CustomColors.customGrey.withOpacity(0.65)),
+        ),
+      ),
+      cursorHeight: CustomSizes().dynamicHeight(context, 0.03),
+      cursorColor: CustomColors.customGrey.withOpacity(0.65),
+      cursorWidth: CustomSizes().dynamicWidth(context, 0.0025),
+    ),
+  );
 }

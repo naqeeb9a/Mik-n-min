@@ -37,12 +37,36 @@ class LandingPage extends StatelessWidget {
                 bold: true),
             Wrap(
               children: [
-                landingCategories(context),
-                landingCategories(context),
-                landingCategories(context),
-                landingCategories(context),
-                landingCategories(context),
-                landingCategories(context),
+                landingCategories(
+                    context,
+                    "Mini Girl",
+                    "https://www.kindpng.com/picc/m/72-723761_student-png-sammilani-mahavidyalaya-undergraduate-and-dummy-user.png",
+                    "mini-girl"),
+                landingCategories(
+                    context,
+                    "Girl",
+                    "https://www.kindpng.com/picc/m/72-723761_student-png-sammilani-mahavidyalaya-undergraduate-and-dummy-user.png",
+                    "girl"),
+                landingCategories(
+                    context,
+                    "Eastern Wear",
+                    "https://www.kindpng.com/picc/m/72-723761_student-png-sammilani-mahavidyalaya-undergraduate-and-dummy-user.png",
+                    "eastern-wear"),
+                landingCategories(
+                    context,
+                    "Girls Pants",
+                    "https://www.kindpng.com/picc/m/72-723761_student-png-sammilani-mahavidyalaya-undergraduate-and-dummy-user.png",
+                    "girls-pants"),
+                landingCategories(
+                    context,
+                    "Girls Jeans & Jeggings",
+                    "https://cdn.shopify.com/s/files/1/0489/2730/9979/collections/bodysuits_79d7831c-cea7-4444-b5bb-0214446193d9.png?v=1639503093",
+                    "girls-jeans-jeggings"),
+                landingCategories(
+                    context,
+                    "Girls Nightwear",
+                    "https://cdn.shopify.com/s/files/1/0489/2730/9979/collections/nightsuits.png?v=1639492382",
+                    "girls-nightwear"),
               ],
             ),
             bestSellerBanner(context)

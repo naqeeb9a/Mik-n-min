@@ -90,7 +90,6 @@ getShopifyCategory() async {
   final QueryResult result = await client.query(options);
 
   if (result.hasException) {
-    getShopifyCategory();
     return "Server Error";
   } else {
     return result.data!["collections"]["edges"];
@@ -167,6 +166,7 @@ getShopifyCollection(handle) async {
         title
         availableForSale
         totalInventory
+        vendor
         variants(first :10){
             edges{
                 node

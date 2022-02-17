@@ -9,7 +9,8 @@ import '../widgets/app_bar.dart';
 import '../widgets/basic_widgets.dart';
 
 class CategoryDetail extends StatefulWidget {
-  const CategoryDetail({Key? key}) : super(key: key);
+  final dynamic function, text1;
+  const CategoryDetail({Key? key, this.text1, this.function}) : super(key: key);
 
   @override
   _CategoryDetailState createState() => _CategoryDetailState();
@@ -22,20 +23,29 @@ class _CategoryDetailState extends State<CategoryDetail> {
       child: Scaffold(
         backgroundColor: CustomColors.customWhite,
         endDrawer: customDrawer(context),
-        appBar:
-            customAppBar(context, bottomText: true, title: "Jacket & Sweaters"),
+        appBar: customAppBar(context,
+            bottomText: true, title: widget.text1 ?? "Jacket & Sweaters"),
         body: Padding(
           padding: EdgeInsets.only(
             top: CustomSizes().dynamicHeight(context, .02),
           ),
-          child: FutureBuilder(
-              future: getShopifyProductsBestSelling(),
-              builder: (context, AsyncSnapshot snapshot) {
-                return errorHandlingWidget(
-                  context,
-                  snapshot,
-                );
-              }),
+          child: widget.function != null
+              ? FutureBuilder(
+                  future: widget.function,
+                  builder: (context, AsyncSnapshot snapshot) {
+                    return errorHandlingWidget(
+                      context,
+                      snapshot,
+                    );
+                  })
+              : FutureBuilder(
+                  future: getShopifyProductsBestSelling(),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    return errorHandlingWidget(
+                      context,
+                      snapshot,
+                    );
+                  }),
         ),
       ),
     );
@@ -48,7 +58,11 @@ errorHandlingWidget(
 ) {
   if (snaphot1.connectionState == ConnectionState.done) {
     if (snaphot1.data == false || snaphot1.data == "Server Error") {
-      return text(context, "Retry", 0.04, CustomColors.customBlack);
+      return Center(
+          child: text(context, "Retry", 0.04, CustomColors.customBlack));
+    } else if (snaphot1.data.length == 0) {
+      return Center(
+          child: text(context, "No products", 0.04, CustomColors.customBlack));
     } else {
       return GridView.builder(
         primary: true,
@@ -63,12 +77,6 @@ errorHandlingWidget(
           return customGridCards(
             context,
             snaphot1.data[index]["node"],
-            // snaphot1.data[index]["node"]["vendor"],
-            // snaphot1.data[index]["node"]["title"],
-            // snaphot1.data[index]["node"]["variants"]["edges"][0]["node"]
-            //     ["compareAtPrice"],
-            // snaphot1.data[index]["node"]["variants"]["edges"][0]["node"]
-            //     ["price"],
           );
         },
       );
