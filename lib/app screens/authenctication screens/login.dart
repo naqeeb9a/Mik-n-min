@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/forgot_password.dart';
@@ -25,10 +26,10 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        body: Stack(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      body: SafeArea(
+        child: Stack(
           children: [
             Container(
               width: CustomSizes().dynamicWidth(context, 1),

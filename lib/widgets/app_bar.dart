@@ -4,7 +4,6 @@ import 'package:mik_and_min/widgets/text_widget.dart';
 
 import '../utils/app_routes.dart';
 import '../utils/config.dart';
-import 'basic_widgets.dart';
 
 appBar(
   context,
@@ -48,48 +47,45 @@ PreferredSizeWidget customAppBar(context,
       title: onlyText == true
           ? text(context, titleText, 0.04, CustomColors.customBlack, bold: true)
           : SizedBox(
-              height: CustomSizes().dynamicWidth(context, .15),
-              width: CustomSizes().dynamicWidth(context, 1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      CustomRoutes().pop(context);
-                    },
-                    child: Icon(
-                      Icons.arrow_back_ios_new_sharp,
-                      size: CustomSizes().dynamicWidth(context, 0.05),
-                    ),
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircleAvatar(
-                        radius: CustomSizes().dynamicWidth(context, .045),
-                        backgroundColor: CustomColors.customBlue,
-                        child: CircleAvatar(
-                          backgroundColor: CustomColors.customWhite,
-                          radius: CustomSizes().dynamicWidth(context, .042),
-                        ),
+            height: CustomSizes().dynamicWidth(context, .15),
+            width: CustomSizes().dynamicWidth(context, 1),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        CustomRoutes().pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back_ios_new_sharp,
+                        size: CustomSizes().dynamicWidth(context, 0.05),
                       ),
-                      bottomText == true
-                          ? text(
-                              context,
-                              title,
-                              0.02,
-                              CustomColors.customBlack,
-                              bold: true,
-                            )
-                          : Container(),
-                    ],
-                  ),
-                  chip(context, "1-3 YEARS"),
-                  chip(context, "3-6 YEARS"),
-                  chip(context, "6+ YEARS"),
-                ],
-              ),
+                    ),
+                    CustomSizes().widthBox(context, .02),
+                    CircleAvatar(
+                      radius: CustomSizes().dynamicWidth(context, .045),
+                      backgroundColor: CustomColors.customBlue,
+                      child: CircleAvatar(
+                        backgroundColor: CustomColors.customWhite,
+                        radius: CustomSizes().dynamicWidth(context, .042),
+                      ),
+                    ),
+                  ],
+                ),
+                text(
+                  context,
+                  title,
+                  0.046,
+                  CustomColors.customBlack,
+                  bold: true,
+                ),
+                Container(),
+
+              ],
             ),
+          ),
     ),
   );
 }

@@ -10,12 +10,12 @@ class AboutUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        appBar: customAppBar(context, onlyText: true, titleText: "About Us"),
-        endDrawer: customDrawer(context),
-        body: Column(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      appBar: customAppBar(context, onlyText: true, titleText: "About Us"),
+      endDrawer: customDrawer(context),
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(

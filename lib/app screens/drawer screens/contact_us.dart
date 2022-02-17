@@ -11,14 +11,14 @@ class ContactUs extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        endDrawer: customDrawer(
-          context,
-        ),
-        appBar: customAppBar(context, onlyText: true,titleText:"Contact Us"),
-        body: Column(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      endDrawer: customDrawer(
+        context,
+      ),
+      appBar: customAppBar(context, onlyText: true,titleText:"Contact Us"),
+      body: SafeArea(
+        child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(

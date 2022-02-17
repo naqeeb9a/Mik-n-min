@@ -19,13 +19,13 @@ class CategoryDetail extends StatefulWidget {
 class _CategoryDetailState extends State<CategoryDetail> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        endDrawer: customDrawer(context),
-        appBar: customAppBar(context,
-            bottomText: true, title: widget.text1 ?? "Jacket & Sweaters"),
-        body: Padding(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      endDrawer: customDrawer(context),
+      appBar: customAppBar(context,
+          bottomText: true, title: widget.text1 ?? ""),
+      body: SafeArea(
+        child: Padding(
           padding: EdgeInsets.only(
             top: CustomSizes().dynamicHeight(context, .02),
           ),

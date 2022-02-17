@@ -20,9 +20,9 @@ class _ForgotPasswordState extends State<ForgotPassword> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
+    return Scaffold(
+      body: SafeArea(
+        child: Stack(
           children: [
             Container(
               width: CustomSizes().dynamicWidth(context, 1),
@@ -71,6 +71,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                       context,
                       "Email",
                       email,
+                      white: true,
                     ),
                   ),
                   CustomSizes().heightBox(context, .03),

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:mik_and_min/app%20screens/choice/choice_detail.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
+
+import '../bottom nav screens/tabbar.dart';
 
 class Choice extends StatefulWidget {
   const Choice({Key? key}) : super(key: key);
@@ -15,10 +16,10 @@ class Choice extends StatefulWidget {
 class _ChoiceState extends State<Choice> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        body: Column(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      body: SafeArea(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -37,18 +38,20 @@ Widget choiceCard(context, label, image) {
     onTap: () {
       CustomRoutes().push(
         context,
-        ChoiceDetail(label: label, image: image),
+        const CustomTabBar(),
       );
     },
     child: Center(
       child: Column(
         children: [
           CircleAvatar(
-            radius: CustomSizes().dynamicHeight(context, .08),
+            backgroundColor: CustomColors.customWhite,
+            radius: CustomSizes().dynamicHeight(context, .09),
             child: ClipOval(
               child: Image.asset(
                 image,
                 fit: BoxFit.fitWidth,
+                alignment: Alignment.topCenter,
                 width: CustomSizes().dynamicWidth(context, 1),
               ),
             ),

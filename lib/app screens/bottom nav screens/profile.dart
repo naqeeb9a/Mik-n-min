@@ -128,6 +128,13 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                       children: [
                         text(
                           context,
+                          "Address",
+                          .032,
+                          CustomColors.customBlack,
+                          bold: true,
+                        ),
+                        text(
+                          context,
                           "Settings",
                           .032,
                           CustomColors.customBlack,

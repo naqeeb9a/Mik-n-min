@@ -22,10 +22,10 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: CustomColors.customWhite,
-        body: Stack(
+    return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      body: SafeArea(
+        child: Stack(
           children: [
             Container(
               width: CustomSizes().dynamicWidth(context, 1),
@@ -74,6 +74,7 @@ class _SignUpState extends State<SignUp> {
                       context,
                       "Email",
                       name,
+                      white: true,
                     ),
                   ),
                   CustomSizes().heightBox(context, .04),
@@ -89,6 +90,7 @@ class _SignUpState extends State<SignUp> {
                       context,
                       "Email",
                       email,
+                      white: true,
                     ),
                   ),
                   CustomSizes().heightBox(context, .04),
@@ -104,6 +106,7 @@ class _SignUpState extends State<SignUp> {
                       context,
                       "Password",
                       password,
+                      white: true,
                     ),
                   ),
                   CustomSizes().heightBox(context, .04),

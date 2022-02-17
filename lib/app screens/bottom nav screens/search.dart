@@ -3,8 +3,6 @@ import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
-import 'dart:math' as math;
-
 import 'package:mik_and_min/widgets/text_widget.dart';
 
 class Search extends StatefulWidget {
@@ -27,23 +25,25 @@ class _SearchState extends State<Search> {
           children: [
             searchField(context, search),
             Expanded(
-                child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.rotationY(math.pi),
-                  child: Image.network(
-                    "https://icon-library.com/images/search-icon-transparent/search-icon-transparent-29.jpg",
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/search.png",
                     color: CustomColors.customGrey.withOpacity(0.4),
                   ),
-                ),
-                text(context, "Search for Something you are looking for", 0.03,
+                  CustomSizes().heightBox(context, 0.1),
+                  text(
+                    context,
+                    "Search for Something you are looking for",
+                    0.03,
                     CustomColors.customGrey.withOpacity(0.5),
-                    alignText: TextAlign.center),
-                CustomSizes().heightBox(context, 0.3)
-              ],
-            ))
+                    alignText: TextAlign.center,
+                  ),
+                  CustomSizes().heightBox(context, 0.3),
+                ],
+              ),
+            )
           ],
         ),
       ),
