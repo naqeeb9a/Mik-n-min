@@ -11,8 +11,7 @@ import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
 class ViewPage extends StatefulWidget {
- final dynamic productData;
-  
+  final dynamic productData;
 
   const ViewPage({this.productData, Key? key}) : super(key: key);
 
@@ -62,7 +61,12 @@ class _ViewPageState extends State<ViewPage> {
                 children: [
                   Swiper(
                     itemBuilder: (BuildContext context, int index) {
-                      return tinderImage(context, widget.productData["images"]["edges"][index]["node"]["src"], widget.productData["title"], index);
+                      return tinderImage(
+                          context,
+                          widget.productData["images"]["edges"][index]["node"]
+                              ["src"],
+                          widget.productData["title"],
+                          index);
                     },
                     itemCount: widget.productData["images"]["edges"].length,
                     autoplay: true,
@@ -101,231 +105,225 @@ class _ViewPageState extends State<ViewPage> {
                 ],
               ),
             ),
-            
             SizedBox(
-              height: CustomSizes().dynamicHeight(context,0.375),
-              child:SingleChildScrollView(
+              height: CustomSizes().dynamicHeight(context, 0.375),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Divider(
-                    thickness: CustomSizes().dynamicWidth(context, 0.002),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: CustomSizes().dynamicWidth(context, 0.075),
+                      thickness: CustomSizes().dynamicWidth(context, 0.002),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Text(
-                                  widget.productData["variants"]["edges"][0]
-                                      ["node"]["compareAtPrice"],
-                                  style: TextStyle(
-                                      color: CustomColors.customGrey,
-                                      fontSize: CustomSizes()
-                                          .dynamicWidth(context, 0.035),
-                                      decoration: TextDecoration.lineThrough),
-                                ),
-                                CustomSizes().widthBox(context, 0.01),
-                                text(
-                                    context,
-                                    widget.productData["variants"]["edges"][0]
-                                        ["node"]["price"],
-                                    0.035,
-                                    CustomColors.customPink),
-                              ],
-                            ),
-                            text(context, widget.productData["vendor"], 0.025,
-                                CustomColors.customBlack,
-                                bold: true),
-                            text(context, widget.productData["title"], 0.055,
-                                CustomColors.customBlack,
-                                bold: true),
-                          ],
-                        ),
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    CustomSizes().dynamicWidth(context, 0.013),
-                              ),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(
-                                      CustomSizes()
-                                          .dynamicWidth(context, 0.03)),
-                                  color:
-                                      CustomColors.customGrey.withOpacity(0.2)),
-                              child: Row(
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: CustomSizes().dynamicWidth(context, 0.075),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
                                 children: [
-                                  InkWell(
-                                    onTap: () => decrementCounter(),
-                                    child: Icon(
-                                      Icons.remove,
-                                      color: CustomColors.customBlack,
-                                      size: CustomSizes()
-                                          .dynamicWidth(context, 0.042),
-                                    ),
+                                  Text(
+                                    widget.productData["variants"]["edges"][0]
+                                        ["node"]["compareAtPrice"],
+                                    style: TextStyle(
+                                        color: CustomColors.customGrey,
+                                        fontSize: CustomSizes()
+                                            .dynamicWidth(context, 0.035),
+                                        decoration: TextDecoration.lineThrough),
                                   ),
-                                  CustomSizes().widthBox(context, 0.025),
-                                  text(context, "$quantity", 0.042,
-                                      CustomColors.customBlack),
-                                  CustomSizes().widthBox(context, 0.025),
-                                  InkWell(
-                                    onTap: () => incrementCounter(),
-                                    child: Icon(
-                                      Icons.add,
-                                      color: CustomColors.customBlack,
-                                      size: CustomSizes()
-                                          .dynamicWidth(context, 0.042),
-                                    ),
-                                  ),
+                                  CustomSizes().widthBox(context, 0.01),
+                                  text(
+                                      context,
+                                      widget.productData["variants"]["edges"][0]
+                                          ["node"]["price"],
+                                      0.035,
+                                      CustomColors.customPink),
                                 ],
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                     Divider(
-                    thickness: CustomSizes().dynamicWidth(context, 0.002),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: CustomSizes().dynamicWidth(context, 0.075),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        text(context, "Size Chart", 0.035,
-                            CustomColors.customBlack,
-                            bold: true),
-                        Image.asset('assets/size.png'),
-                      ],
-                    ),
-                  ),
-                  Divider(
-                    thickness: CustomSizes().dynamicWidth(context, 0.002),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: CustomSizes().dynamicWidth(context, 0.075),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        text(context, "Delivery", 0.035, CustomColors.customBlack,
-                            bold: true),
-                        text(context, "CHECK PINCODE", 0.035,
-                            CustomColors.customPink,
-                            bold: true),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: CustomSizes().dynamicWidth(context, 0.1),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: CustomSizes().dynamicWidth(context, 0.04),
-                            ),
-                            text(context, "Out in 2-3 days", 0.025,
-                                CustomColors.customBlack),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: CustomSizes().dynamicWidth(context, 0.04),
-                            ),
-                            text(
-                                context,
-                                "Enter your pincode for accurate delivery details",
-                                0.025,
-                                CustomColors.customBlack),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: CustomSizes().dynamicWidth(context, 0.04),
-                            ),
-                            text(context, "Cash on delivery available", 0.025,
-                                CustomColors.customBlack),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: CustomSizes().dynamicWidth(context, 0.04),
-                            ),
-                            text(context, "15 days return", 0.025,
-                                CustomColors.customBlack),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.check,
-                              size: CustomSizes().dynamicWidth(context, 0.04),
-                            ),
-                            text(context, "15 days exchange", 0.025,
-                                CustomColors.customBlack),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  Divider(
-                    thickness: CustomSizes().dynamicWidth(context, 0.002),
-                  ),
-                  ExpansionTile(
-                    title: Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: CustomSizes().dynamicWidth(context, 0.05),
+                              text(context, widget.productData["vendor"], 0.025,
+                                  CustomColors.customBlack,
+                                  bold: true),
+                              text(context, widget.productData["title"], 0.055,
+                                  CustomColors.customBlack,
+                                  bold: true),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: CustomSizes()
+                                      .dynamicWidth(context, 0.013),
+                                ),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(
+                                        CustomSizes()
+                                            .dynamicWidth(context, 0.03)),
+                                    color: CustomColors.customGrey
+                                        .withOpacity(0.2)),
+                                child: Row(
+                                  children: [
+                                    InkWell(
+                                      onTap: () => decrementCounter(),
+                                    ),
+                                    Divider(
+                                      thickness: CustomSizes()
+                                          .dynamicWidth(context, 0.002),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: CustomSizes()
+                                            .dynamicWidth(context, 0.075),
+                                      ),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          text(context, "Delivery", 0.035,
+                                              CustomColors.customBlack,
+                                              bold: true),
+                                          text(context, "CHECK PINCODE", 0.035,
+                                              CustomColors.customPink,
+                                              bold: true),
+                                        ],
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: CustomSizes()
+                                            .dynamicWidth(context, 0.1),
+                                      ),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check,
+                                                size: CustomSizes()
+                                                    .dynamicWidth(
+                                                        context, 0.04),
+                                              ),
+                                              text(
+                                                  context,
+                                                  "Out in 2-3 days",
+                                                  0.025,
+                                                  CustomColors.customBlack),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check,
+                                                size: CustomSizes()
+                                                    .dynamicWidth(
+                                                        context, 0.04),
+                                              ),
+                                              text(
+                                                  context,
+                                                  "Enter your pincode for accurate delivery details",
+                                                  0.025,
+                                                  CustomColors.customBlack),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check,
+                                                size: CustomSizes()
+                                                    .dynamicWidth(
+                                                        context, 0.04),
+                                              ),
+                                              text(
+                                                  context,
+                                                  "Cash on delivery available",
+                                                  0.025,
+                                                  CustomColors.customBlack),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check,
+                                                size: CustomSizes()
+                                                    .dynamicWidth(
+                                                        context, 0.04),
+                                              ),
+                                              text(
+                                                  context,
+                                                  "15 days return",
+                                                  0.025,
+                                                  CustomColors.customBlack),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: [
+                                              Icon(
+                                                Icons.check,
+                                                size: CustomSizes()
+                                                    .dynamicWidth(
+                                                        context, 0.04),
+                                              ),
+                                              text(
+                                                  context,
+                                                  "15 days exchange",
+                                                  0.025,
+                                                  CustomColors.customBlack),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(
+                                      thickness: CustomSizes()
+                                          .dynamicWidth(context, 0.002),
+                                    ),
+                                    ExpansionTile(
+                                      title: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: CustomSizes()
+                                              .dynamicWidth(context, 0.05),
+                                        ),
+                                        child: text(context, "Product Details",
+                                            0.03, CustomColors.customBlack,
+                                            bold: true),
+                                      ),
+                                      trailing: Icon(
+                                        Icons.arrow_drop_down,
+                                        size: CustomSizes()
+                                            .dynamicWidth(context, 0.05),
+                                      ),
+                                      initiallyExpanded: false,
+                                      childrenPadding: EdgeInsets.zero,
+                                      children: [
+                                        text(
+                                            context,
+                                            "A Flutter widget that can be expanded or collapsed by clicking on a header or an icon.",
+                                            0.03,
+                                            CustomColors.customBlack),
+                                      ],
+                                    ),
+                                    Divider(
+                                      thickness: CustomSizes()
+                                          .dynamicWidth(context, 0.002),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
-                      child: text(context, "Product Details", 0.03,
-                          CustomColors.customBlack,
-                          bold: true),
                     ),
-                    trailing: Icon(
-                      Icons.arrow_drop_down,
-                      size: CustomSizes().dynamicWidth(context, 0.05),
-                    ),
-                    initiallyExpanded: false,
-                    childrenPadding: EdgeInsets.zero,
-                    children: [
-                      text(
-                          context,
-                          "A Flutter widget that can be expanded or collapsed by clicking on a header or an icon.",
-                          0.03,
-                          CustomColors.customBlack),
-                    ],
-                  ),
-                  Divider(
-                    thickness: CustomSizes().dynamicWidth(context, 0.002),
-                  ),
                   ],
                 ),
-              )
+              ),
             ),
-           
           ],
         ),
       ),
@@ -333,38 +331,27 @@ class _ViewPageState extends State<ViewPage> {
   }
 }
 
-
-
-Widget tinderImage(context,image,name,index) {
+Widget tinderImage(context, image, name, index) {
   return Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical:
-                              CustomSizes().dynamicHeight(context, 0.04),
-                        ),
-                        child: InkWell(
-                          onTap: () => CustomRoutes().push(
-                              context,
-                              ImagePreview(
-                                  image: image,
-                                  name: name,
-                                  index: index)),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: CustomColors.customWhite,
-                                borderRadius: BorderRadius.circular(
-                                  CustomSizes().dynamicWidth(context, 0.04),
-                                ),
-                                border: Border.all(
-                                  color: CustomColors.customGrey
-                                      .withOpacity(0.5),
-                                  width: CustomSizes()
-                                      .dynamicWidth(context, 0.012),
-                                ),
-                                image: DecorationImage(
-                                    image: NetworkImage(
-                                       image),
-                                    fit: BoxFit.cover)),
-                          ),
-                        ),
-                      );
+    padding: EdgeInsets.symmetric(
+      vertical: CustomSizes().dynamicHeight(context, 0.04),
+    ),
+    child: InkWell(
+      onTap: () => CustomRoutes()
+          .push(context, ImagePreview(image: image, name: name, index: index)),
+      child: Container(
+        decoration: BoxDecoration(
+            color: CustomColors.customWhite,
+            borderRadius: BorderRadius.circular(
+              CustomSizes().dynamicWidth(context, 0.04),
+            ),
+            border: Border.all(
+              color: CustomColors.customGrey.withOpacity(0.5),
+              width: CustomSizes().dynamicWidth(context, 0.012),
+            ),
+            image:
+                DecorationImage(image: NetworkImage(image), fit: BoxFit.cover)),
+      ),
+    ),
+  );
 }
