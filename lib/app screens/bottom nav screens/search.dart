@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
+import 'package:mik_and_min/widgets/basic_widgets.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
@@ -28,6 +29,7 @@ class _SearchState extends State<Search> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  retry(context),
                   Image.asset(
                     "assets/search.png",
                     color: CustomColors.customGrey.withOpacity(0.4),
