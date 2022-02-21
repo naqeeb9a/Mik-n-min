@@ -1,6 +1,7 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
+import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import '../utils/config.dart';
 import '../utils/dynamic_sizes.dart';
 import '../widgets/buttons.dart';
@@ -27,7 +28,7 @@ class _AddDetailsState extends State<AddDetails> {
     return SafeArea(
       child: Scaffold(
         appBar: customAppBar(context, onlyText: true, titleText: "CHECKOUT"),
-        endDrawer: customAppBar(context),
+        endDrawer: customDrawer(context),
         body: SingleChildScrollView(
           child: SizedBox(
             height: CustomSizes().dynamicHeight(context, .88),

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/forgot_password.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/sign_in.dart';
 import 'package:mik_and_min/app%20screens/choice/choice.dart';
+import 'package:mik_and_min/atif/payment_information.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
@@ -162,7 +163,7 @@ class _LoginState extends State<Login> {
                       width: CustomSizes().dynamicWidth(context, .5),
                       fontColor: false,
                       fontSize: .034, function: () {
-                    CustomRoutes().push(context, const Choice());
+                    CustomRoutes().push(context, const PaymentInfo());
                   }),
                 ],
               ),
