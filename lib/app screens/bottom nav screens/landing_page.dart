@@ -15,13 +15,13 @@ class LandingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawerScrimColor: CustomColors.customWhite.withOpacity(0.5),
+      backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       extendBody: true,
       key: _key,
       endDrawer: customDrawer(
         context,
       ),
-      backgroundColor: CustomColors.customWhite,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

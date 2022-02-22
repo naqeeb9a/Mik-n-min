@@ -12,6 +12,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       appBar: customAppBar(context, onlyText: true, titleText: "About Us"),
       endDrawer: customDrawer(context),
       body: SafeArea(

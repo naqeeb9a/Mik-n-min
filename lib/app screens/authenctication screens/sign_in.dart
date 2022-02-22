@@ -1,5 +1,4 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
@@ -24,6 +23,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       body: SafeArea(
         child: Stack(
           children: [

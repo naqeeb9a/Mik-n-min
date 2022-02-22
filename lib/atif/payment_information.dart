@@ -12,16 +12,20 @@ class PaymentInfo extends StatefulWidget {
   @override
   _PaymentInfoState createState() => _PaymentInfoState();
 }
+
 int _groupValue = -1;
+
 class _PaymentInfoState extends State<PaymentInfo> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Center(
-        child: Scaffold(
-          appBar: customAppBar(context, onlyText: true, titleText: "PAYMENT"),
-          endDrawer: customDrawer(context),
-          body: Center(
+    return Center(
+      child: Scaffold(
+        backgroundColor: CustomColors.customWhite,
+        drawerScrimColor: CustomColors.customSkimColor,
+        appBar: customAppBar(context, onlyText: true, titleText: "PAYMENT"),
+        endDrawer: customDrawer(context),
+        body: SafeArea(
+          child: Center(
             child: SizedBox(
               height: CustomSizes().dynamicHeight(context, 0.9),
               width: CustomSizes().dynamicWidth(context, 0.75),
@@ -56,43 +60,54 @@ class _PaymentInfoState extends State<PaymentInfo> {
                       ],
                     ),
                   ),
-                  CustomSizes().heightBox(context, 0.06),
+                  CustomSizes().heightBox(context, 0.02),
                   _myRadioButton(
+                    context,
                     title: "COD",
                     value: 1,
-                    onChanged: (newValue) => setState(() => _groupValue = newValue),
-                  ),_myRadioButton(
+                    onChanged: (newValue) =>
+                        setState(() => _groupValue = newValue),
+                  ),
+                  _myRadioButton(
+                    context,
                     title: "Debit/Creddit Card 1",
                     value: 1,
-                    onChanged: (newValue) => setState(() => _groupValue = newValue),
+                    onChanged: (newValue) =>
+                        setState(() => _groupValue = newValue),
                   ),
                   CustomSizes().heightBox(context, 0.06),
-                  Divider(
+                  const Divider(
                     color: CustomColors.customBlack,
                   ),
                   CustomSizes().heightBox(context, 0.04),
-                  text(context, "Shipping Address", 0.07, CustomColors.customBlack,
+                  text(context, "Shipping Address", 0.07,
+                      CustomColors.customBlack,
                       bold: true),
                   CustomSizes().heightBox(context, 0.03),
                   _myRadioButton(
+                    context,
                     title: "Use same shipping address",
                     value: 1,
-                    onChanged: (newValue) => setState(() => _groupValue = newValue),
-                  ),_myRadioButton(
+                    onChanged: (newValue) =>
+                        setState(() => _groupValue = newValue),
+                  ),
+                  _myRadioButton(
+                    context,
                     title: "Use different shipping address",
                     value: 1,
-                    onChanged: (newValue) => setState(() => _groupValue = newValue),
+                    onChanged: (newValue) =>
+                        setState(() => _groupValue = newValue),
                   ),
                   CustomSizes().heightBox(context, 0.04),
-                  Divider(
+                  const Divider(
                     color: CustomColors.customBlack,
                   ),
                   CustomSizes().heightBox(context, 0.04),
-                  RowPrice(context, "Order Summary", "PKR.2850", false,true),
-                  RowPrice(context, "Shipping Charges", "PKR.100", false,true),
+                  RowPrice(context, "Order Summary", "PKR.2850", false, true),
+                  RowPrice(context, "Shipping Charges", "PKR.100", false, true),
                   CustomSizes().heightBox(context, 0.06),
-                  RowPrice(context, "Total:", "PKR.2940", true,true),
-                  CustomSizes().heightBox(context, 0.1),
+                  RowPrice(context, "Total:", "PKR.2940", true, true),
+                  CustomSizes().heightBox(context, 0.25),
                   Center(
                     child: coloredButton(
                       context,
@@ -112,8 +127,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
   }
 }
 
-
-Widget  RowPrice(context, text1, price, boldText,boldPrice) {
+Widget RowPrice(context, text1, price, boldText, boldPrice) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,13 +151,16 @@ Widget  RowPrice(context, text1, price, boldText,boldPrice) {
   );
 }
 
-
-
-Widget _myRadioButton({required String title, required int value, onChanged}) {
-  return RadioListTile(
-    value: value,
-    groupValue: _groupValue,
-    onChanged: onChanged,
-    title: Text(title),
+Widget _myRadioButton(context,
+    {required String title, required int value, onChanged}) {
+  return Align(
+    alignment: Alignment.bottomLeft,
+    child: RadioListTile(
+      visualDensity: const VisualDensity(horizontal: -4, vertical: -4),
+      value: value,
+      groupValue: _groupValue,
+      onChanged: onChanged,
+      title: text(context, title, 0.035, CustomColors.customGrey),
+    ),
   );
 }

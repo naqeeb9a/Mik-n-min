@@ -20,44 +20,47 @@ class _ImagePreviewState extends State<ImagePreview> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        //backgroundColor:CustomColors.customGrey.withOpacity(0.2),
+        backgroundColor: CustomColors.customWhite,
+        drawerScrimColor: CustomColors.customSkimColor,
         endDrawer: customDrawer(context),
         appBar: customAppBar(context),
-        body: Stack(
-          children: [
-            Hero(
-               tag: 'tagImage${widget.index}',
-              child: InteractiveViewer(
-                child: Container(
-                      decoration: BoxDecoration(
-                      color: CustomColors.customGrey.withOpacity(0.5),
-                      image: DecorationImage(
-                          image: NetworkImage(widget.image), fit: BoxFit.fitWidth)),
-                  
+        body: SafeArea(
+          child: Stack(
+            children: [
+              Hero(
+                 tag: 'tagImage${widget.index}',
+                child: InteractiveViewer(
+                  child: Container(
+                        decoration: BoxDecoration(
+                        color: CustomColors.customGrey.withOpacity(0.5),
+                        image: DecorationImage(
+                            image: NetworkImage(widget.image), fit: BoxFit.fitWidth)),
+
+                  ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 0,
-              child :Container(
-                 width: CustomSizes().dynamicWidth(context, 1),
-                 height : CustomSizes().dynamicHeight(context,0.07),
-                 decoration:  BoxDecoration(
-                    color: CustomColors.customWhite,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(CustomSizes().dynamicWidth(context, 0.065),),
-                      topRight: Radius.circular(
-                          CustomSizes().dynamicWidth(context, 0.065),
-                        ),
+              Positioned(
+                bottom: 0,
+                child :Container(
+                   width: CustomSizes().dynamicWidth(context, 1),
+                   height : CustomSizes().dynamicHeight(context,0.07),
+                   decoration:  BoxDecoration(
+                      color: CustomColors.customWhite,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(CustomSizes().dynamicWidth(context, 0.065),),
+                        topRight: Radius.circular(
+                            CustomSizes().dynamicWidth(context, 0.065),
+                          ),
+                      ),
                     ),
-                  ),
-                  child :Center(
-                    child :text(context, widget.name, 0.05, CustomColors.customBlack,bold:true))
-                  )
-                  
-              )
-            
-          ],
+                    child :Center(
+                      child :text(context, widget.name, 0.05, CustomColors.customBlack,bold:true))
+                    )
+
+                )
+
+            ],
+          ),
         ),
       ),
     );

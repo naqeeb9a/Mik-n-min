@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'dart:ui';
 
 import 'package:email_validator/email_validator.dart';
@@ -29,6 +31,7 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -102,11 +105,11 @@ class _LoginState extends State<Login> {
                       context,
                       "Password",
                       password,
+                      password: true,
                       white: true,
                       function: (value) {
-                        if (value.toString().isNotEmpty) {
-                        } else {
-                          return "Enter Valid Email";
+                        if (value!.isEmpty || value.length < 8) {
+                          return 'Enter A Valid Password';
                         }
                         return null;
                       },
@@ -163,7 +166,7 @@ class _LoginState extends State<Login> {
                       width: CustomSizes().dynamicWidth(context, .5),
                       fontColor: false,
                       fontSize: .034, function: () {
-                    CustomRoutes().push(context, const PaymentInfo());
+                    CustomRoutes().push(context, const Choice());
                   }),
                 ],
               ),

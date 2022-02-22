@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
-
 import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
 import '../../widgets/text_widget.dart';

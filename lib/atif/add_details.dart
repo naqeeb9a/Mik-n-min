@@ -27,175 +27,179 @@ class _AddDetailsState extends State<AddDetails> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: CustomColors.customWhite,
+        drawerScrimColor: CustomColors.customSkimColor,
         appBar: customAppBar(context, onlyText: true, titleText: "CHECKOUT"),
         endDrawer: customDrawer(context),
-        body: SingleChildScrollView(
-          child: SizedBox(
-            height: CustomSizes().dynamicHeight(context, .88),
-            width: CustomSizes().dynamicWidth(context, 1),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomSizes().heightBox(context, .06),
-                text(context, "Name", .05, CustomColors.customBlack),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
-                    context,
-                    "Name",
-                    name,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Name";
-                      }
-                      return null;
-                    },
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: SizedBox(
+              height: CustomSizes().dynamicHeight(context, 1.1),
+              width: CustomSizes().dynamicWidth(context, 1),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CustomSizes().heightBox(context, .06),
+                  text(context, "Name", .05, CustomColors.customBlack),
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Name",
+                      name,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Name";
+                        }
+                        return null;
+                      },
+                    ),
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
-                text(
-                  context,
-                  "Last Name",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  CustomSizes().heightBox(context, .03),
+                  text(
                     context,
                     "Last Name",
-                    lastName,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Last Name";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Last Name",
+                      lastName,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Last Name";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, .03),
 
-                text(
-                  context,
-                  "Email",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  text(
                     context,
                     "Email",
-                    email,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Email";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
-                text(
-                  context,
-                  "Phone",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Email",
+                      email,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Email";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, .03),
+                  text(
                     context,
                     "Phone",
-                    phone,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Ph N.O.";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
-                text(
-                  context,
-                  "Address",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Phone",
+                      phone,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Ph N.O.";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, .03),
+                  text(
                     context,
                     "Address",
-                    address,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Address";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
-                text(
-                  context,
-                  "City",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Address",
+                      address,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Address";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, .03),
+                  text(
                     context,
                     "City",
-                    city,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid City";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, .03),
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "City",
+                      city,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid City";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, .03),
 
-                text(
-                  context,
-                  "Postal Code",
-                  .05,
-                  CustomColors.customBlack,
-                ),
-                SizedBox(
-                  width: CustomSizes().dynamicWidth(context, .7),
-                  child: inputTextField(
+                  text(
                     context,
                     "Postal Code",
-                    postalCode,
-                    function: (value) {
-                      if (EmailValidator.validate(value)) {
-                      } else {
-                        return "Enter Valid Postal Code";
-                      }
-                      return null;
-                    },
+                    .05,
+                    CustomColors.customBlack,
                   ),
-                ),
-                CustomSizes().heightBox(context, 0.17),
-                coloredButton(
-                  context,
-                  "PAYMENT",
-                  CustomColors.customPink,
-                  fontColor: true,
-                  width: CustomSizes().dynamicWidth(context, 0.6),
-                ),
-              ],
+                  SizedBox(
+                    width: CustomSizes().dynamicWidth(context, .7),
+                    child: inputTextField(
+                      context,
+                      "Postal Code",
+                      postalCode,
+                      function: (value) {
+                        if (EmailValidator.validate(value)) {
+                        } else {
+                          return "Enter Valid Postal Code";
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                  CustomSizes().heightBox(context, 0.17),
+                  coloredButton(
+                    context,
+                    "PAYMENT",
+                    CustomColors.customPink,
+                    fontColor: true,
+                    width: CustomSizes().dynamicWidth(context, 0.6),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

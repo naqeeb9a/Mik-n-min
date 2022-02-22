@@ -19,15 +19,26 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       bottomNavigationBar: cartBottomBar(context),
       endDrawer: customDrawer(context),
       appBar: customAppBar(context, onlyText: true, titleText: "Cart"),
       body: SafeArea(
-        child: ListView.builder(
-          itemCount: 3,
-          itemBuilder: (BuildContext context, int index) {
-            return cartItem(context);
-          },
+        child: Scrollbar(
+          isAlwaysShown: true,
+          interactive: true,
+          showTrackOnHover: true,
+          trackVisibility: true,
+          radius: const Radius.circular(50.0),
+          thickness: CustomSizes().dynamicWidth(context, 0.012),
+          hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
+          child: ListView.builder(
+            itemCount: 3,
+            itemBuilder: (BuildContext context, int index) {
+              return cartItem(context);
+            },
+          ),
         ),
       ),
     );

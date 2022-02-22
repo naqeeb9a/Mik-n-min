@@ -3,7 +3,6 @@ import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
-
 import '../bottom nav screens/tabbar.dart';
 
 class Choice extends StatefulWidget {
@@ -18,6 +17,7 @@ class _ChoiceState extends State<Choice> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

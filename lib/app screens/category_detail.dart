@@ -21,6 +21,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
+      drawerScrimColor: CustomColors.customSkimColor,
       endDrawer: customDrawer(context),
       appBar: customAppBar(context,
           bottomText: true, title: widget.text1 ?? ""),
@@ -64,21 +65,30 @@ errorHandlingWidget(
       return Center(
           child: text(context, "No products", 0.04, CustomColors.customBlack));
     } else {
-      return GridView.builder(
-        primary: true,
-        shrinkWrap: true,
-        itemCount: (snaphot1.data).length ?? 0,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
-              CustomSizes().dynamicWidth(context, 0.6)),
+      return Scrollbar(
+        isAlwaysShown: true,
+        interactive: true,
+        showTrackOnHover: true,
+        trackVisibility: true,
+        radius: const Radius.circular(50.0),
+        thickness: CustomSizes().dynamicWidth(context, 0.012),
+        hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
+        child: GridView.builder(
+          primary: true,
+          shrinkWrap: true,
+          itemCount: (snaphot1.data).length ?? 0,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
+                CustomSizes().dynamicWidth(context, 0.6)),
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            return customGridCards(
+              context,
+              snaphot1.data[index]["node"],
+            );
+          },
         ),
-        itemBuilder: (BuildContext context, int index) {
-          return customGridCards(
-            context,
-            snaphot1.data[index]["node"],
-          );
-        },
       );
     }
   } else {

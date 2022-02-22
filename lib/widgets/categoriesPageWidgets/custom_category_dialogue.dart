@@ -77,20 +77,30 @@ futureCategoryGrid() {
             return text(context, "Retry", 0.04, CustomColors.customBlack);
           } else {
             return Expanded(
-              child: GridView.builder(
-                primary: true,
-                shrinkWrap: true,
-                itemCount: (snapshot.data).length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: CustomSizes().dynamicWidth(context, 0.4) /
-                      CustomSizes().dynamicWidth(context, 0.2),
-                  crossAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
-                  mainAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
+              child: Scrollbar(
+                isAlwaysShown: true,
+                interactive: true,
+                showTrackOnHover: true,
+                trackVisibility: true,
+                radius: const Radius.circular(50.0),
+                thickness: CustomSizes().dynamicWidth(context, 0.012),
+                hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
+
+                child: GridView.builder(
+                  primary: true,
+                  shrinkWrap: true,
+                  itemCount: (snapshot.data).length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    childAspectRatio: CustomSizes().dynamicWidth(context, 0.4) /
+                        CustomSizes().dynamicWidth(context, 0.2),
+                    crossAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
+                    mainAxisSpacing: CustomSizes().dynamicHeight(context, 0.02),
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    return categoryGrid(context, snapshot.data, index);
+                  },
                 ),
-                itemBuilder: (BuildContext context, int index) {
-                  return categoryGrid(context, snapshot.data, index);
-                },
               ),
             );
           }

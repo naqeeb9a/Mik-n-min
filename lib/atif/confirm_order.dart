@@ -26,6 +26,7 @@ class _ConfirmOrderState extends State<ConfirmOrder> {
         return false;
       },
       child: Scaffold(
+        drawerScrimColor: CustomColors.customSkimColor,
         appBar: customAppBar(context, onlyText: true, titleText: ""),
         endDrawer: customDrawer(context),
         backgroundColor: CustomColors.customWhite,

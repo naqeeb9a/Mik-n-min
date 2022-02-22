@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../widgets/categoriesPageWidgets/custom_category_dialogue.dart';
 
 class CategoriesPage extends StatefulWidget {
