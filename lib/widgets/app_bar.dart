@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/utils/constants.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
@@ -66,7 +67,7 @@ PreferredSizeWidget customAppBar(context,
                     CustomSizes().widthBox(context, .02),
                     CircleAvatar(
                       radius: CustomSizes().dynamicWidth(context, .045),
-                      backgroundColor: CustomColors.customBlue,
+                      backgroundColor: gender == "BOY" ? CustomColors.customBlue: CustomColors.customPink,
                       child: CircleAvatar(
                         backgroundColor: CustomColors.customWhite,
                         radius: CustomSizes().dynamicWidth(context, .042),

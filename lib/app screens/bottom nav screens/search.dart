@@ -31,7 +31,6 @@ class _SearchState extends State<Search> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  retry(context),
                   Image.asset(
                     "assets/search.png",
                     color: CustomColors.customGrey.withOpacity(0.4),

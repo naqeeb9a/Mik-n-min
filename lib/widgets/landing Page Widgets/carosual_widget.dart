@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/config.dart';
 
+import '../../utils/constants.dart';
 import '../../utils/dynamic_sizes.dart';
 
 class HomeSlider extends StatefulWidget {
@@ -40,8 +41,12 @@ class _HomeSliderState extends State<HomeSlider> {
                 return Container(
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage(i)),
-                    border:
-                        Border.all(width: 8, color: CustomColors.customPink),
+                    border: Border.all(
+                      width: 8,
+                      color: gender == "Boy"
+                          ? CustomColors.customBlue
+                          : CustomColors.customPink,
+                    ),
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(
                       CustomSizes().dynamicWidth(context, 0.05),

@@ -6,6 +6,7 @@ import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/landing_page.da
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/profile.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/search.dart';
 import 'package:mik_and_min/utils/config.dart';
+import 'package:mik_and_min/utils/constants.dart';
 import '../../utils/dynamic_sizes.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -86,31 +87,51 @@ class _CustomTabBarState extends State<CustomTabBar>
                         Tab(
                           icon: Image.asset(
                             "assets/home.png",
-                            width: CustomSizes().dynamicWidth(context, iconSize),
+                            color: gender == "Boy"
+                                ? CustomColors.customBlue
+                                : CustomColors.customPink,
+                            width:
+                                CustomSizes().dynamicWidth(context, iconSize),
                           ),
                         ),
                         Tab(
                           icon: Image.asset(
                             "assets/search.png",
-                            width: CustomSizes().dynamicWidth(context, iconSize),
+                            color: gender == "Boy"
+                                ? CustomColors.customBlue
+                                : CustomColors.customPink,
+                            width:
+                                CustomSizes().dynamicWidth(context, iconSize),
                           ),
                         ),
                         Tab(
                           icon: Image.asset(
                             "assets/bottom_category.png",
-                            width: CustomSizes().dynamicWidth(context, iconSize),
+                            color: gender == "Boy"
+                                ? CustomColors.customBlue
+                                : CustomColors.customPink,
+                            width:
+                                CustomSizes().dynamicWidth(context, iconSize),
                           ),
                         ),
                         Tab(
                           icon: Image.asset(
                             "assets/cart.png",
-                            width: CustomSizes().dynamicWidth(context, iconSize),
+                            color: gender == "Boy"
+                                ? CustomColors.customBlue
+                                : CustomColors.customPink,
+                            width:
+                                CustomSizes().dynamicWidth(context, iconSize),
                           ),
                         ),
                         Tab(
                           icon: Image.asset(
                             "assets/profile.png",
-                            width: CustomSizes().dynamicWidth(context, iconSize),
+                            color: gender == "Boy"
+                                ? CustomColors.customBlue
+                                : CustomColors.customPink,
+                            width:
+                                CustomSizes().dynamicWidth(context, iconSize),
                           ),
                         ),
                       ],

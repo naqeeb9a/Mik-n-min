@@ -8,6 +8,8 @@ import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/landing%20Page%20Widgets/landing_categories.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 
+import '../../utils/constants.dart';
+
 class LandingPage extends StatelessWidget {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
   LandingPage({Key? key}) : super(key: key);
@@ -33,7 +35,7 @@ class LandingPage extends StatelessWidget {
               child: appBar(context, _key),
             ),
             const HomeSlider(),
-            text(context, "Her Wardrobe", 0.04, CustomColors.customBlack,
+            text(context, gender == "Boy"?"His Wardrobe":"Her Wardrobe", 0.04, CustomColors.customBlack,
                 bold: true),
             Wrap(
               children: [
