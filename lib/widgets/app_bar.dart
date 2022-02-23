@@ -67,7 +67,7 @@ PreferredSizeWidget customAppBar(context,
                     CustomSizes().widthBox(context, .02),
                     CircleAvatar(
                       radius: CustomSizes().dynamicWidth(context, .045),
-                      backgroundColor: gender == "BOY" ? CustomColors.customBlue: CustomColors.customPink,
+                      backgroundColor: gender == "Boy" ? CustomColors.customBlue: CustomColors.customPink,
                       child: CircleAvatar(
                         backgroundColor: CustomColors.customWhite,
                         radius: CustomSizes().dynamicWidth(context, .042),

@@ -12,11 +12,12 @@ landingCategories(context, text1, img, handle) {
   return InkWell(
     onTap: () {
       CustomRoutes().push(
-          context,
-          CategoryDetail(
-            text1: text1,
-            function: getShopifyCollection(handle),
-          ));
+        context,
+        CategoryDetail(
+          text1: text1,
+          function: getShopifyCollection(handle),
+        ),
+      );
     },
     child: Container(
       margin: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.02)),
