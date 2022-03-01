@@ -14,6 +14,7 @@ categoryGrid(context, productData, index) {
         context,
         CategoryDetail(
           text1: productData[index]["node"]["title"],
+          image: productData[index]["node"]["image"]["src"],
           function: getShopifyCollection(productData[index]["node"]["handle"]),
         ),
       );

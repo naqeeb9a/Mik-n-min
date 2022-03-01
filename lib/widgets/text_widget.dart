@@ -5,7 +5,7 @@ import 'package:mik_and_min/utils/dynamic_sizes.dart';
 Widget text(context, text, size, color,
     {bold = false, alignText = TextAlign.start, maxLines = 2, font = false}) {
   return Text(
-    text,
+    text.toString(),
     textAlign: alignText,
     maxLines: maxLines,
     overflow: TextOverflow.ellipsis,

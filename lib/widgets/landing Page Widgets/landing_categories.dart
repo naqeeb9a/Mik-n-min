@@ -15,6 +15,7 @@ landingCategories(context, text1, img, handle) {
         context,
         CategoryDetail(
           text1: text1,
+          image: img,
           function: getShopifyCollection(handle),
         ),
       );

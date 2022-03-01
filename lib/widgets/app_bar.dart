@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/atif/product_array.dart';
 import 'package:mik_and_min/utils/constants.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
@@ -32,7 +33,7 @@ appBar(
 }
 
 PreferredSizeWidget customAppBar(context,
-    {bottomText = false, elevate = true, title, onlyText = false, titleText}) {
+    {bottomText = false, elevate = true, title, onlyText = false, titleText,image = ""}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
       CustomSizes().dynamicWidth(context, .14),
@@ -66,11 +67,16 @@ PreferredSizeWidget customAppBar(context,
                     ),
                     CustomSizes().widthBox(context, .02),
                     CircleAvatar(
+
                       radius: CustomSizes().dynamicWidth(context, .045),
                       backgroundColor: gender == "Boy" ? CustomColors.customBlue: CustomColors.customPink,
-                      child: CircleAvatar(
-                        backgroundColor: CustomColors.customWhite,
-                        radius: CustomSizes().dynamicWidth(context, .042),
+                      child: Center(
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              image
+                          ),
+                          radius: CustomSizes().dynamicWidth(context, .042),
+                        ),
                       ),
                     ),
                   ],

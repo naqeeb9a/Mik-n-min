@@ -4,13 +4,12 @@ import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
-
 import '../widgets/app_bar.dart';
 import '../widgets/basic_widgets.dart';
 
 class CategoryDetail extends StatefulWidget {
-  final dynamic function, text1;
-  const CategoryDetail({Key? key, this.text1, this.function}) : super(key: key);
+  final dynamic function,image, text1;
+  const CategoryDetail({Key? key, this.text1,this.image, this.function}) : super(key: key);
 
   @override
   _CategoryDetailState createState() => _CategoryDetailState();
@@ -19,12 +18,14 @@ class CategoryDetail extends StatefulWidget {
 class _CategoryDetailState extends State<CategoryDetail> {
   @override
   Widget build(BuildContext context) {
+    print(widget.image);
+
     return Scaffold(
       backgroundColor: CustomColors.customWhite,
       drawerScrimColor: CustomColors.customSkimColor,
       endDrawer: customDrawer(context),
       appBar: customAppBar(context,
-          bottomText: true, title: widget.text1 ?? ""),
+          bottomText: true, title: widget.text1 ?? "",image: widget.image),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.only(
@@ -37,6 +38,8 @@ class _CategoryDetailState extends State<CategoryDetail> {
                     return errorHandlingWidget(
                       context,
                       snapshot,
+                      widget.text1,
+                        widget.image,
                     );
                   })
               : FutureBuilder(
@@ -45,6 +48,8 @@ class _CategoryDetailState extends State<CategoryDetail> {
                     return errorHandlingWidget(
                       context,
                       snapshot,
+                      widget.text1,
+                        widget.image,
                     );
                   }),
         ),
@@ -56,6 +61,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
 errorHandlingWidget(
   context,
   AsyncSnapshot snaphot1,
+    text1,image
 ) {
   if (snaphot1.connectionState == ConnectionState.done) {
     if (snaphot1.data == false || snaphot1.data == "Server Error") {
@@ -86,6 +92,8 @@ errorHandlingWidget(
             return customGridCards(
               context,
               snaphot1.data[index]["node"],
+              text1,
+              image,
             );
           },
         ),

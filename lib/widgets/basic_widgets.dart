@@ -33,12 +33,15 @@ Widget chip(context, title) {
   );
 }
 
-Widget customGridCards(context, productData) {
+Widget customGridCards(context, productData,text1,image) {
   return InkWell(
-    onTap: () => CustomRoutes().push(
+    onTap: ()=>
+        CustomRoutes().push(
       context,
       ViewPage(
         productData: productData,
+        image: image,
+        text1: text1,
       ),
     ),
     child: Column(

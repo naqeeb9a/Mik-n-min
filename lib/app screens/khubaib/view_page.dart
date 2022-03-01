@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:mik_and_min/atif/product_array.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
@@ -7,14 +7,16 @@ import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import 'package:mik_and_min/widgets/viewPageWidgets/custom_swiper.dart';
-
 import '../../widgets/viewPageWidgets/custom_delivery_text.dart';
 import '../../widgets/viewPageWidgets/custom_expansion_tile.dart';
 
 class ViewPage extends StatefulWidget {
   final dynamic productData;
+  final dynamic text1;
+  final dynamic image;
 
-  const ViewPage({this.productData, Key? key}) : super(key: key);
+
+  const ViewPage({this.productData, this.text1,this.image, Key? key}) : super(key: key);
 
   @override
   _ViewPageState createState() => _ViewPageState();
@@ -50,11 +52,25 @@ class _ViewPageState extends State<ViewPage> {
         drawerScrimColor: CustomColors.customSkimColor,
         bottomNavigationBar: Padding(
           padding: EdgeInsets.all(CustomSizes().dynamicWidth(context, 0.04)),
-          child: coloredButton(context, "ADD TO CART", CustomColors.customPink,
-              width: CustomSizes().dynamicWidth(context, 0.8)),
+          child: coloredButton(
+            context,
+            "ADD TO CART",
+            CustomColors.customPink,
+            function: () {
+              productArray.add(widget.productData);
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: text(
+                      context, "Item Added", 0.06, CustomColors.customWhite),
+                ),
+              );
+            },
+            width: CustomSizes().dynamicWidth(context, 0.8),
+          ),
         ),
         endDrawer: customDrawer(context),
-        appBar: customAppBar(context),
+        appBar:
+            customAppBar(context, bottomText: true, title: widget.text1 ?? "",image: widget.image),
         body: SafeArea(
           child: Column(
             children: [
@@ -100,8 +116,8 @@ class _ViewPageState extends State<ViewPage> {
                               ),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(
-                                      CustomSizes()
-                                          .dynamicWidth(context, 0.03)),
+                                    CustomSizes().dynamicWidth(context, 0.03),
+                                  ),
                                   color:
                                       CustomColors.customGrey.withOpacity(0.2)),
                               child: Row(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/atif/product_array.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
@@ -34,9 +35,11 @@ class _CartState extends State<Cart> {
           thickness: CustomSizes().dynamicWidth(context, 0.012),
           hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
           child: ListView.builder(
-            itemCount: 3,
+            itemCount:productArray.length,
             itemBuilder: (BuildContext context, int index) {
-              return cartItem(context);
+              return cartItem(context,productArray,index,(){setState(() {
+
+              });});
             },
           ),
         ),
@@ -45,7 +48,8 @@ class _CartState extends State<Cart> {
   }
 }
 
-Widget cartItem(context) {
+Widget cartItem(context,productData,index,setState) {
+print(productData);
   return SizedBox(
     width: CustomSizes().dynamicWidth(context, 1),
     height: CustomSizes().dynamicHeight(context, 0.28),
@@ -69,9 +73,11 @@ Widget cartItem(context) {
                       color: CustomColors.customGrey.withOpacity(0.5),
                       width: CustomSizes().dynamicWidth(context, 0.012),
                     ),
-                    image: const DecorationImage(
+                    image: DecorationImage(
                         image: NetworkImage(
-                            "https://st.depositphotos.com/2056297/2228/i/600/depositphotos_22286043-stock-photo-handsome-man.jpg"),
+                          productData[index]["images"]["edges"][0]["node"]
+                              ["src"],
+                        ),
                         fit: BoxFit.cover)),
               ),
               Padding(
@@ -93,7 +99,10 @@ Widget cartItem(context) {
                           Row(
                             children: [
                               Text(
-                                "Rs.3300",
+                                "Rs." +
+                                  productData[index]["variants"]["edges"][0]
+                                    ["node"]["compareAtPrice"]
+                                        .toString(),
                                 style: TextStyle(
                                     color: CustomColors.customGrey,
                                     fontSize: CustomSizes()
@@ -101,60 +110,34 @@ Widget cartItem(context) {
                                     decoration: TextDecoration.lineThrough),
                               ),
                               CustomSizes().widthBox(context, 0.01),
-                              text(context, "Rs.1678", 0.03,
+                              text(context, "Rs." +
+                                  productData[index]["variants"]["edges"][0]
+                                  ["node"]["price"]
+                                      .toString(), 0.03,
                                   CustomColors.customPink),
                             ],
                           ),
-                          text(context, "Cocobee", 0.025,
-                              CustomColors.customBlack,
-                              bold: true),
-                          text(context, "Navy Melange Hoodie", 0.04,
+                          CustomSizes().heightBox(context, 0.02),
+                          text(context, productData[index]["vendor"], 0.03,
                               CustomColors.customBlack,
                               bold: true),
                           CustomSizes().heightBox(context, 0.03),
-                          Row(
-                            children: [
-                              text(context, "Size", 0.035,
-                                  CustomColors.customBlack),
-                              CustomSizes().widthBox(context, 0.03),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                    vertical:
-                                        CustomSizes().dynamicHeight(context, 0),
-                                    horizontal: CustomSizes()
-                                        .dynamicWidth(context, 0.002)),
-                                decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: CustomColors.customBlack)),
-                                child: Center(
-                                  child: text(
-                                    context,
-                                    "5-6 YEARS",
-                                    0.02,
-                                    CustomColors.customBlack,
-                                    bold: true,
-                                  ),
-                                ),
-                              )
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              text(context, "Colors", 0.035,
-                                  CustomColors.customBlack),
-                              CustomSizes().widthBox(context, 0.03),
-                              Icon(
-                                Icons.more_horiz,
-                                size:
-                                    CustomSizes().dynamicHeight(context, 0.04),
-                              ),
-                            ],
-                          ),
+
+                          text(context, productData[index]["title"], 0.04,
+                              CustomColors.customBlack,
+                              bold: true),
+                          CustomSizes().heightBox(context, 0.03),
                         ],
                       ),
                     ],
                   ),
-                  const Icon(Icons.delete)
+                  InkWell
+                    (
+                    onTap: (){
+                      productArray.remove(productData[index]);
+                      setState();
+                    },
+                    child: const Icon(Icons.delete),),
                 ],
               )
             ],
