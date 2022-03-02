@@ -35,11 +35,18 @@ class _CartState extends State<Cart> {
           thickness: CustomSizes().dynamicWidth(context, 0.012),
           hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
           child: ListView.builder(
-            itemCount:productArray.length,
+            itemCount: productArray.length,
             itemBuilder: (BuildContext context, int index) {
-              return cartItem(context,productArray,index,(){setState(() {
-
-              });});
+              return cartItem(
+                context,
+                productArray,
+                index,
+                () {
+                  setState(
+                    () {},
+                  );
+                },
+              );
             },
           ),
         ),
@@ -48,8 +55,8 @@ class _CartState extends State<Cart> {
   }
 }
 
-Widget cartItem(context,productData,index,setState) {
-print(productData);
+Widget cartItem(context, productData, index, setState) {
+// print(productData);
   return SizedBox(
     width: CustomSizes().dynamicWidth(context, 1),
     height: CustomSizes().dynamicHeight(context, 0.28),
@@ -100,8 +107,8 @@ print(productData);
                             children: [
                               Text(
                                 "Rs." +
-                                  productData[index]["variants"]["edges"][0]
-                                    ["node"]["compareAtPrice"]
+                                    productData[index]["variants"]["edges"][0]
+                                            ["node"]["compareAtPrice"]
                                         .toString(),
                                 style: TextStyle(
                                     color: CustomColors.customGrey,
@@ -110,10 +117,13 @@ print(productData);
                                     decoration: TextDecoration.lineThrough),
                               ),
                               CustomSizes().widthBox(context, 0.01),
-                              text(context, "Rs." +
-                                  productData[index]["variants"]["edges"][0]
-                                  ["node"]["price"]
-                                      .toString(), 0.03,
+                              text(
+                                  context,
+                                  "Rs." +
+                                      productData[index]["variants"]["edges"][0]
+                                              ["node"]["price"]
+                                          .toString(),
+                                  0.03,
                                   CustomColors.customPink),
                             ],
                           ),
@@ -122,7 +132,6 @@ print(productData);
                               CustomColors.customBlack,
                               bold: true),
                           CustomSizes().heightBox(context, 0.03),
-
                           text(context, productData[index]["title"], 0.04,
                               CustomColors.customBlack,
                               bold: true),
@@ -131,13 +140,13 @@ print(productData);
                       ),
                     ],
                   ),
-                  InkWell
-                    (
-                    onTap: (){
+                  InkWell(
+                    onTap: () {
                       productArray.remove(productData[index]);
                       setState();
                     },
-                    child: const Icon(Icons.delete),),
+                    child: const Icon(Icons.delete),
+                  ),
                 ],
               )
             ],

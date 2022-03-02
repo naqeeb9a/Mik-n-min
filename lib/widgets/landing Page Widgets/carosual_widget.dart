@@ -35,47 +35,52 @@ class _HomeSliderState extends State<HomeSlider> {
             "assets/landing_banner.png",
             "assets/landing_banner.png",
             "assets/landing_banner.png"
-          ].map((i) {
-            return Builder(
-              builder: (BuildContext context) {
-                return Container(
-                  decoration: BoxDecoration(
-                    image: DecorationImage(image: AssetImage(i)),
-                    border: Border.all(
-                      width: 8,
-                      color: gender == "Boy"
-                          ? CustomColors.customBlue
-                          : CustomColors.customPink,
+          ].map(
+            (i) {
+              return Builder(
+                builder: (BuildContext context) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      image: DecorationImage(image: AssetImage(i)),
+                      border: Border.all(
+                        width: 8,
+                        color: gender == "Boy"
+                            ? CustomColors.customBlue
+                            : CustomColors.customPink,
+                      ),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(
+                        CustomSizes().dynamicWidth(context, 0.05),
+                      ),
                     ),
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(
-                      CustomSizes().dynamicWidth(context, 0.05),
-                    ),
-                  ),
-                );
-              },
-            );
-          }).toList(),
+                  );
+                },
+              );
+            },
+          ).toList(),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [1, 2, 3].asMap().entries.map((entry) {
-            return GestureDetector(
-              onTap: () => _controller.animateToPage(entry.key),
-              child: Container(
-                width: CustomSizes().dynamicWidth(context, 0.03),
-                height: CustomSizes().dynamicWidth(context, 0.03),
-                margin:
-                    const EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                decoration: BoxDecoration(
+          children: [1, 2, 3].asMap().entries.map(
+            (entry) {
+              return GestureDetector(
+                onTap: () => _controller.animateToPage(entry.key),
+                child: Container(
+                  width: CustomSizes().dynamicWidth(context, 0.03),
+                  height: CustomSizes().dynamicWidth(context, 0.03),
+                  margin: const EdgeInsets.symmetric(
+                      vertical: 8.0, horizontal: 4.0),
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: (Theme.of(context).brightness == Brightness.dark
                             ? Colors.white
                             : Colors.black)
-                        .withOpacity(_current == entry.key ? 0.9 : 0.4)),
-              ),
-            );
-          }).toList(),
+                        .withOpacity(_current == entry.key ? 0.9 : 0.4),
+                  ),
+                ),
+              );
+            },
+          ).toList(),
         ),
       ],
     );

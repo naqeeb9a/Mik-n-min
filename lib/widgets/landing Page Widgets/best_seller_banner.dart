@@ -14,16 +14,19 @@ bestSellerBanner(context) {
     child: Container(
       alignment: Alignment.centerLeft,
       margin: EdgeInsets.only(
-          top: CustomSizes().dynamicWidth(context, 0.02),
-          left: CustomSizes().dynamicWidth(context, 0.02),
-          right: CustomSizes().dynamicWidth(context, 0.02),
-          bottom: CustomSizes().dynamicWidth(context, 0.13)),
+        top: CustomSizes().dynamicWidth(context, 0.02),
+        left: CustomSizes().dynamicWidth(context, 0.02),
+        right: CustomSizes().dynamicWidth(context, 0.02),
+        bottom: CustomSizes().dynamicWidth(context, 0.13),
+      ),
       padding: EdgeInsets.symmetric(
-          horizontal: CustomSizes().dynamicWidth(context, 0.02),
-          vertical: CustomSizes().dynamicWidth(context, 0.01)),
+        horizontal: CustomSizes().dynamicWidth(context, 0.02),
+        vertical: CustomSizes().dynamicWidth(context, 0.01),
+      ),
       decoration: BoxDecoration(
-          borderRadius:
-              BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.02)),
+          borderRadius: BorderRadius.circular(
+            CustomSizes().dynamicWidth(context, 0.02),
+          ),
           color: CustomColors.customWhite.withOpacity(0.4)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

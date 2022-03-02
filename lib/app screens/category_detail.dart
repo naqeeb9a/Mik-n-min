@@ -18,7 +18,7 @@ class CategoryDetail extends StatefulWidget {
 class _CategoryDetailState extends State<CategoryDetail> {
   @override
   Widget build(BuildContext context) {
-    print(widget.image);
+    // print(widget.image);
 
     return Scaffold(
       backgroundColor: CustomColors.customWhite,

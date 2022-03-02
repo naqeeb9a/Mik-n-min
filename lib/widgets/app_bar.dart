@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mik_and_min/atif/product_array.dart';
 import 'package:mik_and_min/utils/constants.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
@@ -33,7 +32,12 @@ appBar(
 }
 
 PreferredSizeWidget customAppBar(context,
-    {bottomText = false, elevate = true, title, onlyText = false, titleText,image = ""}) {
+    {bottomText = false,
+    elevate = true,
+    title,
+    onlyText = false,
+    titleText,
+    image = ""}) {
   return PreferredSize(
     preferredSize: Size.fromHeight(
       CustomSizes().dynamicWidth(context, .14),
@@ -49,50 +53,48 @@ PreferredSizeWidget customAppBar(context,
       title: onlyText == true
           ? text(context, titleText, 0.04, CustomColors.customBlack, bold: true)
           : SizedBox(
-            height: CustomSizes().dynamicWidth(context, .15),
-            width: CustomSizes().dynamicWidth(context, 1),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    InkWell(
-                      onTap: () {
-                        CustomRoutes().pop(context);
-                      },
-                      child: Icon(
-                        Icons.arrow_back_ios_new_sharp,
-                        size: CustomSizes().dynamicWidth(context, 0.05),
-                      ),
-                    ),
-                    CustomSizes().widthBox(context, .02),
-                    CircleAvatar(
-
-                      radius: CustomSizes().dynamicWidth(context, .045),
-                      backgroundColor: gender == "Boy" ? CustomColors.customBlue: CustomColors.customPink,
-                      child: Center(
-                        child: CircleAvatar(
-                          backgroundImage: NetworkImage(
-                              image
-                          ),
-                          radius: CustomSizes().dynamicWidth(context, .042),
+              height: CustomSizes().dynamicWidth(context, .15),
+              width: CustomSizes().dynamicWidth(context, 1),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          CustomRoutes().pop(context);
+                        },
+                        child: Icon(
+                          Icons.arrow_back_ios_new_sharp,
+                          size: CustomSizes().dynamicWidth(context, 0.05),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-                text(
-                  context,
-                  title,
-                  0.046,
-                  CustomColors.customBlack,
-                  bold: true,
-                ),
-                Container(),
-
-              ],
+                      CustomSizes().widthBox(context, .02),
+                      CircleAvatar(
+                        radius: CustomSizes().dynamicWidth(context, .045),
+                        backgroundColor: gender == "Boy"
+                            ? CustomColors.customBlue
+                            : CustomColors.customPink,
+                        child: Center(
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(image),
+                            radius: CustomSizes().dynamicWidth(context, .042),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  text(
+                    context,
+                    title,
+                    0.046,
+                    CustomColors.customBlack,
+                    bold: true,
+                  ),
+                  Container(),
+                ],
+              ),
             ),
-          ),
     ),
   );
 }

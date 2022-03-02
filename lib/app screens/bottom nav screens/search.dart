@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/app_bar.dart';
-import 'package:mik_and_min/widgets/basic_widgets.dart';
 import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 

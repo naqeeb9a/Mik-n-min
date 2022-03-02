@@ -17,10 +17,12 @@ class _CategoriesPageState extends State<CategoriesPage>
   late final Animation<Offset> _offsetAnimation = Tween<Offset>(
     begin: const Offset(0, 1),
     end: const Offset(0, 0),
-  ).animate(CurvedAnimation(
-    parent: _controller,
-    curve: Curves.decelerate,
-  ));
+  ).animate(
+    CurvedAnimation(
+      parent: _controller,
+      curve: Curves.decelerate,
+    ),
+  );
 
   @override
   void dispose() {
@@ -37,7 +39,9 @@ class _CategoriesPageState extends State<CategoriesPage>
       children: [
         SlideTransition(
           position: _offsetAnimation,
-          child: SafeArea(child: customCategoryDialogue(context)),
+          child: SafeArea(
+            child: customCategoryDialogue(context),
+          ),
         ),
       ],
     );

@@ -103,10 +103,10 @@ class _PaymentInfoState extends State<PaymentInfo> {
                     color: CustomColors.customBlack,
                   ),
                   CustomSizes().heightBox(context, 0.04),
-                  RowPrice(context, "Order Summary", "PKR.2850", false, true),
-                  RowPrice(context, "Shipping Charges", "PKR.100", false, true),
+                  rowPrice(context, "Order Summary", "PKR.2850", false, true),
+                  rowPrice(context, "Shipping Charges", "PKR.100", false, true),
                   CustomSizes().heightBox(context, 0.06),
-                  RowPrice(context, "Total:", "PKR.2940", true, true),
+                  rowPrice(context, "Total:", "PKR.2940", true, true),
                   CustomSizes().heightBox(context, 0.25),
                   Center(
                     child: coloredButton(
@@ -127,7 +127,7 @@ class _PaymentInfoState extends State<PaymentInfo> {
   }
 }
 
-Widget RowPrice(context, text1, price, boldText, boldPrice) {
+Widget rowPrice(context, text1, price, boldText, boldPrice) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.center,
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
