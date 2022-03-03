@@ -2,8 +2,10 @@
 
 import 'dart:ui';
 
+import 'package:cool_alert/cool_alert.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/forgot_password.dart';
 import 'package:mik_and_min/app%20screens/authenctication%20screens/sign_in.dart';
 import 'package:mik_and_min/app%20screens/choice/choice.dart';
@@ -14,6 +16,12 @@ import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/form_fields.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+
+final _formKey = GlobalKey<FormState>();
+final email = TextEditingController();
+final password = TextEditingController();
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -23,10 +31,10 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
-
+  // final email = TextEditingController();
+  // final password = TextEditingController();
+  // final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -152,11 +160,67 @@ class _LoginState extends State<Login> {
                       CustomSizes().heightBox(context, .03),
                       coloredButton(context, "LOG IN", CustomColors.customPink,
                           width: CustomSizes().dynamicWidth(context, .5),
-                          function: () {
-                        if (_formKey.currentState!.validate()) {
-                          CustomRoutes().push(context,const Choice());
-                        }
-                      }),
+                           function: () async {
+                          if (!_formKey.currentState!.validate()) {
+                            return;
+                          }
+                          setState(() {
+                            isLoading = true;
+                          });
+                          var accessToken = await loginUser(
+                            email.text.toString(),
+                            password.text.toString(),
+                          );
+
+                          if (accessToken == "Server Error") {
+                            setState(() {
+                              isLoading = false;
+                            });
+                            CoolAlert.show(
+                              context: context,
+                              type: CoolAlertType.warning,
+                              title: "No Internet",
+                              text: "Check your internet connection!!",
+                              backgroundColor: CustomColors.customWhite,
+                              confirmBtnColor: CustomColors.customWhite,
+                              animType: CoolAlertAnimType.scale,
+                            );
+                          } else if (accessToken != null) {
+                            SharedPreferences saveUser =
+                                await SharedPreferences.getInstance();
+                            SharedPreferences saveUserEmail =
+                                await SharedPreferences.getInstance();
+                            SharedPreferences saveUserPassword =
+                                await SharedPreferences.getInstance();
+                            saveUser.setString(
+                                "loginInfo", accessToken.toString());
+                            saveUserEmail.setString("email", email.text);
+                            saveUserPassword.setString(
+                                "password", password.text);
+                            CustomRoutes().pushAndRemoveUntil(
+                              context,
+                              Choice(),
+                            );
+                            email.clear();
+                            password.clear();
+                          } else {
+                            setState(() {
+                              isLoading = false;
+                            });
+
+                            CoolAlert.show(
+                              context: context,
+                              type: CoolAlertType.error,
+                              title: "",
+                              text: "Username or Password not Matched!!",
+                              backgroundColor: CustomColors.customPink,
+                              confirmBtnColor: CustomColors.customPink,
+                              animType: CoolAlertAnimType.scale,
+                              flareAnimationName: "Dance",
+                            );
+                          }
+                        },
+                      ),
                       CustomSizes().heightBox(context, .04),
                       richTextWidget(
                         context,
@@ -165,8 +229,8 @@ class _LoginState extends State<Login> {
                         CustomSizes().dynamicWidth(context, .04),
                         CustomSizes().dynamicWidth(context, .04),
                         const SignUp(),
-                        CustomColors.customWhite,
-                        CustomColors.customWhite,
+                       CustomColors.customPink,
+                       CustomColors.customPink,
                         true,
                       ),
                       CustomSizes().heightBox(context, .1),
@@ -186,5 +250,52 @@ class _LoginState extends State<Login> {
         ),
       ),
     );
+  }
+}
+
+loginUser(email, password) async {
+  SharedPreferences saveUser = await SharedPreferences.getInstance();
+  const createUserAccessToken = r'''
+                mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+                  customerAccessTokenCreate(input: $input) {
+                    customerAccessToken {
+                      accessToken
+                      expiresAt
+                    }
+                    customerUserErrors {
+                      code
+                      field
+                      message
+                    }
+                  }
+                }
+            ''';
+  var variables = {
+    "input": {"email": email, "password": password}
+  };
+  final HttpLink httpLink = HttpLink(
+      "https://monark-clothings.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token": "fce9486a511f6a4f45939c2c6829cdaa"
+      });
+  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options =
+      QueryOptions(document: gql(createUserAccessToken), variables: variables);
+  final QueryResult result = await client.query(options);
+
+  if (result.hasException) {
+    return "Server Error";
+  } else {
+    if (result.data!["customerAccessTokenCreate"]["customerAccessToken"] !=
+        null) {
+      saveUser.setString(
+          "loginInfo",
+          result.data!["customerAccessTokenCreate"]["customerAccessToken"]
+              ["accessToken"]);
+      return result.data!["customerAccessTokenCreate"]["customerAccessToken"]
+          ["accessToken"];
+    } else {
+      return result.data!["customerAccessTokenCreate"]["customerAccessToken"];
+    }
   }
 }

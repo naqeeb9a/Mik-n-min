@@ -1,12 +1,26 @@
 import 'dart:ui';
+import 'package:cool_alert/cool_alert.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
+import 'package:graphql/client.dart';
+import 'package:mik_and_min/app%20screens/authenctication%20screens/login.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/form_fields.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../choice/choice.dart';
+
+
+final firstName = TextEditingController();
+final lastName = TextEditingController();
+final email = TextEditingController();
+final password = TextEditingController();
+final cPassword = TextEditingController();
+final _formKey = GlobalKey<FormState>();
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -16,12 +30,55 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  final firstName = TextEditingController();
-  final lastName = TextEditingController();
-  final email = TextEditingController();
-  final password = TextEditingController();
-  final cPassword = TextEditingController();
-  final _formKey = GlobalKey<FormState>();
+    userSignUp() async {
+    const createUserAccessToken = r'''
+              mutation customerCreate($input: CustomerCreateInput!) {
+  customerCreate(input: $input) {
+    customer {
+      id
+    }
+    customerUserErrors {
+      code
+      field
+      message
+    }
+  }
+}
+
+            ''';
+    var variables = {
+      "input": {
+        "email": email.text.toString(),
+        "password": password.text.toString(),
+        "firstName": firstName.text.toString(),
+        "lastName": lastName.text.toString()
+      }
+    };
+    final HttpLink httpLink = HttpLink(
+        "https://monark-clothings.myshopify.com/api/2021-10/graphql.json",
+        defaultHeaders: {
+          "X-Shopify-Storefront-Access-Token":
+              "fce9486a511f6a4f45939c2c6829cdaa"
+        });
+    GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+    final QueryOptions options = QueryOptions(
+        document: gql(createUserAccessToken), variables: variables);
+    final QueryResult result = await client.query(options);
+
+    if (result.hasException) {
+      return "Server Error";
+    } else {
+      if (result.data!["customerCreate"]["customer"] != null) {
+        return result.data!["customerCreate"]["customer"]["id"];
+      } else {
+        return result.data!["customerCreate"]["customer"];
+      }
+    }
+  }
+
+
+  
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -193,11 +250,90 @@ class _SignUpState extends State<SignUp> {
                         coloredButton(
                             context, "SIGN UP", CustomColors.customPink,
                             width: CustomSizes().dynamicWidth(context, .5),
-                            function: () {
-                          if (_formKey.currentState!.validate()) {
-                            CustomRoutes().pop(context);
-                          }
-                        }),
+                            function: () async {
+                            if (!_formKey.currentState!.validate()) {
+                              return;
+                            }
+                            setState(() {
+                              isLoading = true;
+                            });
+                            var response = await userSignUp();
+                            if (response == "Server Error") {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              CoolAlert.show(
+                                context: context,
+                                type: CoolAlertType.error,
+                                title: "Network Error",
+                                text: "Check your internet as well",
+                                backgroundColor: CustomColors.customPink,
+                                confirmBtnColor: CustomColors.customPink,
+                              );
+                            } else if (response == null) {
+                              setState(() {
+                                isLoading = false;
+                              });
+                              // customAlert(context);
+                            } else if (response != null) {
+                              var accessToken = await loginUser(
+                                email.text.toString(),
+                                password.text.toString(),
+                              );
+
+                              setState(() {
+                                isLoading = false;
+                              });
+                              CoolAlert.show(
+                                context: context,
+                                type: CoolAlertType.success,
+                                title: "Successfully Created",
+                                text: "",
+                                backgroundColor: CustomColors.customPink,
+                                confirmBtnColor: CustomColors.customPink,
+                                onConfirmBtnTap: () async {
+                                  if (accessToken == "Server Error") {
+                                    setState(() {
+                                      isLoading = false;
+                                    });
+                                    CoolAlert.show(
+                                      context: context,
+                                      type: CoolAlertType.warning,
+                                      title: "No Internet",
+                                      text: "Check your internet connection!!",
+                                      backgroundColor: CustomColors.customPink,
+                                      confirmBtnColor: CustomColors.customPink,
+                                      animType: CoolAlertAnimType.scale,
+                                    );
+                                  } else if (accessToken != null) {
+                                    SharedPreferences saveUser =
+                                        await SharedPreferences.getInstance();
+
+                                    saveUser.setString(
+                                        "loginInfo", accessToken.toString());
+                                    CustomRoutes().pushAndRemoveUntil(
+                                      context,
+                                      const Choice()
+                                    );
+                                    email.clear();
+                                    password.clear();
+                                    firstName.clear();
+                                    lastName.clear();
+                                    cPassword.clear();
+                                  }
+                                },
+                              );
+                            } else {
+                              CoolAlert.show(
+                                context: context,
+                                type: CoolAlertType.info,
+                                title: "Unidentified Error",
+                                 backgroundColor: CustomColors.customPink,
+                                confirmBtnColor: CustomColors.customPink,
+                              );
+                            }
+                          },
+                        ),
                         CustomSizes().heightBox(context, .04),
                         richTextWidget(
                           context,
