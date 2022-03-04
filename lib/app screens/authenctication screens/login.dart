@@ -18,7 +18,6 @@ import 'package:mik_and_min/widgets/form_fields.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 final _formKey = GlobalKey<FormState>();
 final email = TextEditingController();
 final password = TextEditingController();
@@ -158,9 +157,12 @@ class _LoginState extends State<Login> {
                         ),
                       ),
                       CustomSizes().heightBox(context, .03),
-                      coloredButton(context, "LOG IN", CustomColors.customPink,
-                          width: CustomSizes().dynamicWidth(context, .5),
-                           function: () async {
+                      coloredButton(
+                        context,
+                        "LOG IN",
+                        CustomColors.customPink,
+                        width: CustomSizes().dynamicWidth(context, .5),
+                        function: () async {
                           if (!_formKey.currentState!.validate()) {
                             return;
                           }
@@ -181,8 +183,8 @@ class _LoginState extends State<Login> {
                               type: CoolAlertType.warning,
                               title: "No Internet",
                               text: "Check your internet connection!!",
-                              backgroundColor: CustomColors.customWhite,
-                              confirmBtnColor: CustomColors.customWhite,
+                              backgroundColor: CustomColors.customPink,
+                              confirmBtnColor: CustomColors.customPink,
                               animType: CoolAlertAnimType.scale,
                             );
                           } else if (accessToken != null) {
@@ -199,7 +201,7 @@ class _LoginState extends State<Login> {
                                 "password", password.text);
                             CustomRoutes().pushAndRemoveUntil(
                               context,
-                              Choice(),
+                              const Choice(),
                             );
                             email.clear();
                             password.clear();
@@ -229,13 +231,13 @@ class _LoginState extends State<Login> {
                         CustomSizes().dynamicWidth(context, .04),
                         CustomSizes().dynamicWidth(context, .04),
                         const SignUp(),
-                       CustomColors.customPink,
-                       CustomColors.customPink,
+                        CustomColors.customPink,
+                        CustomColors.customPink,
                         true,
                       ),
                       CustomSizes().heightBox(context, .1),
-                      coloredButton(
-                          context, "CONTINUE AS GUEST", CustomColors.customWhite,
+                      coloredButton(context, "CONTINUE AS GUEST",
+                          CustomColors.customWhite,
                           width: CustomSizes().dynamicWidth(context, .5),
                           fontColor: false,
                           fontSize: .034, function: () {
@@ -298,4 +300,90 @@ loginUser(email, password) async {
       return result.data!["customerAccessTokenCreate"]["customerAccessToken"];
     }
   }
+}
+
+dynamic customAlert(context) {
+  return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext dialogContext) {
+        return Align(
+          alignment: Alignment.center,
+          child: Material(
+            color: CustomColors.noColor,
+            child: Padding(
+              padding: EdgeInsets.only(
+                bottom: CustomSizes().dynamicHeight(context, .2),
+              ),
+              child: Container(
+                height: CustomSizes().dynamicHeight(context, .32),
+                width: CustomSizes().dynamicWidth(context, .8),
+                decoration: BoxDecoration(
+                  color: CustomColors.customPink,
+                  borderRadius: BorderRadius.circular(
+                    CustomSizes().dynamicWidth(context, .04),
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      height: CustomSizes().dynamicHeight(context, .17),
+                      width: CustomSizes().dynamicWidth(context, .8),
+                      child: Center(
+                        child: Icon(
+                          Icons.email_outlined,
+                          color: CustomColors.customWhite,
+                          size: CustomSizes().dynamicWidth(context, .16),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: CustomSizes().dynamicHeight(context, .15),
+                      width: CustomSizes().dynamicWidth(context, .8),
+                      decoration: BoxDecoration(
+                        color: CustomColors.customWhite,
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(
+                            CustomSizes().dynamicWidth(context, .04),
+                          ),
+                          bottomLeft: Radius.circular(
+                            CustomSizes().dynamicWidth(context, .04),
+                          ),
+                        ),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text(
+                            'This email is already registered',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize:
+                                  CustomSizes().dynamicWidth(context, .032),
+                              color: CustomColors.customBlack,
+                            ),
+                          ),
+                          coloredButton(context, "Ok", CustomColors.customPink,
+                            width: CustomSizes().dynamicWidth(context, .16),
+                          )
+                          // coloredButton(
+                          //   context,
+                          //   "Ok",
+                          //   width: CustomSizes().dynamicWidth(context, .16),
+                          //   heigth: CustomSizes().dynamicHeight(context, .03),
+                          //   function: () {
+                          //     pop(context);
+                          //   },
+                          // ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        );
+      });
 }

@@ -7,13 +7,14 @@ import '../utils/config.dart';
 Widget coloredButton(context, text, color,
     {function = "",
       width = "",
+      height= "",
       fontSize = 0.04,
       fontColor = true}) {
   return GestureDetector(
     onTap: function == "" ? () {} : function,
     child: Container(
       width: width == "" ? CustomSizes().dynamicWidth(context, 1) : width,
-      height: CustomSizes().dynamicHeight(context, .048),
+      height: height == "" ? CustomSizes().dynamicHeight(context, .048) :height,
       decoration: color == CustomColors.noColor
           ? BoxDecoration(
         color: color,
