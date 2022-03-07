@@ -1,4 +1,5 @@
 import 'package:graphql/client.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 var storeFrontAccessToken = "349be28f473c630afa1bd73e38703a99";
 var storeName = "miknmin";
@@ -212,6 +213,89 @@ getShopifyCollection(handle) async {
     return "Server Error";
   } else {
     return result.data!["collectionByHandle"]["products"]["edges"];
+  }
+}
+
+loginUser(email, password) async {
+  SharedPreferences saveUser = await SharedPreferences.getInstance();
+  const createUserAccessToken = r'''
+                mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
+                  customerAccessTokenCreate(input: $input) {
+                    customerAccessToken {
+                      accessToken
+                      expiresAt
+                    }
+                    customerUserErrors {
+                      code
+                      field
+                      message
+                    }
+                  }
+                }
+            ''';
+  var variables = {
+    "input": {"email": email, "password": password}
+  };
+  final HttpLink httpLink = HttpLink(
+      "https://$storeName.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token": storeFrontAccessToken
+      });
+  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options =
+      QueryOptions(document: gql(createUserAccessToken), variables: variables);
+  final QueryResult result = await client.query(options);
+
+  if (result.hasException) {
+    return "Server Error";
+  } else {
+    if (result.data!["customerAccessTokenCreate"]["customerAccessToken"] !=
+        null) {
+      saveUser.setString(
+          "loginInfo",
+          result.data!["customerAccessTokenCreate"]["customerAccessToken"]
+              ["accessToken"]);
+      return result.data!["customerAccessTokenCreate"]["customerAccessToken"]
+          ["accessToken"];
+    } else {
+      return result.data!["customerAccessTokenCreate"]["customerAccessToken"];
+    }
+  }
+}
+
+
+
+
+passwordReset(email) async {
+  var reset = r'''
+mutation customerRecover($email: String!) {
+  customerRecover(email: $email) {
+    customerUserErrors {
+      code
+      field
+      message
+    }
+  }
+}
+ ''';
+  final HttpLink httpLink = HttpLink(
+       "https://$storeName.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token": storeFrontAccessToken
+      });
+  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options = QueryOptions(
+    document: gql(reset),
+    variables: {
+      "email": email,
+    },
+  );
+  final QueryResult result = await client.query(options);
+
+  if (result.hasException) {
+    return "Server Error";
+  } else {
+    return "done";
   }
 }
 

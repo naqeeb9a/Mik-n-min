@@ -15,6 +15,7 @@ import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/form_fields.dart';
+import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -255,52 +256,6 @@ class _LoginState extends State<Login> {
   }
 }
 
-loginUser(email, password) async {
-  SharedPreferences saveUser = await SharedPreferences.getInstance();
-  const createUserAccessToken = r'''
-                mutation customerAccessTokenCreate($input: CustomerAccessTokenCreateInput!) {
-                  customerAccessTokenCreate(input: $input) {
-                    customerAccessToken {
-                      accessToken
-                      expiresAt
-                    }
-                    customerUserErrors {
-                      code
-                      field
-                      message
-                    }
-                  }
-                }
-            ''';
-  var variables = {
-    "input": {"email": email, "password": password}
-  };
-  final HttpLink httpLink = HttpLink(
-      "https://monark-clothings.myshopify.com/api/2021-10/graphql.json",
-      defaultHeaders: {
-        "X-Shopify-Storefront-Access-Token": "fce9486a511f6a4f45939c2c6829cdaa"
-      });
-  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
-  final QueryOptions options =
-      QueryOptions(document: gql(createUserAccessToken), variables: variables);
-  final QueryResult result = await client.query(options);
-
-  if (result.hasException) {
-    return "Server Error";
-  } else {
-    if (result.data!["customerAccessTokenCreate"]["customerAccessToken"] !=
-        null) {
-      saveUser.setString(
-          "loginInfo",
-          result.data!["customerAccessTokenCreate"]["customerAccessToken"]
-              ["accessToken"]);
-      return result.data!["customerAccessTokenCreate"]["customerAccessToken"]
-          ["accessToken"];
-    } else {
-      return result.data!["customerAccessTokenCreate"]["customerAccessToken"];
-    }
-  }
-}
 
 dynamic customAlert(context) {
   return showDialog(

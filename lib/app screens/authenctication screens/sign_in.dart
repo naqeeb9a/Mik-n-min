@@ -9,6 +9,7 @@ import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/form_fields.dart';
+import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -55,10 +56,10 @@ class _SignUpState extends State<SignUp> {
       }
     };
     final HttpLink httpLink = HttpLink(
-        "https://monark-clothings.myshopify.com/api/2021-10/graphql.json",
+        "https://$storeName.myshopify.com/api/2021-10/graphql.json",
         defaultHeaders: {
           "X-Shopify-Storefront-Access-Token":
-              "fce9486a511f6a4f45939c2c6829cdaa"
+              storeFrontAccessToken
         });
     GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
     final QueryOptions options = QueryOptions(
