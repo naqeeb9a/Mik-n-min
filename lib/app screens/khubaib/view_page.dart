@@ -22,6 +22,8 @@ class ViewPage extends StatefulWidget {
   _ViewPageState createState() => _ViewPageState();
 }
 
+int wishlistIndex = 0;
+
 class _ViewPageState extends State<ViewPage> {
   var index = 0, quantity = 1;
 

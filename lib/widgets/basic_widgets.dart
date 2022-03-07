@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/khubaib/view_page.dart';
+import 'package:mik_and_min/atif/product_array.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/widgets/buttons.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
@@ -34,6 +35,7 @@ Widget chip(context, title) {
 }
 
 Widget customGridCards(context, productData,text1,image) {
+  
   return InkWell(
     onTap: ()=>
         CustomRoutes().push(
@@ -100,9 +102,26 @@ Widget customGridCards(context, productData,text1,image) {
                       0.025,
                       CustomColors.customPink,
                     ),
-                    Icon(
-                      Icons.star_border_outlined,
-                      size: CustomSizes().dynamicHeight(context, 0.025),
+                    GestureDetector(
+                      onTap: () { 
+                        
+                        wishlistArray.add(productData);
+
+                         ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: text(
+                                    context, "Item Added to Wishlist", 0.06, CustomColors.customWhite),
+                              ),
+                            );
+                         
+                      },
+                      child: wishlistIndex== 1 ? Icon(
+                        Icons.star,
+                        size: CustomSizes().dynamicHeight(context, 0.025),
+                      ): Icon(
+                        Icons.star_border_outlined,
+                        size: CustomSizes().dynamicHeight(context, 0.025),
+                      ),
                     ),
                   ],
                 ),

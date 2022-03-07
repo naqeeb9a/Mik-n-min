@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/khubaib/wishlist.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
@@ -95,12 +96,15 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        text(
-                          context,
-                          "Wishlist",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
+                        GestureDetector(
+                          onTap : ()=>CustomRoutes().push(context,const WishList()),
+                          child: text(
+                            context,
+                            "Wishlist",
+                            .032,
+                            CustomColors.customBlack,
+                            bold: true,
+                          ),
                         ),
                         text(
                           context,
