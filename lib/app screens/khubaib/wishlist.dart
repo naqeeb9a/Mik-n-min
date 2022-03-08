@@ -7,9 +7,8 @@ import '../../utils/dynamic_sizes.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/text_widget.dart';
 
-
 class WishList extends StatefulWidget {
-   const WishList({Key? key}) : super(key: key);
+  const WishList({Key? key}) : super(key: key);
 
   @override
   State<WishList> createState() => _WishListState();
@@ -37,51 +36,58 @@ class _WishListState extends State<WishList> {
           thickness: CustomSizes().dynamicWidth(context, 0.012),
           hoverThickness: CustomSizes().dynamicWidth(context, 0.02),
           child: GridView.builder(
-          primary: true,
-          shrinkWrap: true,
-          padding: EdgeInsets.symmetric(
-            vertical: CustomSizes().dynamicHeight(context, 0.025),
-            horizontal: CustomSizes().dynamicWidth(context,0.01),
+            primary: true,
+            shrinkWrap: true,
+            padding: EdgeInsets.symmetric(
+              vertical: CustomSizes().dynamicHeight(context, 0.025),
+              horizontal: CustomSizes().dynamicWidth(context, 0.01),
+            ),
+            itemCount: wishlistArray.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
+                  CustomSizes().dynamicWidth(context, 0.6)),
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              return wishlistItem(
+                context,
+                wishlistArray,
+                index,
+                () {
+                  setState(
+                    () {},
+                  );
+                },
+              );
+            },
           ),
-          itemCount: wishlistArray.length ,
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: (CustomSizes().dynamicWidth(context, 0.5) /
-                CustomSizes().dynamicWidth(context, 0.6)),
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            return wishlistItem(
-              context,
-              wishlistArray,
-              index,
-
-            );
-          },
-        ),
         ),
       ),
     );
   }
 }
 
-
-Widget wishlistItem (context,productData,index) {
+Widget wishlistItem(context, productData, index,setState) {
   return Column(
-      children: [
-        Container(
-          width: CustomSizes().dynamicWidth(context, 0.42),
-          height: CustomSizes().dynamicWidth(context, 0.4),
-          decoration: BoxDecoration(
-            color: CustomColors.customWhite,
-            image: DecorationImage(
-              image: NetworkImage(
-                productData[index]["images"]["edges"][0]["node"]["src"],
-              ),
-              fit: BoxFit.cover,
+    children: [
+      
+      Container(
+        width: CustomSizes().dynamicWidth(context, 0.42),
+        height: CustomSizes().dynamicWidth(context, 0.4),
+        decoration: BoxDecoration(
+          color: CustomColors.customWhite,
+          image: DecorationImage(
+            image: NetworkImage(
+              productData[index]["images"]["edges"][0]["node"]["src"],
             ),
-            borderRadius: BorderRadius.circular(CustomSizes().dynamicWidth(context,0.03)),
+            fit: BoxFit.cover,
           ),
+          borderRadius:
+              BorderRadius.circular(CustomSizes().dynamicWidth(context, 0.03)),
         ),
+      ),
+    
+      Stack(children: [
         SizedBox(
           width: CustomSizes().dynamicWidth(context, 0.42),
           height: CustomSizes().dynamicWidth(context, 0.17),
@@ -124,7 +130,26 @@ Widget wishlistItem (context,productData,index) {
             ],
           ),
         ),
-      
-      ],
-    );
+        Positioned(
+          top: CustomSizes().dynamicHeight(context, 0.007),
+          right: CustomSizes().dynamicWidth(context, 0.01),
+          child: InkWell(
+           onTap: () {
+              print(wishlistCheck);
+              wishlistArray.remove(productData[index]);
+                wishlistCheck.removeAt(index);
+              setState();
+              
+        
+               print(wishlistCheck);
+            },
+            child: wishlistCheck.contains(productData[index]['title'])? Icon(
+              Icons.star,
+              size: CustomSizes().dynamicWidth(context, 0.05) ,
+            ):Icon(Icons.star_border_outlined,size :CustomSizes().dynamicWidth(context,0.05))
+          ),
+        )
+      ])
+    ],
+  );
 }

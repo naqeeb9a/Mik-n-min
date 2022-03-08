@@ -15,15 +15,14 @@ class ViewPage extends StatefulWidget {
   final dynamic text1;
   final dynamic image;
 
-
-  const ViewPage({this.productData, this.text1,this.image, Key? key}) : super(key: key);
+  const ViewPage({this.productData, this.text1, this.image, Key? key})
+      : super(key: key);
 
   @override
   _ViewPageState createState() => _ViewPageState();
 }
 
-int wishlistIndex = 0;
-
+// int wishlistIndex = 0;
 class _ViewPageState extends State<ViewPage> {
   var index = 0, quantity = 1;
 
@@ -46,6 +45,11 @@ class _ViewPageState extends State<ViewPage> {
     );
   }
 
+ @override
+ void initState() {
+   super.initState();
+   
+ }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,12 +75,86 @@ class _ViewPageState extends State<ViewPage> {
           ),
         ),
         endDrawer: customDrawer(context),
-        appBar:
-            customAppBar(context, bottomText: true, title: widget.text1 ?? "",image: widget.image),
+        appBar: customAppBar(context,
+            bottomText: true, title: widget.text1 ?? "", image: widget.image),
         body: SafeArea(
           child: Column(
             children: [
-              customSwiper(context, widget.productData),
+              Stack(children: [
+                customSwiper(context, widget.productData),
+                Positioned(
+                  bottom: CustomSizes().dynamicHeight(context, 0.015),
+                  right: CustomSizes().dynamicWidth(context, 0.03),
+                  child: InkWell(
+                    onTap: () {
+                     
+                      var check = "";
+                      if (wishlistArray.isEmpty) {
+                        wishlistArray.add(widget.productData);
+                        wishlistCheck.add(widget.productData["title"]);
+                        print(wishlistArray);
+                        print(wishlistCheck);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: text(context, "Item Added to Wishlist",
+                                0.06, CustomColors.customWhite),
+                          ),
+                        );
+                      } else {
+                        if (wishlistCheck.contains(widget.productData['title'])){
+                           wishlistArray.remove(widget.productData);
+                          wishlistCheck.remove(widget.productData["title"]);
+                          print(wishlistArray);
+                          print(wishlistCheck);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: text(context, "Item Removed from Wishlist",
+                                  0.06, CustomColors.customWhite),
+                            ),
+                          );
+                         setState(() {
+                           
+                         });
+                         check == "yes";
+                         
+                        }
+                        else {
+                          check = "no";
+                          setState(() {
+                            
+                          });
+                        }
+
+                        if (check == "no" && check != "yes") {
+                              wishlistArray.add(widget.productData);
+                            wishlistCheck.add(widget.productData["title"]);
+                             ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: text(context, "Item Added to Wishlist",
+                                  0.06, CustomColors.customWhite),
+                            ),
+                          );
+                          setState(() {
+                            
+                          });
+                          }
+
+
+
+                  
+                        setState(() {});
+                      }
+                    },
+                    child: wishlistCheck.contains(widget.productData['title'])
+                        ? Icon(Icons.star,
+                            size: CustomSizes().dynamicWidth(context, 0.075))
+                        : Icon(
+                            Icons.star_border_outlined,
+                            size: CustomSizes().dynamicWidth(context, 0.075),
+                          ),
+                  ),
+                ),
+              ]),
               Divider(
                 thickness: CustomSizes().dynamicWidth(context, 0.002),
               ),

@@ -6,6 +6,7 @@ import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import '../widgets/app_bar.dart';
 import '../widgets/basic_widgets.dart';
+import 'khubaib/catogery_widget/customGridCard.dart';
 
 class CategoryDetail extends StatefulWidget {
   final dynamic function,image, text1;
@@ -16,6 +17,12 @@ class CategoryDetail extends StatefulWidget {
 }
 
 class _CategoryDetailState extends State<CategoryDetail> {
+
+@override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     // print(widget.image);
@@ -89,12 +96,7 @@ errorHandlingWidget(
                 CustomSizes().dynamicWidth(context, 0.6)),
           ),
           itemBuilder: (BuildContext context, int index) {
-            return customGridCards(
-              context,
-              snaphot1.data[index]["node"],
-              text1,
-              image,
-            );
+            return CustomGridCard(productData: snaphot1.data[index]['node'],text1 :text1,image:image);
           },
         ),
       );
@@ -103,3 +105,12 @@ errorHandlingWidget(
     return const Center(child: CircularProgressIndicator());
   }
 }
+
+
+// CustomGridCards(
+           
+//               snaphot1.data[index]["node"],
+//               text1,
+//               image,
+              
+//             );

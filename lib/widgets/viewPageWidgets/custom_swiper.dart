@@ -7,8 +7,7 @@ import 'package:mik_and_min/widgets/viewPageWidgets/tinder_page.dart';
 customSwiper(context, productData ) {
   return SizedBox(
     height: CustomSizes().dynamicHeight(context, 0.45),
-    child: Stack(
-      children: [
+    child: 
         Swiper(
           itemBuilder: (BuildContext context, int index) {
             return tinderImage(
@@ -30,15 +29,9 @@ customSwiper(context, productData ) {
                 color: CustomColors.customGrey),
           ),
         ),
-        Positioned(
-          bottom: CustomSizes().dynamicHeight(context, 0.015),
-          right: CustomSizes().dynamicWidth(context, 0.03),
-          child: Icon(
-           Icons.star_border_outlined,
-            size: CustomSizes().dynamicWidth(context, 0.075),
-          ),
-        ),
-      ],
-    ),
+       
+    
   );
 }
+
+
