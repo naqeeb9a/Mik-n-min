@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/khubaib/orderHistory.dart';
 import 'package:mik_and_min/app%20screens/khubaib/wishlist.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
 import '../../widgets/text_widget.dart';
+import '../khubaib/trackOrder.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -106,19 +108,25 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                             bold: true,
                           ),
                         ),
-                        text(
-                          context,
-                          "Order History",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
+                        GestureDetector(
+                          onTap: ()=>CustomRoutes().push(context,const OrderHistory(text1 : "Order History")),
+                          child: text(
+                            context,
+                            "Order History",
+                            .032,
+                            CustomColors.customBlack,
+                            bold: true,
+                          ),
                         ),
-                        text(
-                          context,
-                          "Track Order",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
+                        GestureDetector(
+                          onTap : ()=> CustomRoutes().push(context, const TrackOrder(text1: "Track Order")),
+                          child: text(
+                            context,
+                            "Track Order",
+                            .032,
+                            CustomColors.customBlack,
+                            bold: true,
+                          ),
                         ),
                       ],
                     ),

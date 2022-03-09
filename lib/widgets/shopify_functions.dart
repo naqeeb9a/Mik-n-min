@@ -1,6 +1,8 @@
 import 'package:graphql/client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../app screens/authenctication screens/login.dart';
+
 var storeFrontAccessToken = "349be28f473c630afa1bd73e38703a99";
 var storeName = "miknmin";
 getShopifyProductsBestSelling() async {
@@ -299,72 +301,72 @@ mutation customerRecover($email: String!) {
   }
 }
 
-// getUserOrders() async {
-//   var createUserAccessToken = '''
-// {
-//     customer (customerAccessToken: "$globalAccessToken")
-//     {
-//         id
-//         orders(first:10){
-//              edges{
-//                  node{
-//                      orderNumber 
-//                      email 
-//                      fulfillmentStatus 
-//                      cancelReason
-//                      lineItems(first:5){
-//                          edges{
-//                              node{
-//                                  title
-//                                  quantity
-//                                  variant {
-//                                      product{
-//                                          variants(first:1){
-//                                         edges{
-//                                         node{
-//                                             price     
-//                                           }
-//                                         }
-//                                         }
-//                                          images(first:1){
-//                                             edges{
-//                                                 node{
-//                                                     src
-//                                                 }
-//                                             }
-//                                     }
-//                                      }
-//                                  }
-//                              }
-//                          }
-//                      }
-//                  }
-//              }
-//          }     
-//     }
-// }
-//  ''';
-//   final HttpLink httpLink = HttpLink(
-//       "https://$storeName.myshopify.com/api/2021-10/graphql.json",
-//       defaultHeaders: {
-//         "X-Shopify-Storefront-Access-Token": storeFrontAccessToken
-//       });
-//   GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
-//   final QueryOptions options = QueryOptions(
-//     document: gql(createUserAccessToken),
-//   );
-//   final QueryResult result = await client.query(options);
+getUserOrders() async {
+  var createUserAccessToken = '''
+{
+    customer (customerAccessToken: "$globalAccessToken")
+    {
+        id
+        orders(first:10){
+             edges{
+                 node{
+                     orderNumber 
+                     email 
+                     fulfillmentStatus 
+                     cancelReason
+                     lineItems(first:5){
+                         edges{
+                             node{
+                                 title
+                                 quantity
+                                 variant {
+                                     product{
+                                         variants(first:1){
+                                        edges{
+                                        node{
+                                            price     
+                                          }
+                                        }
+                                        }
+                                         images(first:1){
+                                            edges{
+                                                node{
+                                                    src
+                                                }
+                                            }
+                                    }
+                                     }
+                                 }
+                             }
+                         }
+                     }
+                 }
+             }
+         }     
+    }
+}
+ ''';
+  final HttpLink httpLink = HttpLink(
+      "https://$storeName.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token": storeFrontAccessToken
+      });
+  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options = QueryOptions(
+    document: gql(createUserAccessToken),
+  );
+  final QueryResult result = await client.query(options);
 
-//   if (result.hasException) {
-//     return "Server Error";
-//   } else {
-//     if (result.data!["customer"] == null) {
-//       return "Token Expired";
-//     } else {
-//       return result.data!["customer"]["orders"]["edges"];
-//     }
-//   }
-// }
+  if (result.hasException) {
+    return "Server Error";
+  } else {
+    if (result.data!["customer"] == null) {
+      return "Token Expired";
+    } else {
+      return result.data!["customer"]["orders"]["edges"];
+    }
+  }
+}
 
 // createDraftOrders(subtotal) async {
 //   var localOrderList = [];

@@ -307,6 +307,7 @@ class _SignUpState extends State<SignUp> {
                                       animType: CoolAlertAnimType.scale,
                                     );
                                   } else if (accessToken != null) {
+                                    globalAccessToken = accessToken.toString();
                                     SharedPreferences saveUser =
                                         await SharedPreferences.getInstance();
 

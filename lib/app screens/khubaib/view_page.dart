@@ -45,11 +45,11 @@ class _ViewPageState extends State<ViewPage> {
     );
   }
 
- @override
- void initState() {
-   super.initState();
-   
- }
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,8 +61,9 @@ class _ViewPageState extends State<ViewPage> {
           child: coloredButton(
             context,
             "ADD TO CART",
-            CustomColors.customPink,
+            Color.fromRGBO(250, 44, 103, 1),
             function: () {
+              // if (productArray.isEmpty) {
               productArray.add(widget.productData);
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
@@ -70,7 +71,60 @@ class _ViewPageState extends State<ViewPage> {
                       context, "Item Added", 0.06, CustomColors.customWhite),
                 ),
               );
+              //}
+              // else{
+              //   if(productArray.contains(widget.productData['title'])){
+
+              //   }
+              // }
             },
+            //         {
+            //   if (productArray.length == 0) {
+            //     productArray.add(
+            //      widget.productData
+            //       "price": price,
+            //       "title": text,
+            //       "quantity": quantity,
+            //       "total": int.parse(price.toString()) * quantity,
+            //
+            // "sku": sku,
+            // "variantId": variantId,
+            // "size": size,
+            //     );
+            //   } else {
+            //     for (int i = 0; i <  productArray.length; i++) {
+            //       if (text.toString() ==  productArray[i]["title"].toString() &&
+            //           size.toString() ==  productArray[i]["size"].toString()) {
+            //          productArrayi]["quantity"] =
+            //             int.parse( productArray[i]["quantity"].toString()) +
+            //                 int.parse(cartQuantity.toString());
+            //          productArray[i]["total"] =
+            //             int.parse( productArray[i]["total"].toString()) +
+            //                 (int.parse(price.toString()) *
+            //                     int.parse(cartQuantity.value.toString()));
+            //       } else {
+            //          productArray.add(
+            //           widget.productData
+            //           "price": price,
+            //           "title": text,
+            //           "quantity": quantity,
+            //           "total": int.parse(price.toString()) *
+            //               quantity,
+            //
+            //         );
+            //       }
+            //     }
+            //   }
+
+            //   var snackBar = SnackBar(
+            //     content: ( productArray.length > 1)
+            //         ? Text( productArray.length.toString() + ' Items added to cart')
+            //         : Text( productArray.length.toString() + ' Item added to cart'),
+            //     duration: const Duration(milliseconds: 500),
+            //   );
+
+            //   ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            // },
             width: CustomSizes().dynamicWidth(context, 0.8),
           ),
         ),
@@ -87,7 +141,6 @@ class _ViewPageState extends State<ViewPage> {
                   right: CustomSizes().dynamicWidth(context, 0.03),
                   child: InkWell(
                     onTap: () {
-                     
                       var check = "";
                       if (wishlistArray.isEmpty) {
                         wishlistArray.add(widget.productData);
@@ -101,47 +154,40 @@ class _ViewPageState extends State<ViewPage> {
                           ),
                         );
                       } else {
-                        if (wishlistCheck.contains(widget.productData['title'])){
-                           wishlistArray.remove(widget.productData);
+                        if (wishlistCheck
+                            .contains(widget.productData['title'])) {
+                          wishlistArray.remove(widget.productData);
                           wishlistCheck.remove(widget.productData["title"]);
                           print(wishlistArray);
                           print(wishlistCheck);
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                              content: text(context, "Item Removed from Wishlist",
-                                  0.06, CustomColors.customWhite),
+                              content: text(
+                                  context,
+                                  "Item Removed from Wishlist",
+                                  0.06,
+                                  CustomColors.customWhite),
                             ),
                           );
-                         setState(() {
-                           
-                         });
-                         check == "yes";
-                         
-                        }
-                        else {
+                          setState(() {});
+                          check == "yes";
+                        } else {
                           check = "no";
-                          setState(() {
-                            
-                          });
+                          setState(() {});
                         }
 
                         if (check == "no" && check != "yes") {
-                              wishlistArray.add(widget.productData);
-                            wishlistCheck.add(widget.productData["title"]);
-                             ScaffoldMessenger.of(context).showSnackBar(
+                          wishlistArray.add(widget.productData);
+                          wishlistCheck.add(widget.productData["title"]);
+                          ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: text(context, "Item Added to Wishlist",
                                   0.06, CustomColors.customWhite),
                             ),
                           );
-                          setState(() {
-                            
-                          });
-                          }
+                          setState(() {});
+                        }
 
-
-
-                  
                         setState(() {});
                       }
                     },

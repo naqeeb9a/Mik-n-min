@@ -5,7 +5,6 @@ import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import '../widgets/app_bar.dart';
-import '../widgets/basic_widgets.dart';
 import 'khubaib/catogery_widget/customGridCard.dart';
 
 class CategoryDetail extends StatefulWidget {

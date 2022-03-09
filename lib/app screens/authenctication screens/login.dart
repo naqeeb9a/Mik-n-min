@@ -29,7 +29,7 @@ class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
-
+String globalAccessToken = "";
 class _LoginState extends State<Login> {
   // final email = TextEditingController();
   // final password = TextEditingController();
@@ -174,7 +174,8 @@ class _LoginState extends State<Login> {
                             email.text.toString(),
                             password.text.toString(),
                           );
-
+                          globalAccessToken =accessToken;
+                          print(globalAccessToken);
                           if (accessToken == "Server Error") {
                             setState(() {
                               isLoading = false;
@@ -189,6 +190,7 @@ class _LoginState extends State<Login> {
                               animType: CoolAlertAnimType.scale,
                             );
                           } else if (accessToken != null) {
+                            //  globalAccessToken =accessToken.toString();
                             SharedPreferences saveUser =
                                 await SharedPreferences.getInstance();
                             SharedPreferences saveUserEmail =
