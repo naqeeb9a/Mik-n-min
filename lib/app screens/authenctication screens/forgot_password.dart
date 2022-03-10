@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:cool_alert/cool_alert.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
-import 'package:graphql/client.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/dynamic_sizes.dart';

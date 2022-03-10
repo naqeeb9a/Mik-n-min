@@ -5,6 +5,7 @@ import '../../utils/dynamic_sizes.dart';
 import '../../widgets/app_bar.dart';
 import '../../widgets/drawer/drawer.dart';
 import '../../widgets/text_widget.dart';
+import '../authenctication screens/login.dart';
 
 class TrackOrder extends StatefulWidget {
   final String text1;
@@ -21,8 +22,10 @@ class _TrackOrderState extends State<TrackOrder> {
       backgroundColor: CustomColors.customWhite,
       drawerScrimColor: CustomColors.customSkimColor,
       endDrawer: customDrawer(context),
-      appBar: customAppBar(context, bottomText: true, title: widget.text1),
-      body: Column(
+      appBar: customAppBar(context, bottomText: true, title: "Track Order"),
+      body: globalAccessToken.isEmpty?Center(
+        child :text(context , "No Register Account\nFirst you have to Login",0.03,CustomColors.customBlack),
+      ):Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
@@ -39,7 +42,7 @@ class _TrackOrderState extends State<TrackOrder> {
                     CustomSizes().dynamicWidth(context, 1),
                   ),
                 ),
-                child: text(context, "ORDER # MIKNMIN54600", 0.04,
+                child: text(context, widget.text1.toUpperCase(), 0.04,
                     CustomColors.customWhite)),
           ),
           SizedBox(
@@ -62,7 +65,7 @@ class _TrackOrderState extends State<TrackOrder> {
                               :index ==1 ?text(context, "${index + 1}. Dispatched", 0.035,
                               CustomColors.customGrey) : text(context, "${index + 1}. Delivered",
                                       0.035, CustomColors.customGrey),
-                          index == 2 ?SizedBox(): Icon(
+                          index == 2 ?const SizedBox(): Icon(
                                   Icons.circle,
                                   color: CustomColors.customBlue,
                                   size: CustomSizes()
@@ -71,7 +74,9 @@ class _TrackOrderState extends State<TrackOrder> {
                         ],
                       ),
                     ),
-                    Divider()
+                    Divider(
+                      thickness: CustomSizes().dynamicWidth(context,0.015),
+                    )
                   ],
                 );
               },

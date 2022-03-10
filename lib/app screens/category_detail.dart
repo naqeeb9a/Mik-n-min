@@ -5,7 +5,7 @@ import 'package:mik_and_min/widgets/drawer/drawer.dart';
 import 'package:mik_and_min/widgets/shopify_functions.dart';
 import 'package:mik_and_min/widgets/text_widget.dart';
 import '../widgets/app_bar.dart';
-import 'khubaib/catogery_widget/customGridCard.dart';
+import 'khubaib/catogery_widget/custom_grid_card.dart';
 
 class CategoryDetail extends StatefulWidget {
   final dynamic function,image, text1;
@@ -19,7 +19,7 @@ class _CategoryDetailState extends State<CategoryDetail> {
 
 @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
   }
   @override

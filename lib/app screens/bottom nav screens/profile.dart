@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mik_and_min/app%20screens/khubaib/orderHistory.dart';
+import 'package:mik_and_min/app%20screens/khubaib/order_history.dart';
 import 'package:mik_and_min/app%20screens/khubaib/wishlist.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
 import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
 import '../../widgets/text_widget.dart';
-import '../khubaib/trackOrder.dart';
+import '../khubaib/track_order.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
