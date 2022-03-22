@@ -243,8 +243,13 @@ class _LoginState extends State<Login> {
                           CustomColors.customWhite,
                           width: CustomSizes().dynamicWidth(context, .5),
                           fontColor: false,
-                          fontSize: .034, function: () {
-                        CustomRoutes().push(context, const Choice());
+                          fontSize: .034, function: () async {
+                            SharedPreferences saveUser =
+                                await SharedPreferences.getInstance();
+                            saveUser.setString("loginInfo", "guest");
+                            globalAccessToken = "guest";
+                            print(globalAccessToken);
+                        CustomRoutes().pushAndRemoveUntil(context, const Choice());
                       }),
                     ],
                   ),

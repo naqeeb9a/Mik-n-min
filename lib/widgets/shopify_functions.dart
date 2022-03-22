@@ -2,6 +2,7 @@ import 'package:graphql/client.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app screens/authenctication screens/login.dart';
+import '../utils/constants.dart';
 
 var storeFrontAccessToken = "349be28f473c630afa1bd73e38703a99";
 var storeName = "miknmin";
@@ -368,6 +369,83 @@ getUserOrders() async {
   }
 }
 
+logoutUser(accessToken) async {
+  SharedPreferences saveUser = await SharedPreferences.getInstance();
+
+  var deleteUserAccessToken = r'''
+              mutation customerAccessTokenDelete($customerAccessToken: String!) {
+                customerAccessTokenDelete(customerAccessToken: $customerAccessToken) {
+                  deletedAccessToken
+                  deletedCustomerAccessTokenId
+                  userErrors {
+                    field
+                    message
+                  }
+                }
+              }
+ ''';
+  var variables = {"customerAccessToken": accessToken.toString()};
+  final HttpLink httpLink = HttpLink(
+      "https://$storeName.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token":
+        storeFrontAccessToken
+      });
+  GraphQLClient client =
+  GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options = QueryOptions(
+      document: gql(deleteUserAccessToken), variables: variables);
+  final QueryResult result = await client.query(options);
+  if (result.hasException) {
+    return "Server Error";
+  } else {
+    await saveUser.clear();
+    // Phoenix.rebirth(context);
+  }
+}
+
+getUserData(accessToken, context) async {
+  globalAccessToken = accessToken;
+  var createUserAccessToken = '''
+{
+    customer (customerAccessToken: "$accessToken")
+    {
+         id
+         email
+         defaultAddress{
+             address1
+         }
+         phone
+         firstName
+         lastName
+    }
+}
+ ''';
+  final HttpLink httpLink = HttpLink(
+      "https://$storeName.myshopify.com/api/2021-10/graphql.json",
+      defaultHeaders: {
+        "X-Shopify-Storefront-Access-Token": storeFrontAccessToken,
+      });
+  GraphQLClient client = GraphQLClient(link: httpLink, cache: GraphQLCache());
+  final QueryOptions options = QueryOptions(
+    document: gql(createUserAccessToken),
+  );
+  final QueryResult result = await client.query(options);
+
+  if (result.hasException) {
+    return "Server Error";
+  } else if (result.data!["customer"] == null) {
+    SharedPreferences saveUserEmail = await SharedPreferences.getInstance();
+    SharedPreferences saveUserPassword = await SharedPreferences.getInstance();
+    await loginUser(saveUserEmail.getString("email"),
+        saveUserPassword.getString("password"));
+    // Phoenix.rebirth(context);
+  } else {
+    id = result.data!["customer"]["id"];
+    checkOutEmail = result.data!["customer"]["email"];
+    return result.data!["customer"];
+  }
+}
 // createDraftOrders(subtotal) async {
 //   var localOrderList = [];
 //   for (var i = 0; i < cartItems.length; i++) {

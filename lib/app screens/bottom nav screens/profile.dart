@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:mik_and_min/app%20screens/authenctication%20screens/login.dart';
 import 'package:mik_and_min/app%20screens/khubaib/order_history.dart';
 import 'package:mik_and_min/app%20screens/khubaib/wishlist.dart';
 import 'package:mik_and_min/utils/app_routes.dart';
+
 import '../../utils/config.dart';
 import '../../utils/dynamic_sizes.dart';
+import '../../widgets/basic_widgets.dart';
+import '../../widgets/shopify_functions.dart';
 import '../../widgets/text_widget.dart';
 import '../khubaib/track_order.dart';
 
@@ -44,136 +48,316 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
           padding: EdgeInsets.only(
             bottom: CustomSizes().dynamicHeight(context, .06),
           ),
-          child: SlideTransition(
-            position: _offsetAnimation,
-            child: Dialog(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                  CustomSizes().dynamicWidth(context, .034),
-                ),
-              ),
-              backgroundColor: CustomColors.customWhite,
-              insetPadding: EdgeInsets.all(
-                CustomSizes().dynamicWidth(context, 0.02),
-              ),
-              child: Container(
-                width: CustomSizes().dynamicWidth(context, 1),
-                height: CustomSizes().dynamicHeight(context, .2),
-                color: CustomColors.noColor,
-                padding: EdgeInsets.symmetric(
-                  horizontal: CustomSizes().dynamicWidth(context, 0.036),
-                  vertical: CustomSizes().dynamicHeight(context, 0.018),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomSizes().widthBox(context, .006),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/profile.png",
-                          color: CustomColors.customBlack,
-                          width: CustomSizes().dynamicWidth(context, .1),
-                        ),
-                        text(
-                          context,
-                          "User Name",
-                          .03,
-                          CustomColors.customBlack,
-                          bold: true,
-                        ),
-                        text(
-                          context,
-                          "Profile",
-                          .024,
-                          CustomColors.customGrey,
-                        ),
-                      ],
-                    ),
-                    const VerticalDivider(
-                      thickness: 1,
-                      color: CustomColors.customBlack,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        GestureDetector(
-                          onTap : ()=>CustomRoutes().push(context,const WishList()),
-                          child: text(
-                            context,
-                            "Wishlist",
-                            .032,
-                            CustomColors.customBlack,
-                            bold: true,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap: ()=>CustomRoutes().push(context,const OrderHistory(text1 : "Order History")),
-                          child: text(
-                            context,
-                            "Order History",
-                            .032,
-                            CustomColors.customBlack,
-                            bold: true,
-                          ),
-                        ),
-                        GestureDetector(
-                          onTap : ()=> CustomRoutes().push(context, const TrackOrder(text1: "Track Order")),
-                          child: text(
-                            context,
-                            "Track Order",
-                            .032,
-                            CustomColors.customBlack,
-                            bold: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const VerticalDivider(
-                      thickness: 1,
-                      color: CustomColors.customBlack,
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        text(
-                          context,
-                          "Address",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
-                        ),
-                        text(
-                          context,
-                          "Settings",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
-                        ),
-                        text(
-                          context,
-                          "Log Out",
-                          .032,
-                          CustomColors.customBlack,
-                          bold: true,
-                        ),
-                      ],
-                    ),
-                    Align(
-                      alignment: Alignment.bottomRight,
-                      child: GestureDetector(
-                        onTap: () {
-                          CustomRoutes().pop(context);
-                        },
-                        child: const Icon(Icons.arrow_drop_down),
+          child: globalAccessToken == "guest"
+              ? SlideTransition(
+                  position: _offsetAnimation,
+                  child: Dialog(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                        CustomSizes().dynamicWidth(context, .034),
                       ),
-                    )
-                  ],
+                    ),
+                    backgroundColor: CustomColors.customWhite,
+                    insetPadding: EdgeInsets.all(
+                      CustomSizes().dynamicWidth(context, 0.02),
+                    ),
+                    child: Container(
+                      width: CustomSizes().dynamicWidth(context, 1),
+                      height: CustomSizes().dynamicHeight(context, .2),
+                      color: CustomColors.noColor,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: CustomSizes().dynamicWidth(context, 0.036),
+                        vertical: CustomSizes().dynamicHeight(context, 0.018),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomSizes().widthBox(context, .006),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                "assets/profile.png",
+                                color: CustomColors.customBlack,
+                                width: CustomSizes().dynamicWidth(context, .1),
+                              ),
+                              text(
+                                context,
+                                "Guest",
+                                .03,
+                                CustomColors.customBlack,
+                                bold: true,
+                              ),
+                              text(
+                                context,
+                                "Profile",
+                                .024,
+                                CustomColors.customGrey,
+                              ),
+                            ],
+                          ),
+                          const VerticalDivider(
+                            thickness: 1,
+                            color: CustomColors.customBlack,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              GestureDetector(
+                                onTap: () => CustomRoutes()
+                                    .push(context, const WishList()),
+                                child: text(
+                                  context,
+                                  "Wishlist",
+                                  .032,
+                                  CustomColors.customBlack,
+                                  bold: true,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(
+                                        "Please Sign in to View order History"),
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                  ));
+                                },
+                                child: text(
+                                  context,
+                                  "Order History",
+                                  .032,
+                                  CustomColors.customBlack,
+                                  bold: true,
+                                ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(
+                                        "Please Sign in to View Track Order"),
+                                    duration:
+                                        const Duration(milliseconds: 1000),
+                                  ));
+                                },
+                                child: text(
+                                  context,
+                                  "Track Order",
+                                  .032,
+                                  CustomColors.customBlack,
+                                  bold: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                          const VerticalDivider(
+                            thickness: 1,
+                            color: CustomColors.customBlack,
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              text(
+                                context,
+                                "Address",
+                                .032,
+                                CustomColors.customBlack,
+                                bold: true,
+                              ),
+                              text(
+                                context,
+                                "Settings",
+                                .032,
+                                CustomColors.customBlack,
+                                bold: true,
+                              ),
+                              text(
+                                context,
+                                "Log Out",
+                                .032,
+                                CustomColors.customBlack,
+                                bold: true,
+                              ),
+                            ],
+                          ),
+                          Align(
+                            alignment: Alignment.bottomRight,
+                            child: GestureDetector(
+                              onTap: () {
+                                CustomRoutes().pop(context);
+                              },
+                              child: const Icon(Icons.arrow_drop_down),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              : FutureBuilder(
+                  future: getUserData(globalAccessToken, context),
+                  builder: (context, AsyncSnapshot snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      if (snapshot.data == "Server Error") {
+                        return Center(
+                          child: retry(context),
+                        );
+                      } else {
+                        SlideTransition(
+                          position: _offsetAnimation,
+                          child: Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                CustomSizes().dynamicWidth(context, .034),
+                              ),
+                            ),
+                            backgroundColor: CustomColors.customWhite,
+                            insetPadding: EdgeInsets.all(
+                              CustomSizes().dynamicWidth(context, 0.02),
+                            ),
+                            child: Container(
+                              width: CustomSizes().dynamicWidth(context, 1),
+                              height: CustomSizes().dynamicHeight(context, .2),
+                              color: CustomColors.noColor,
+                              padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    CustomSizes().dynamicWidth(context, 0.036),
+                                vertical:
+                                    CustomSizes().dynamicHeight(context, 0.018),
+                              ),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  CustomSizes().widthBox(context, .006),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Image.asset(
+                                        "assets/profile.png",
+                                        color: CustomColors.customBlack,
+                                        width: CustomSizes()
+                                            .dynamicWidth(context, .1),
+                                      ),
+                                      text(
+                                        context,
+                                        snapshot.data["firstName"],
+                                        .03,
+                                        CustomColors.customBlack,
+                                        bold: true,
+                                      ),
+                                      text(
+                                        context,
+                                        "Profile",
+                                        .024,
+                                        CustomColors.customGrey,
+                                      ),
+                                    ],
+                                  ),
+                                  const VerticalDivider(
+                                    thickness: 1,
+                                    color: CustomColors.customBlack,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () => CustomRoutes()
+                                            .push(context, const WishList()),
+                                        child: text(
+                                          context,
+                                          "Wishlist",
+                                          .032,
+                                          CustomColors.customBlack,
+                                          bold: true,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () => CustomRoutes().push(
+                                            context,
+                                            const OrderHistory(
+                                                text1: "Order History")),
+                                        child: text(
+                                          context,
+                                          "Order History",
+                                          .032,
+                                          CustomColors.customBlack,
+                                          bold: true,
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () => CustomRoutes().push(
+                                            context,
+                                            const TrackOrder(
+                                                text1: "Track Order")),
+                                        child: text(
+                                          context,
+                                          "Track Order",
+                                          .032,
+                                          CustomColors.customBlack,
+                                          bold: true,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const VerticalDivider(
+                                    thickness: 1,
+                                    color: CustomColors.customBlack,
+                                  ),
+                                  Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      text(
+                                        context,
+                                        "Address",
+                                        .032,
+                                        CustomColors.customBlack,
+                                        bold: true,
+                                      ),
+                                      text(
+                                        context,
+                                        "Settings",
+                                        .032,
+                                        CustomColors.customBlack,
+                                        bold: true,
+                                      ),
+                                      text(
+                                        context,
+                                        "Log Out",
+                                        .032,
+                                        CustomColors.customBlack,
+                                        bold: true,
+                                      ),
+                                    ],
+                                  ),
+                                  Align(
+                                    alignment: Alignment.bottomRight,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        CustomRoutes().pop(context);
+                                      },
+                                      child: const Icon(Icons.arrow_drop_down),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        );
+                      }
+                    } else {
+                      return Center(child: Text(snapshot.data.toString()));
+                    }
+
+                    // else {
+                    //   return const Center(child: Text("no Data"));
+                    // }
+                  },
                 ),
-              ),
-            ),
-          ),
         ),
       ],
     );

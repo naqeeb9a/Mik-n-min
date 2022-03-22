@@ -7,7 +7,7 @@ import '../text_widget.dart';
 bestSellerBanner(context) {
   return Container(
     width: CustomSizes().dynamicWidth(context, 1),
-    height: CustomSizes().dynamicHeight(context, 0.13),
+    height: CustomSizes().dynamicHeight(context, 0.14),
     decoration: const BoxDecoration(
         image: DecorationImage(
             image: AssetImage("assets/landing_girl.png"), fit: BoxFit.cover)),
