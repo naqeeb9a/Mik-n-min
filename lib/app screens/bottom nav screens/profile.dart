@@ -9,7 +9,9 @@ import '../../widgets/shopify_functions.dart';
 import '../../widgets/text_widget.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  final dynamic cont;
+
+  const Profile({Key? key, this.cont}) : super(key: key);
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -33,6 +35,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
     _controller.dispose();
     super.dispose();
   }
+
+  late BuildContext dynamicContext;
 
   @override
   Widget build(BuildContext context) {
@@ -294,7 +298,8 @@ class _ProfileState extends State<Profile> with SingleTickerProviderStateMixin {
                                             ),
                                             GestureDetector(
                                               onTap: () {
-                                                ScaffoldMessenger.of(context)
+                                                ScaffoldMessenger.of(
+                                                        widget.cont)
                                                     .showSnackBar(
                                                   SnackBar(
                                                     content: text(

@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/cart.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/categories_page.dart';
@@ -7,6 +8,7 @@ import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/profile.dart';
 import 'package:mik_and_min/app%20screens/bottom%20nav%20screens/search.dart';
 import 'package:mik_and_min/utils/config.dart';
 import 'package:mik_and_min/utils/constants.dart';
+
 import '../../utils/dynamic_sizes.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -76,9 +78,12 @@ class _CustomTabBarState extends State<CustomTabBar>
                             barrierDismissible: true,
                             useSafeArea: true,
                             context: context,
+                            useRootNavigator: false,
                             barrierColor: Colors.white60,
-                            builder: (context) {
-                              return const Profile();
+                            builder: (BuildContext dialogContext) {
+                              return Profile(
+                                cont: dialogContext,
+                              );
                             },
                           );
                         }
